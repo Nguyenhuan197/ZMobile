@@ -17,7 +17,7 @@ export default function ProjectHome() {
                     {data.smartphones.map((item) => (
                         <div key={item.id} className={styles.card}>
                             <div className={styles.imageBox}>
-                                <img src={`${HTTP}${item.img}`} alt={item.name} />
+                                <img src={`${HTTP}/${item.img}`} alt={item.name} />
                             </div>
 
                             <div className={styles.info}>
@@ -63,12 +63,12 @@ export default function ProjectHome() {
 
                 <div className={styles.gridBranch}>
                     <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/xiaomi (1).jpg`} alt={HTTP} />
+                        <img src={`${HTTP}/xiaomi (1).jpg`} alt={`${HTTP}/xiaomi (1).jpg`} />
                         <span>Xiaomi</span>
                     </div>
 
                     <div className={styles.logoBranch}>
-                        <img src="http://localhost:5173/realme.jpg" alt="" />
+                        <img src={`${HTTP}/realme.jpg`} alt={`${HTTP}/realme.jpg`} />
                         <span>Realme</span>
                     </div>
 
