@@ -1,11 +1,11 @@
 import styles from "./home.module.css";
 import data from "../../../Data/data.json";
+import { formatPrice } from "../../../utils/formatPrice.JS";
 
-const formatPrice = (price) => {
-    return price.toLocaleString("vi-VN") + "đ";
-};
 
 export default function ProjectHome() {
+    const HTTP = import.meta.env.VITE_API_URL;
+
     return (
         <div className={styles.container}>
 
@@ -17,7 +17,7 @@ export default function ProjectHome() {
                     {data.smartphones.map((item) => (
                         <div key={item.id} className={styles.card}>
                             <div className={styles.imageBox}>
-                                <img src={item.img} alt={item.name} />
+                                <img src={`${HTTP}${item.img}`} alt={item.name} />
                             </div>
 
                             <div className={styles.info}>
@@ -34,7 +34,6 @@ export default function ProjectHome() {
                 </div>
             </section>
 
-            {/* ACCESSORIES */}
             <section>
                 <h2 className={styles.sectionTitle}>Phụ Kiện</h2>
 
@@ -58,6 +57,26 @@ export default function ProjectHome() {
                     ))}
                 </div>
             </section>
+
+            <section>
+                <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
+
+                <div className={styles.gridBranch}>
+                    <div className={styles.logoBranch}>
+                        <img src={`${HTTP}/xiaomi (1).jpg`} alt={HTTP} />
+                        <span>Xiaomi</span>
+                    </div>
+
+                    <div className={styles.logoBranch}>
+                        <img src="http://localhost:5173/realme.jpg" alt="" />
+                        <span>Realme</span>
+                    </div>
+
+
+                </div>
+            </section>
+
+
         </div>
     );
 }

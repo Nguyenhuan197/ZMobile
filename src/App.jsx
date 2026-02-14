@@ -5,8 +5,6 @@ import Contact from "./client/page/contact";
 import Cart from "./client/page/cart";
 
 
-
-
 function App() {
   return (
     <Routes>

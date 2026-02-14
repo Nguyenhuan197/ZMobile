@@ -2,52 +2,16 @@
     "smartphones": [
         {
             "id": 1,
-            "name": "iPhone 15 Pro",
-            "price": 25990000,
+            "name": "iPhone 11 64G",
+            "price": 4200000,
             "sold": 216,
-            "img": "https://picsum.photos/300/300?random=1"
-        },
-        {
-            "id": 2,
-            "name": "Samsung S24 Ultra",
-            "price": 28500000,
-            "sold": 150,
-            "img": "https://picsum.photos/300/300?random=2"
-        },
-        {
-            "id": 3,
-            "name": "Xiaomi 14",
-            "price": 18990000,
-            "sold": 98,
-            "img": "https://picsum.photos/300/300?random=3"
-        },
-        {
-            "id": 4,
-            "name": "Oppo Find X7",
-            "price": 15000000,
-            "sold": 75,
-            "img": "https://picsum.photos/300/300?random=4"
-        },
-        {
-            "id": 2,
-            "name": "Samsung S24 Ultra",
-            "price": 28500000,
-            "sold": 150,
-            "img": "https://picsum.photos/300/300?random=2"
-        },
-        {
-            "id": 3,
-            "name": "Xiaomi 14",
-            "price": 18990000,
-            "sold": 98,
-            "img": "https://picsum.photos/300/300?random=3"
-        },
-        {
-            "id": 4,
-            "name": "Oppo Find X7",
-            "price": 15000000,
-            "sold": 75,
-            "img": "https://picsum.photos/300/300?random=4"
+            "img": "dien-thoai-iphone-11-cu.jpg",
+            "detailImg": [
+                "dien-thoai-iphone-11-cu.jpg",
+                "2f67363da938096650294-768x1024.jpg",
+                "2ef14bb5d4b074ee2da13-600x800.jpg",
+                "0597d1d04ed5ee8bb7c42-600x800.jpg"
+            ]
         }
     ],
     "accessories": [

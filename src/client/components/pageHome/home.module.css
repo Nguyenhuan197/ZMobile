@@ -19,6 +19,7 @@
     font-weight: 600;
     border-left: 4px solid #e11d48;
     padding-left: 10px;
+    margin-top: 70px;
 }
 
 /* GRID SHOPEE STYLE */
@@ -82,6 +83,41 @@
     color: #888;
     margin-top: 4px;
 }
+
+
+
+/* Thương hiệu */
+.gridBranch {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+    gap: 30px;
+    justify-content: start;
+    margin-top: 30px;
+}
+
+.logoBranch {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoBranch img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.logoBranch span {
+    color: tomato;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 
 /* =================== RESPONSIVE =================== */
 
