@@ -1,0 +1,83 @@
+{
+    "smartphones": [
+        {
+            "id": 1,
+            "name": "iPhone 15 Pro",
+            "price": 25990000,
+            "sold": 216,
+            "img": "https://picsum.photos/300/300?random=1"
+        },
+        {
+            "id": 2,
+            "name": "Samsung S24 Ultra",
+            "price": 28500000,
+            "sold": 150,
+            "img": "https://picsum.photos/300/300?random=2"
+        },
+        {
+            "id": 3,
+            "name": "Xiaomi 14",
+            "price": 18990000,
+            "sold": 98,
+            "img": "https://picsum.photos/300/300?random=3"
+        },
+        {
+            "id": 4,
+            "name": "Oppo Find X7",
+            "price": 15000000,
+            "sold": 75,
+            "img": "https://picsum.photos/300/300?random=4"
+        },
+        {
+            "id": 2,
+            "name": "Samsung S24 Ultra",
+            "price": 28500000,
+            "sold": 150,
+            "img": "https://picsum.photos/300/300?random=2"
+        },
+        {
+            "id": 3,
+            "name": "Xiaomi 14",
+            "price": 18990000,
+            "sold": 98,
+            "img": "https://picsum.photos/300/300?random=3"
+        },
+        {
+            "id": 4,
+            "name": "Oppo Find X7",
+            "price": 15000000,
+            "sold": 75,
+            "img": "https://picsum.photos/300/300?random=4"
+        }
+    ],
+    "accessories": [
+        {
+            "id": 5,
+            "name": "AirPods Pro 2",
+            "price": 5500000,
+            "sold": 320,
+            "img": "https://picsum.photos/300/300?random=5"
+        },
+        {
+            "id": 6,
+            "name": "Sạc dự phòng MagSafe",
+            "price": 1200000,
+            "sold": 210,
+            "img": "https://picsum.photos/300/300?random=6"
+        },
+        {
+            "id": 7,
+            "name": "Ốp lưng Silicone",
+            "price": 250000,
+            "sold": 540,
+            "img": "https://picsum.photos/300/300?random=7"
+        },
+        {
+            "id": 8,
+            "name": "Loa Bluetooth Marshall",
+            "price": 6500000,
+            "sold": 60,
+            "img": "https://picsum.photos/300/300?random=8"
+        }
+    ]
+}

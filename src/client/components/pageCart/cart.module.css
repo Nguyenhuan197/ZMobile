@@ -1,0 +1,238 @@
+/* ========================= */
+/*        CART PAGE          */
+/* ========================= */
+
+.cartPage {
+    min-height: 100vh;
+    padding: 90px 20px 60px;
+    /* 👈 cách header */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Title */
+.container h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* ========================= */
+/*       HEADER ROW          */
+/* ========================= */
+
+.cartHeader {
+    display: grid;
+    grid-template-columns: 40px 120px 1fr 150px 150px;
+    padding: 12px 0;
+    border-bottom: 2px solid #f1f1f1;
+    font-weight: 600;
+    color: #666;
+}
+
+/* ========================= */
+/*       PRODUCT LIST        */
+/* ========================= */
+
+.cartList {
+    margin-top: 15px;
+}
+
+/* Item */
+.cartItem {
+    display: grid;
+    grid-template-columns: 40px 120px 1fr 150px 150px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s ease;
+}
+
+.cartItem:hover {
+    background: #fafafa;
+}
+
+/* Image */
+.cartItem img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Info */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info p {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.info span {
+    color: #ee4d2d;
+    font-weight: bold;
+}
+
+/* ========================= */
+/*        QUANTITY           */
+/* ========================= */
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.quantity button:hover {
+    background: #f5f5f5;
+}
+
+.quantity span {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Subtotal */
+.subtotal {
+    font-weight: bold;
+    color: #ee4d2d;
+    font-size: 16px;
+}
+
+/* ========================= */
+/*        SUMMARY            */
+/* ========================= */
+
+.summary {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 2px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary h3 {
+    font-size: 20px;
+    color: #ee4d2d;
+    font-weight: bold;
+}
+
+/* Checkout Button */
+.summary button {
+    background: #ee4d2d;
+    color: white;
+    border: none;
+    padding: 14px 45px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.summary button:hover {
+    background: #d73211;
+}
+
+/* ========================= */
+/*        TABLET             */
+/* ========================= */
+
+@media (max-width: 992px) {
+
+    .cartHeader {
+        display: none;
+    }
+
+    .cartItem {
+        grid-template-columns: 40px 100px 1fr;
+        grid-template-rows: auto auto;
+        gap: 15px;
+        padding: 18px 0;
+    }
+
+    .quantity,
+    .subtotal {
+        grid-column: 2 / 4;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .summary button {
+        width: 100%;
+    }
+}
+
+/* ========================= */
+/*        MOBILE             */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .cartPage {
+        padding: 70px 15px 40px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .cartItem {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+
+    .cartItem img {
+        width: 100%;
+        height: auto;
+    }
+
+    .quantity {
+        margin-top: 12px;
+    }
+
+    .subtotal {
+        margin-top: 8px;
+    }
+
+    .summary {
+        text-align: center;
+    }
+
+    .summary button {
+        width: 100%;
+    }
+}
