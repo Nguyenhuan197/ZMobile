@@ -54,6 +54,8 @@ export default function ProjectHome() {
                                 </p>
                             </div>
                         </div>
+
+
                     ))}
                 </div>
             </section>
@@ -65,6 +67,11 @@ export default function ProjectHome() {
                     <div className={styles.logoBranch}>
                         <img src={`${HTTP}/xiaomi (1).jpg`} alt={`${HTTP}/xiaomi (1).jpg`} />
                         <span>Xiaomi</span>
+                    </div>
+
+                    <div className={styles.logoBranch}>
+                        <img src={`${HTTP}/realme.jpg`} alt={`${HTTP}/realme.jpg`} />
+                        <span>Realme</span>
                     </div>
 
                     <div className={styles.logoBranch}>
