@@ -1,6 +1,7 @@
 import styles from "./home.module.css";
 import data from "../../../Data/data.json";
 import { formatPrice } from "../../../utils/formatPrice.JS";
+import { Link } from "react-router-dom";
 
 
 export default function ProjectHome() {
@@ -11,11 +12,15 @@ export default function ProjectHome() {
 
             {/* SMARTPHONE */}
             <section>
-                <h2 className={styles.sectionTitle}>Điện Thoại</h2>
+                <h2 className={styles.sectionTitle}>Điện Thoại New 99%</h2>
 
                 <div className={styles.grid}>
                     {data.smartphones.map((item) => (
-                        <div key={item.id} className={styles.card}>
+                        <Link
+                            to={`/product/${item.id}`}
+                            key={item.id}
+                            className={styles.card}
+                        >
                             <div className={styles.imageBox}>
                                 <img src={`${HTTP}/${item.img}`} alt={item.name} />
                             </div>
@@ -29,9 +34,12 @@ export default function ProjectHome() {
                                     Đã bán {item.sold}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
+
+
+
             </section>
 
             <section>
@@ -41,7 +49,7 @@ export default function ProjectHome() {
                     {data.accessories.map((item) => (
                         <div key={item.id} className={styles.card}>
                             <div className={styles.imageBox}>
-                                <img src={item.img} alt={item.name} />
+                                <img src={`${HTTP}/${item.img}`} alt={item.name} />
                             </div>
 
                             <div className={styles.info}>
@@ -75,11 +83,14 @@ export default function ProjectHome() {
                     </div>
 
                     <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/realme.jpg`} alt={`${HTTP}/realme.jpg`} />
-                        <span>Realme</span>
+                        <img src={`${HTTP}/oppo.jpg`} alt={`${HTTP}/oppo.jpg`} />
+                        <span>Oppo</span>
                     </div>
 
-
+                    <div className={styles.logoBranch}>
+                        <img src={`${HTTP}/vivo.jpg`} alt={`${HTTP}/vivo.jpg`} />
+                        <span>Vivo</span>
+                    </div>
                 </div>
             </section>
 

@@ -11,13 +11,12 @@ export default function ProjectContacts() {
                 </p>
 
                 <div className={styles.content}>
-
                     {/* Thông tin bên trái */}
                     <div className={styles.info}>
                         <h3>Thông tin liên hệ</h3>
-                        <p><strong>Hotline:</strong> 0123 456 789</p>
-                        <p><strong>Email:</strong> support@zmobile.vn</p>
-                        <p><strong>Địa chỉ:</strong> Hà Nội, Việt Nam</p>
+                        <p><strong>Hotline:</strong> 0369 594 026</p>
+                        <p><strong>Email:</strong> huannguyendinh14@gmail.com</p>
+                        <p><strong>Địa chỉ:</strong> Nông Cống Thanh Hoá</p>
                         <p>
                             Chúng tôi hoạt động từ 8:00 - 21:00 tất cả các ngày trong tuần.
                         </p>

@@ -9,8 +9,8 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h3 className={styles.logo}>Z Mobile</h3>
                     <p>
-                        Chuyên cung cấp điện thoại và phụ kiện chính hãng,
-                        giá tốt, bảo hành uy tín toàn quốc.
+                        Chuyên cung cấp điện thoại
+                        và phụ kiện chính hãng giá tốt bảo hành uy tín toàn quốc.
                     </p>
                 </div>
 
@@ -39,15 +39,15 @@ export default function Footer() {
                 {/* Cột 4 */}
                 <div className={styles.column}>
                     <h4>Liên hệ</h4>
-                    <p>Email: support@zmobile.vn</p>
-                    <p>Hotline: 0123 456 789</p>
-                    <p>Địa chỉ: Hà Nội, Việt Nam</p>
+                    <p>Email: huannguyendinh14@gmail.com</p>
+                    <p>Hotline: 0369 594 026</p>
+                    <p>Địa chỉ: Nông Cống Thanh Hoá</p>
                 </div>
 
             </div>
 
             <div className={styles.bottom}>
-                © {new Date().getFullYear()} Z Mobile. All rights reserved.
+                © {new Date().getFullYear()} Z Mobile. All rights reserved - Nguyen Dinh Huan.
             </div>
         </footer>
     );

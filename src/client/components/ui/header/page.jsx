@@ -29,7 +29,7 @@ export default function Header() {
                                 isActive ? styles.active : ""
                             }
                         >
-                            Home
+                            Trang chủ
                         </NavLink>
 
                         <NavLink
@@ -38,7 +38,7 @@ export default function Header() {
                                 isActive ? styles.active : ""
                             }
                         >
-                            About
+                            Về chúng tôi
                         </NavLink>
 
                         <NavLink
@@ -47,7 +47,7 @@ export default function Header() {
                                 isActive ? styles.active : ""
                             }
                         >
-                            Contact
+                            Liên hệ
                         </NavLink>
 
                     </nav>

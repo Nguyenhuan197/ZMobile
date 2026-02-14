@@ -1,6 +1,7 @@
 .contactPage {
-    background: #f9fafb;
+    /* background: #f9fafb; */
     padding: 60px 20px;
+    margin-top: 60px;
 }
 
 .container {
@@ -74,6 +75,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
 }
 
 .form button:hover {

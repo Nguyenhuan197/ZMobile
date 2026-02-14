@@ -4,44 +4,44 @@
             "id": 1,
             "name": "iPhone 11 64G",
             "price": 4200000,
-            "sold": 216,
+            "sold": 8,
             "img": "dien-thoai-iphone-11-cu.jpg",
             "detailImg": [
                 "dien-thoai-iphone-11-cu.jpg",
                 "2f67363da938096650294-768x1024.jpg",
                 "2ef14bb5d4b074ee2da13-600x800.jpg",
                 "0597d1d04ed5ee8bb7c42-600x800.jpg"
-            ]
+            ],
+            "Describe": "Mô tả điện thoại IP 11"
+        },
+        {
+            "id": 2,
+            "name": "Điện thoại Oppo K9s 5G 8GB/256GB – 99%",
+            "price": 1900000,
+            "sold": 26,
+            "img": "oppo-k9s-1-600x600.jpg",
+            "detailImg": [
+                "oppo-k9s-1-600x600.jpg",
+                "c056ea211c82bedce79358-768x1024.jpg",
+                "z6856150524046_97c489c7ae2952f23088113be42caada-510x510"
+            ],
+            "Describe": "Máy có thiết kế nguyên khối vô cùng chắc chắn, các góc được bo cong tinh tế không cảm thấy cấn khi để vào túi hay khi cầm nắm. Một ưu điểm là chiếc OPPO này có mặt lưng được làm theo dạng nhám mờ hạn chế bám mồ hôi và dấu vân tay hiệu quả, đảm bảo chiếc máy của bạn luôn có vẻ ngoài sạch sẽ.OPPO K9s 5G có 2 tuỳ chọn phù hợp với nhiều gu thời trang của người dùng. Máy có trọng lượng 199 g cùng kích thước dài 164.43 mm, ngang 75.88 mm và dày 8.52 mm vừa vặn trong tay người dùng, cho từng thao tác trải nghiệm thoải mái và chắc chắn."
         }
     ],
     "accessories": [
         {
-            "id": 5,
-            "name": "AirPods Pro 2",
-            "price": 5500000,
-            "sold": 320,
-            "img": "https://picsum.photos/300/300?random=5"
-        },
-        {
-            "id": 6,
-            "name": "Sạc dự phòng MagSafe",
-            "price": 1200000,
-            "sold": 210,
-            "img": "https://picsum.photos/300/300?random=6"
-        },
-        {
-            "id": 7,
-            "name": "Ốp lưng Silicone",
-            "price": 250000,
-            "sold": 540,
-            "img": "https://picsum.photos/300/300?random=7"
-        },
-        {
-            "id": 8,
-            "name": "Loa Bluetooth Marshall",
-            "price": 6500000,
-            "sold": 60,
-            "img": "https://picsum.photos/300/300?random=8"
+            "id": 1,
+            "name": "Tai nghe bluetooth AirPods 3 Hổ Vằn",
+            "price": 95000,
+            "sold": 20,
+            "img": "z6983706099157_6580e1065aa4ce07f6cc8b5ba26d6a38-768x1024.jpg",
+            "detailImg": [
+                "z6983706099157_6580e1065aa4ce07f6cc8b5ba26d6a38-768x1024.jpg",
+                "z6983721020132_00430a29f3620e39b9318bdf0177c3c1-768x1024.jpg",
+                "z6983706104373_bd868935349bc878dd7063db2c57ec0b-600x800.jpg",
+                "z6983706117834_4bac064a5c91498f619f20b9b44a3e34-600x800.jpg"
+            ],
+            "Describe": "AirPods 3 là một dòng tai nghe cao cấp, được sản xuất như một phiên bản giống hệt tai nghe AirPods chính hãng của Apple. Khi nhìn bề ngoài, người dùng khó có thể phân biệt giữa AirPods Hổ Vằn và hàng chính hãng. Không chỉ về hình dáng, mà tính năng của AirPods Hổ Vằn cũng tương đương với sản phẩm của Apple. Vậy chúng ta cùng tìm hiểu sâu hơn về tính năng của chiếc tai nghe AirPods 3 Hổ Vằn này nhé."
         }
     ]
 }
