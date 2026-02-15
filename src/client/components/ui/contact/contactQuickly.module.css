@@ -1,0 +1,144 @@
+.wrapper {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    /* Giúp chuyển động mượt hơn trên một số trình duyệt */
+    will-change: transform;
+}
+
+.block {
+    display: flex;
+    align-items: center;
+    background-color: tomato;
+    color: white;
+    text-decoration: none;
+    padding: 8px 8px 8px 20px;
+    /* Tăng padding để touch target tốt hơn */
+    border-radius: 50px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    box-shadow: 0 4px 15px rgba(255, 99, 71, 0.4);
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+    animation: shakePulse 2s infinite ease-in-out;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* UX: Hiệu ứng khi di chuột vào */
+.block:hover {
+    background-color: #ff4500;
+    /* Màu cam đậm hơn một chút */
+    animation-play-state: paused;
+    /* Dừng nhảy khi user đang muốn nhấn */
+}
+
+.phoneNumber {
+    margin-right: 12px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.iconCircle {
+    background-color: white;
+    color: tomato;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.pulseNode {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: tomato;
+    border-radius: 50px;
+    z-index: 1;
+    opacity: 0.6;
+    animation: ripple 2s infinite;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Máy tính bảng hoặc màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .phoneNumber {
+        font-size: 14px;
+        margin-right: 8px;
+    }
+
+    .block {
+        padding: 6px 6px 6px 15px;
+    }
+}
+
+/* Điện thoại di động (Dưới 480px) */
+@media (max-width: 480px) {
+    .wrapper {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    /* Option 1: Nếu bạn muốn ẩn số điện thoại, chỉ hiện icon tròn cho gọn */
+    /* .phoneNumber { display: none; }
+    .block { padding: 5px; } 
+    */
+
+    /* Option 2: Giữ nguyên nhưng thu nhỏ lại để không chiếm diện tích */
+    .phoneNumber {
+        font-size: 13px;
+    }
+
+    .iconCircle {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* --- ANIMATIONS --- */
+@keyframes shakePulse {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.05) rotate(-2deg);
+    }
+
+    20% {
+        transform: scale(1.05) rotate(2deg);
+    }
+
+    30% {
+        transform: scale(1.05) rotate(-2deg);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1.4, 1.8);
+        opacity: 0;
+    }
+}

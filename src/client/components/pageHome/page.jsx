@@ -2,6 +2,7 @@ import styles from "./home.module.css";
 import data from "../../../Data/data.json";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 import { Link } from "react-router-dom";
+import RecentlyViewed from "../ui/recentlyViewed/page";
 
 
 export default function ProjectHome() {
@@ -9,8 +10,6 @@ export default function ProjectHome() {
 
     return (
         <div className={styles.container}>
-
-            {/* SMARTPHONE */}
             <section>
                 <h2 className={styles.sectionTitle}>Điện Thoại New 99%</h2>
 
@@ -37,9 +36,6 @@ export default function ProjectHome() {
                         </Link>
                     ))}
                 </div>
-
-
-
             </section>
 
             <section>
@@ -62,8 +58,6 @@ export default function ProjectHome() {
                                 </p>
                             </div>
                         </div>
-
-
                     ))}
                 </div>
             </section>
@@ -94,7 +88,7 @@ export default function ProjectHome() {
                 </div>
             </section>
 
-
+            <RecentlyViewed />
         </div>
     );
 }

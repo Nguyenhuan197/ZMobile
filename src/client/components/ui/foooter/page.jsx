@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 
 export default function Footer() {
@@ -16,17 +17,6 @@ export default function Footer() {
 
                 {/* Cột 2 */}
                 <div className={styles.column}>
-                    <h4>Về chúng tôi</h4>
-                    <ul>
-                        <li>Giới thiệu</li>
-                        <li>Tuyển dụng</li>
-                        <li>Tin tức</li>
-                        <li>Hệ thống cửa hàng</li>
-                    </ul>
-                </div>
-
-                {/* Cột 3 */}
-                <div className={styles.column}>
                     <h4>Hỗ trợ khách hàng</h4>
                     <ul>
                         <li>Chính sách bảo hành</li>
@@ -36,18 +26,63 @@ export default function Footer() {
                     </ul>
                 </div>
 
+                {/* Cột 3 */}
+                <div className={styles.column}>
+                    <h4>Dịch vụ liên kết</h4>
+                    <ul>
+                        <p>
+                            Page FB
+                            <Link to="https://www.facebook.com/profile.php?id=61565941977491"
+                                style={{
+                                    color: 'white',
+                                    marginLeft: 10,
+                                    textDecoration: 'none'
+                                }}>
+                                Z Mobile
+                            </Link>
+                        </p>
+
+                        <p>
+                            Ticktock
+                            <Link to="Tiktok.com/@zmobile97"
+                                style={{
+                                    color: 'white',
+                                    marginLeft: 10,
+                                    textDecoration: 'none'
+                                }}>
+                                Z Mobile
+                            </Link>
+                        </p>
+
+                        <p>
+                            Shopee
+                            <Link to="https://Shopee.vn/hunnguynnh030"
+                                style={{
+                                    color: 'white',
+                                    marginLeft: 10,
+                                    textDecoration: 'none'
+                                }}>
+                                Z Mobile
+                            </Link>
+                        </p>
+                    </ul>
+                </div>
+
                 {/* Cột 4 */}
                 <div className={styles.column}>
                     <h4>Liên hệ</h4>
                     <p>Email: huannguyendinh14@gmail.com</p>
                     <p>Hotline: 0369 594 026</p>
-                    <p>Địa chỉ: Nông Cống Thanh Hoá</p>
+                    <p>Địa chỉ: Trường Văn Nông Cống Thanh Hoá</p>
+                    <p>Giờ làm việc bắt đầu 7h00 - 21h00 hàng ngày</p>
                 </div>
 
             </div>
 
             <div className={styles.bottom}>
-                © {new Date().getFullYear()} Z Mobile. All rights reserved - Nguyen Dinh Huan.
+                © {new Date().getFullYear()} Z Mobile. All rights reserved
+                <p>Nguyen Dinh Huan.</p>
+                <p>Phiên bản lần cuối V26.02.15</p>
             </div>
         </footer>
     );

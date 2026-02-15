@@ -1,0 +1,307 @@
+.bannerContainer {
+    width: 90%;
+    height: 260px;
+    margin: 10px auto;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    color: #fff;
+    animation: gradientMove 12s ease infinite;
+    background: linear-gradient(-45deg,
+            #ff7e5f,
+            #feb47b,
+            #ff9966,
+            #ffcc70,
+            #fbd786,
+            #ff9a9e,
+            #fad0c4);
+    background-size: 400% 400%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    margin-top: 100px;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    max-width: 50%;
+    margin-left: 40px;
+}
+
+.left h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.desc {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.priceRow {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.btn {
+    background: white;
+    color: #ff7e5f;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productImage {
+    height: 180px;
+    object-fit: contain;
+    transition: 0.4s;
+    border-radius: 10px;
+    margin-right: 45px;
+}
+
+.productImage:hover {
+    transform: scale(1.05);
+}
+
+/* Nút điều hướng */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    font-size: 22px;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+/* Pagination */
+.pagination {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.active {
+    width: 25px;
+    border-radius: 10px;
+    background: white;
+}
+
+
+/* ===== LARGE DESKTOP (1400px+) ===== */
+@media (min-width: 1400px) {
+    .bannerContainer {
+        height: 280px;
+    }
+
+    .left h2 {
+        font-size: 28px;
+    }
+
+    .productImage {
+        height: 200px;
+    }
+}
+
+/* ===== LAPTOP (1200px ↓) ===== */
+@media (max-width: 1200px) {
+    .bannerContainer {
+        height: 240px;
+        padding: 0 30px;
+    }
+
+    .left {
+        margin-left: 0;
+    }
+
+    .productImage {
+        height: 170px;
+        margin-right: 0;
+    }
+}
+
+/* ===== TABLET (992px ↓) ===== */
+@media (max-width: 992px) {
+    .bannerContainer {
+        height: auto;
+        padding: 30px 25px;
+    }
+
+    .content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .left {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .priceRow {
+        justify-content: center;
+    }
+
+    .productImage {
+        height: 150px;
+        margin: 0;
+    }
+
+    .prev,
+    .next {
+        font-size: 18px;
+        padding: 4px 10px;
+    }
+}
+
+/* ===== MOBILE LARGE (768px ↓) ===== */
+@media (max-width: 768px) {
+    .bannerContainer {
+        padding: 25px 15px;
+    }
+
+    .left h2 {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .desc {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .productImage {
+        height: 130px;
+    }
+}
+
+/* ===== MOBILE SMALL (480px ↓) ===== */
+@media (max-width: 480px) {
+    .bannerContainer {
+        border-radius: 14px;
+        padding: 20px 12px;
+    }
+
+    .left h2 {
+        font-size: 18px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .desc {
+        display: none;
+        /* Ẩn desc để gọn hơn */
+    }
+
+    .priceRow {
+        gap: 8px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .productImage {
+        height: 110px;
+        margin-bottom: 26px;
+    }
+
+    .prev,
+    .next {
+        display: none;
+        /* Ẩn nút điều hướng cho gọn */
+    }
+}

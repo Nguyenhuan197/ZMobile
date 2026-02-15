@@ -1,11 +1,13 @@
-.container {
+/* .container {
   margin: 0;
   padding: 0;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
-}
+  background-color: #ffffff;
+
+} */
 
 html,
 body {
@@ -13,4 +15,67 @@ body {
   padding: 0;
   border: 0;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Đảm bảo nội dung nằm trên lớp nền sao */
+.contentWrapper,
+Header,
+Footer {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  /* Giữ nền trong suốt để thấy sao */
+}
+
+/* Hiệu ứng chấm sao sang trọng */
+.starBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  /* Không cản trở việc click chuột */
+  overflow: hidden;
+}
+
+.starBackground::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  /* Tạo hàng loạt chấm nhỏ màu vàng nhạt hoặc xám bạc sang trọng */
+  box-shadow:
+    200px 300px #ddd, 800px 400px #eee, 400px 100px #ccc,
+    1200px 800px #ddd, 1500px 200px #eee, 600px 900px #ccc,
+    300px 1200px #ddd, 1000px 1500px #eee, 100px 1800px #ccc;
+
+  /* Tăng số lượng sao bằng cách nhân bản bóng đổ (độ phân giải cao) */
+  animation: moveStars 100s linear infinite;
+}
+
+/* Hiệu ứng di chuyển liên tục chậm rãi */
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-1000px);
+  }
 }
