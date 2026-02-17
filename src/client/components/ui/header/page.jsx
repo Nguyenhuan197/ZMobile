@@ -50,11 +50,21 @@ export default function Header() {
                             Liên hệ
                         </NavLink>
 
+
+                        <NavLink
+                            to="/orderLookup"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                            }
+                        >
+                            Tra cứu đơn hàng
+                        </NavLink>
+
                     </nav>
 
                     {/* Cart */}
                     <Link to="/cart" className={styles.cart}>
-                        <FiShoppingCart size={24} />
+                        <FiShoppingCart size={27} />
                         {cartCount > 0 && (
                             <span className={styles.badge}>
                                 {cartCount}

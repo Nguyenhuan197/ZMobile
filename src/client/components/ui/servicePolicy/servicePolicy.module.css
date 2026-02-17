@@ -1,0 +1,167 @@
+/* Container tổng thể */
+.container {
+    width: 100%;
+    margin: 40px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Header căn giữa khi lên mobile */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    margin: 0;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+/* Card thiết kế theo dạng dọc: Ảnh trên - Chữ dưới */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 15px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+    border-color: #ff6b6b;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(255, 107, 107, 0.15);
+}
+
+/* Box chứa icon tròn */
+.imageBox {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff5f5;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .imageBox {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.imageBox img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Phần thông tin chữ */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2d3436;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.description {
+    font-size: 13px;
+    color: #636e72;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- RESPONSIVE OPTIMIZATION --- */
+
+/* Tablet (Dưới 1024px) */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+    }
+
+    .header {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 18px;
+        text-align: start;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        padding: 15px 10px;
+        border-radius: 12px;
+    }
+
+    .imageBox {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 10px;
+    }
+
+    .imageBox img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .name {
+        font-size: 13px;
+        /* Chữ nhỏ lại để không bị vỡ dòng quá nhiều */
+        min-height: 34px;
+        /* Giữ độ cao cố định để các box đều nhau */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .description {
+        font-size: 11px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* Giới hạn tối đa 2 dòng mô tả */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

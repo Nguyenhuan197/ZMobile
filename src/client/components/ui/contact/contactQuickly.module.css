@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    /* Giúp chuyển động mượt hơn trên một số trình duyệt */
     will-change: transform;
 }
 
@@ -16,8 +15,7 @@
     background-color: tomato;
     color: white;
     text-decoration: none;
-    padding: 8px 8px 8px 20px;
-    /* Tăng padding để touch target tốt hơn */
+    padding: 7px 7px 7px 20px;
     border-radius: 50px;
     font-weight: bold;
     font-family: 'Segoe UI', Roboto, sans-serif;
@@ -30,17 +28,14 @@
     white-space: nowrap;
 }
 
-/* UX: Hiệu ứng khi di chuột vào */
 .block:hover {
     background-color: #ff4500;
-    /* Màu cam đậm hơn một chút */
     animation-play-state: paused;
-    /* Dừng nhảy khi user đang muốn nhấn */
 }
 
 .phoneNumber {
     margin-right: 12px;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.5px;
 }
 

@@ -3,6 +3,8 @@ import data from "../../../Data/data.json";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 import { Link } from "react-router-dom";
 import RecentlyViewed from "../ui/recentlyViewed/page";
+import ServicePolicy from "../ui/servicePolicy/page";
+import NewsSection from "../ui/new/page";
 
 
 export default function ProjectHome() {
@@ -62,9 +64,10 @@ export default function ProjectHome() {
                 </div>
             </section>
 
+            <ServicePolicy />
+
             <section>
                 <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
-
                 <div className={styles.gridBranch}>
                     <div className={styles.logoBranch}>
                         <img src={`${HTTP}/xiaomi (1).jpg`} alt={`${HTTP}/xiaomi (1).jpg`} />
@@ -87,6 +90,8 @@ export default function ProjectHome() {
                     </div>
                 </div>
             </section>
+
+            <NewsSection />
 
             <RecentlyViewed />
         </div>

@@ -10,7 +10,7 @@ export default function ProjectCart() {
             name: "iPhone 15 Pro",
             price: 25990000,
             quantity: 1,
-            img: "https://picsum.photos/100?random=1",
+            img: "https://cdn.phuckhangmobile.com/image/iphone-15-pro-mau-titanium-1-29704j.jpg",
             checked: true
         },
         {
@@ -18,7 +18,7 @@ export default function ProjectCart() {
             name: "AirPods Pro 2",
             price: 5500000,
             quantity: 2,
-            img: "https://picsum.photos/100?random=2",
+            img: "https://sonpixel.vn/wp-content/uploads/2025/01/redmi-note-13-9.webp",
             checked: true
         }
     ]);

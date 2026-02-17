@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import data from "../../../Data/data.json";
 import styles from "./productDetail.module.css";
@@ -7,7 +7,8 @@ import { formatPrice } from "../../../utils/formatPrice.JS";
 export default function ProductDetail() {
     const { id } = useParams();
     const HTTP = import.meta.env.VITE_API_URL;
-
+    const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     const allProducts = [
         ...data.smartphones,
@@ -22,7 +23,6 @@ export default function ProductDetail() {
         product?.detailImg?.[0]
     );
 
-    const [quantity, setQuantity] = useState(1);
 
     if (!product) return <h2>Không tìm thấy sản phẩm</h2>;
 
@@ -32,10 +32,12 @@ export default function ProductDetail() {
 
     const handleAddToCart = () => {
         console.log("Thêm giỏ:", product, quantity);
+        navigate("/cart");
     };
 
     const handleBuyNow = () => {
         console.log("Mua ngay:", product, quantity);
+        navigate("/pay");
     };
 
     return (

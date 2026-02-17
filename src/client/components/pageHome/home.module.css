@@ -14,21 +14,18 @@
 
 .sectionTitle {
     margin-bottom: 16px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     border-left: 4px solid #e11d48;
     padding-left: 10px;
 }
 
-/* GRID SHOPEE STYLE */
 .grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    /* Desktop */
     gap: 22px;
 }
 
-/* CARD */
 .card {
     background-color: #ffffff;
     border-radius: 10px;
@@ -57,7 +54,6 @@
     object-fit: cover;
 }
 
-/* INFO */
 .info {
     padding: 12px;
 }
@@ -114,7 +110,7 @@
 }
 
 .logoBranch span {
-    color: tomato;
+    color: black;
     font-size: 18px;
     margin-top: 10px;
 }
@@ -161,7 +157,6 @@
     }
 
     .logoBranch span {
-        color: tomato;
         font-size: 18px;
         margin-top: 10px;
     }

@@ -1,0 +1,129 @@
+.newsContainer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #fff;
+    margin-top: 30px;
+}
+
+
+.header {
+    margin-bottom: 15px;
+}
+
+.mainTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #003366;
+    /* Màu xanh đặc trưng */
+    margin: 0;
+}
+
+.logoIcon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Grid chia 4 cột trên màn hình lớn */
+.newsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.newsCard {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease;
+}
+
+.newsCard:hover .newsTitle {
+    color: #288ad6;
+    /* Màu xanh khi hover */
+}
+
+.imageWrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* Giữ tỷ lệ ảnh chuẩn */
+    overflow: hidden;
+    border-radius: 12px;
+    /* Bo góc ảnh như hình mẫu */
+}
+
+.newsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.newsCard:hover .newsImage {
+    transform: scale(1.05);
+}
+
+.newsTitle {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    /* Giới hạn 2 dòng cho tiêu đề */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.viewMore {
+    color: #288ad6;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.viewMore:hover {
+    text-decoration: underline;
+}
+
+.arrow {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Tablet: 2 hàng 2 cột */
+@media (max-width: 1024px) {
+    .newsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: 1 cột duy nhất hoặc giữ 2 cột tùy ý bạn */
+@media (max-width: 600px) {
+    .mainTitle {
+        font-size: 18px;
+    }
+
+    .newsGrid {
+        gap: 10px;
+    }
+
+    .newsTitle {
+        font-size: 13px;
+    }
+}

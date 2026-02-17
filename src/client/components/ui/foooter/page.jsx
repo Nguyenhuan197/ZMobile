@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 
 export default function Footer() {
+    const phone = import.meta.env.VITE_NUMBER_PHONE;
+
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
@@ -72,7 +74,7 @@ export default function Footer() {
                 <div className={styles.column}>
                     <h4>Liên hệ</h4>
                     <p>Email: huannguyendinh14@gmail.com</p>
-                    <p>Hotline: 0369 594 026</p>
+                    <p>Hotline: {phone}</p>
                     <p>Địa chỉ: Trường Văn Nông Cống Thanh Hoá</p>
                     <p>Giờ làm việc bắt đầu 7h00 - 21h00 hàng ngày</p>
                 </div>

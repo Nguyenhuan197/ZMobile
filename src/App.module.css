@@ -1,14 +1,3 @@
-/* .container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-
-} */
-
 html,
 body {
   margin: 0;
@@ -17,6 +6,11 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
 }
 
+
+input,
+button {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
 
 .container {
   margin: 0;
