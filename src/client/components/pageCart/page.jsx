@@ -62,7 +62,7 @@ export default function ProjectCart() {
 
                             <div className={styles.info}>
                                 <p>{item.name}</p>
-                                <span>{item.price.toLocaleString()}đ</span>
+                                <span>Giá bán {item.price.toLocaleString()}đ</span>
                             </div>
 
                             <div className={styles.quantity}>
@@ -72,7 +72,7 @@ export default function ProjectCart() {
                             </div>
 
                             <div className={styles.subtotal}>
-                                {(item.price * item.quantity).toLocaleString()}đ
+                                Tổng tiền {(item.price * item.quantity).toLocaleString()}đ
                             </div>
 
                         </div>
@@ -82,7 +82,7 @@ export default function ProjectCart() {
                 {/* Summary */}
                 <div className={styles.summary}>
                     <h3>Tổng thanh toán: {total.toLocaleString()}đ</h3>
-                    <button>Thanh Toán</button>
+                    <button>Thanh Toán Đơn Hàng</button>
                 </div>
 
             </div>

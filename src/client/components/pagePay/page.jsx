@@ -22,8 +22,6 @@ export default function ProjectPay() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>📦 Thanh toán</h1>
-
             <div className={styles.wrapper}>
                 {/* BÊN TRÁI: THÔNG TIN KHÁCH HÀNG */}
                 <div className={styles.left}>
@@ -44,7 +42,7 @@ export default function ProjectPay() {
                             </div>
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Địa chỉ cụ thể</label>
-                                <textarea rows="3" placeholder="Số nhà, tên đường, phường/xã..."></textarea>
+                                <textarea rows="6" placeholder="Số nhà, tên đường, phường/xã..."></textarea>
                             </div>
                         </div>
                     </div>

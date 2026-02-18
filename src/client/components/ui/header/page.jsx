@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { HiOutlineMenu } from "react-icons/hi";
 import styles from "./header.module.css";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
+
 
 export default function Header() {
     const [open, setOpen] = useState(false);
@@ -62,6 +64,10 @@ export default function Header() {
 
                     </nav>
 
+                    <Link to="/search" className={styles.cart}>
+                        <HiOutlineMagnifyingGlass size={27} />
+                    </Link>
+
                     {/* Cart */}
                     <Link to="/cart" className={styles.cart}>
                         <FiShoppingCart size={27} />
@@ -71,6 +77,7 @@ export default function Header() {
                             </span>
                         )}
                     </Link>
+
 
                     {/* Hamburger */}
                     <div

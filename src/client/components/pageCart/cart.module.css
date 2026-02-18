@@ -1,21 +1,15 @@
-/* ========================= */
-/*        CART PAGE          */
-/* ========================= */
-
 .cartPage {
     min-height: 100vh;
     padding: 90px 20px 60px;
-    /* 👈 cách header */
 }
 
 /* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    margin-top: 0px;
 }
 
 /* Title */
@@ -57,9 +51,7 @@
     transition: 0.2s ease;
 }
 
-.cartItem:hover {
-    background: #fafafa;
-}
+
 
 /* Image */
 .cartItem img {
@@ -82,7 +74,7 @@
 }
 
 .info span {
-    color: #ee4d2d;
+    color: #1b1081;
     font-weight: bold;
 }
 
@@ -130,7 +122,6 @@
 .summary {
     margin-top: 35px;
     padding-top: 20px;
-    border-top: 2px solid #f1f1f1;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -199,6 +190,11 @@
 /* ========================= */
 
 @media (max-width: 600px) {
+    .container {
+        padding: 30px;
+        border-radius: 12px;
+        margin-top: 0px;
+    }
 
     .cartPage {
         padding: 70px 15px 40px;
@@ -216,7 +212,7 @@
     }
 
     .cartItem img {
-        width: 100%;
+        width: 80%;
         height: auto;
     }
 
