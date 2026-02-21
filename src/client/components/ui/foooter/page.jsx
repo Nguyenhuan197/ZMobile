@@ -76,15 +76,19 @@ export default function Footer() {
                     <p>Email: huannguyendinh14@gmail.com</p>
                     <p>Hotline: {phone}</p>
                     <p>Địa chỉ: Trường Văn Nông Cống Thanh Hoá</p>
-                    <p>Giờ làm việc bắt đầu 7h00 - 21h00 hàng ngày</p>
+                    <p>Giờ làm việc :  7h00 - 21h00</p>
+                    <p>
+                        <Link style={{ textDecoration: 'none ', color: "tomato", fontWeight: 'bold' }} to="/login-admin">
+                            Đăng nhập với vai trò Admin hệ thống
+                        </Link>
+                    </p>
                 </div>
 
             </div>
 
             <div className={styles.bottom}>
-                © {new Date().getFullYear()} Z Mobile. All rights reserved
+                © {new Date().getFullYear()} Z Mobile
                 <p>Nguyen Dinh Huan.</p>
-                <p>Phiên bản lần cuối V26.02.15</p>
             </div>
         </footer>
     );

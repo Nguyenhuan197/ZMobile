@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <div className={styles.starBackground}></div>
-            <Banner></Banner>
+            <Banner />
             <Header />
             <ProjectHome />
             <Footer />

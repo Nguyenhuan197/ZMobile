@@ -1,0 +1,150 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #0f172a;
+    /* Nền tối đậm chất hệ thống */
+    box-sizing: border-box;
+}
+
+.authCard {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 45px 35px;
+    border-radius: 12px;
+    /* Admin thường dùng góc ít bo hơn để trông cứng cáp */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.adminIcon img {
+    width: 60px;
+    height: 60px;
+    background: #f1f5f9;
+    color: #1e293b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+    border: 2px solid #e2e8f0;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.title {
+    color: #0f172a;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    text-transform: uppercase;
+}
+
+.input {
+    padding: 12px 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input:focus {
+    border-color: #0f172a;
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+.submitBtn {
+    margin-top: 10px;
+    padding: 14px;
+    background: #0f172a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submitBtn:hover {
+    background: #334155;
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.link {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: #0f172a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .container {
+        background: #0f172a;
+        padding: 0;
+    }
+
+    .authCard {
+        height: 100vh;
+        max-width: none;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

@@ -3,12 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { HiOutlineMenu } from "react-icons/hi";
 import styles from "./header.module.css";
-import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
 
 export default function Header() {
     const [open, setOpen] = useState(false);
     const cartCount = 3;
+    const [statusUser, setStatusUser] = useState(false);
 
     return (
         <header className={styles.header}>
@@ -35,6 +35,15 @@ export default function Header() {
                         </NavLink>
 
                         <NavLink
+                            to="/search"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                            }
+                        >
+                            Tìm kiếm sản phẩm
+                        </NavLink>
+
+                        <NavLink
                             to="/about"
                             className={({ isActive }) =>
                                 isActive ? styles.active : ""
@@ -52,7 +61,6 @@ export default function Header() {
                             Liên hệ
                         </NavLink>
 
-
                         <NavLink
                             to="/orderLookup"
                             className={({ isActive }) =>
@@ -63,20 +71,31 @@ export default function Header() {
                         </NavLink>
 
                     </nav>
-
+                    {/* 
                     <Link to="/search" className={styles.cart}>
                         <HiOutlineMagnifyingGlass size={27} />
-                    </Link>
+                    </Link> */}
 
-                    {/* Cart */}
-                    <Link to="/cart" className={styles.cart}>
-                        <FiShoppingCart size={27} />
-                        {cartCount > 0 && (
-                            <span className={styles.badge}>
-                                {cartCount}
-                            </span>
-                        )}
-                    </Link>
+
+
+                    {
+                        statusUser ?
+                            <Link to="/cart" className={styles.cart}>
+                                <FiShoppingCart size={27} />
+                                {cartCount > 0 && (
+                                    <span className={styles.badge}>
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </Link>
+
+                            :
+
+                            <Link to="/login" className={styles.loginBt}>
+                                Đăng nhập
+                            </Link>
+                    }
+
 
 
                     {/* Hamburger */}
