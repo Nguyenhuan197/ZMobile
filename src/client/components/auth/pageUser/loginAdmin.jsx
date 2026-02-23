@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import styles from "./admin.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UpdateSevices } from '../../../../services/updateApi';
+import { ShowToast, ToastType } from '../../../../utils/toast';
+import UiLoadingComponent from '../../../../components/loadingComponent';
+
 
 export default function AdminLoginComponent() {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+    const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
+    const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({ email: '', password: '' });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -15,11 +20,42 @@ export default function AdminLoginComponent() {
         });
     };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Admin Login Attempt:", formData);
-        // Ở đây bạn sẽ gọi API dành riêng cho admin
+        setLoading(true);
+        const result = await UpdateSevices(`${apiUrl}/api/users/login`, formData, "POST");
+
+        ResetForm();
+        setLoading(false);
+
+        if (result.status) {
+            if (result.role === 'Admin') {
+                ShowToast(result.message_vn, ToastType.success);
+                localStorage.setItem(KEY_NAME_USER, result.token);
+
+                // phải dùng cái này load lại trang sau khi đăng nhập
+                // nguyên nhân để load lại cho các Context hoat động lại
+                setTimeout(() => {
+                    window.location.href = "/admin-zmobile-2026/product";
+                }, 1000);
+            } else {
+                return ShowToast('Bạn không có quyền truy cập ', ToastType.warn);
+            }
+
+
+        } else {
+            ShowToast(result.message_vn, ToastType.info);
+        }
     };
+
+    const ResetForm = () => {
+        setFormData({ email: '', password: '' });
+    }
+
+
+    if (loading) return <UiLoadingComponent />
+
 
     return (
         <div className={styles.container}>

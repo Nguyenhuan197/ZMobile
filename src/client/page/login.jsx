@@ -10,11 +10,6 @@ export default function Login() {
         <div className={styles.container}>
             <Header />
             <LoginComponent />
-            <ToastContainer
-                position="top-left"
-                autoClose={3000}
-                style={{ top: '120px', marginRight: "10px" }}
-            />
         </div>
     )
 }

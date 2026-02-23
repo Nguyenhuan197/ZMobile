@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { HiOutlineMenu } from "react-icons/hi";
 import styles from "./header.module.css";
+import { ThemeContext } from "../../../../context/useThemeContext";
 
 
 export default function Header() {
     const [open, setOpen] = useState(false);
     const cartCount = 3;
-    const [statusUser, setStatusUser] = useState(false);
+    const { USER } = useContext(ThemeContext);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checks = () => {
+            if (!USER) {
+                setIsUserLoggedIn(false);
+            } else {
+                setIsUserLoggedIn(true);
+            }
+        }
+        checks();
+    }, [USER]);
+
 
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-
-                {/* Logo */}
-                <Link to="/" className={styles.logo}>
-                    Z Mobile
-                </Link>
+                <Link to="/" className={styles.logo}>Z Mobile</Link>
 
                 <div className={styles.rightSection}>
-
-                    {/* Menu */}
                     <nav className={`${styles.nav} ${open ? styles.show : ""}`}>
 
                         <NavLink
@@ -60,34 +68,27 @@ export default function Header() {
                         >
                             Liên hệ
                         </NavLink>
-
-                        <NavLink
-                            to="/orderLookup"
-                            className={({ isActive }) =>
-                                isActive ? styles.active : ""
-                            }
-                        >
-                            Tra cứu đơn hàng
-                        </NavLink>
-
                     </nav>
-                    {/* 
-                    <Link to="/search" className={styles.cart}>
-                        <HiOutlineMagnifyingGlass size={27} />
-                    </Link> */}
-
-
 
                     {
-                        statusUser ?
-                            <Link to="/cart" className={styles.cart}>
-                                <FiShoppingCart size={27} />
-                                {cartCount > 0 && (
-                                    <span className={styles.badge}>
-                                        {cartCount}
-                                    </span>
-                                )}
-                            </Link>
+                        isUserLoggedIn ?
+                            <>
+                                {/* <div>Xin chào {data.data.name}</div> */}
+
+                                <Link to="/cart" className={styles.cart}>
+                                    <FiShoppingCart size={27} />
+                                    {cartCount > 0 && (
+                                        <span className={styles.badge}>
+                                            {cartCount}
+                                        </span>
+                                    )}
+                                </Link>
+
+                                <Link to="/user" className={styles.cart}>
+                                    <FiUser size={27} />
+
+                                </Link>
+                            </>
 
                             :
 

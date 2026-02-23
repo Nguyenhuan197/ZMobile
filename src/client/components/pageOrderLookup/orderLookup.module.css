@@ -194,3 +194,37 @@
     word-break: break-word;
     /* Xuống dòng nếu nội dung quá dài */
 }
+
+
+
+/* Nút quay lại */
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #636e72;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+.backBtn:hover {
+    color: #288ad6;
+    /* Chuyển màu xanh khi hover giống màu chủ đạo */
+}
+
+.backBtn svg {
+    font-size: 18px;
+}
+
+/* Responsive cho nút quay lại trên mobile */
+@media (max-width: 600px) {
+    .backBtn {
+        margin-left: 5px;
+    }
+}

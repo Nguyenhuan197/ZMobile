@@ -1,14 +1,27 @@
 import styles from "./home.module.css";
-import data from "../../../Data/data.json";
-import { formatPrice } from "../../../utils/formatPrice.JS";
 import { Link } from "react-router-dom";
 import RecentlyViewed from "../ui/recentlyViewed/page";
 import ServicePolicy from "../ui/servicePolicy/page";
 import NewsSection from "../ui/new/page";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/useThemeContext";
+import useSWR from "swr";
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 export default function ProjectHome() {
     const HTTP = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
+    const { USER } = useContext(ThemeContext);
+    const { data, error, isLoading } = useSWR(
+        USER?._id ? `${apiUrl}/api/product/view?status=true` : null,
+        fetcher
+    );
+
+    // Hàm định dạng tiền tệ VNĐ
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    };
 
     return (
         <div className={styles.container}>
@@ -16,14 +29,14 @@ export default function ProjectHome() {
                 <h2 className={styles.sectionTitle}>Điện Thoại New 99%</h2>
 
                 <div className={styles.grid}>
-                    {data.smartphones.map((item) => (
+                    {data?.data?.map((item) => (
                         <Link
-                            to={`/product/${item.id}`}
-                            key={item.id}
+                            to={`/product/${item._id}`}
+                            key={item._id}
                             className={styles.card}
                         >
                             <div className={styles.imageBox}>
-                                <img src={`${HTTP}/${item.img}`} alt={item.name} />
+                                <img src={`${item.img.secure_url}`} alt={item.img.secure_url} />
                             </div>
 
                             <div className={styles.info}>
@@ -31,8 +44,9 @@ export default function ProjectHome() {
                                 <p className={styles.price}>
                                     {formatPrice(item.price)}
                                 </p>
+
                                 <p className={styles.sold}>
-                                    Đã bán {item.sold}
+                                    Đã bán 99
                                 </p>
                             </div>
                         </Link>
@@ -40,11 +54,12 @@ export default function ProjectHome() {
                 </div>
             </section>
 
+
             <section>
-                <h2 className={styles.sectionTitle}>Phụ Kiện</h2>
+                {/* <h2 className={styles.sectionTitle}>Phụ Kiện</h2> */}
 
                 <div className={styles.grid}>
-                    {data.accessories.map((item) => (
+                    {/* {data.accessories.map((item) => (
                         <div key={item.id} className={styles.card}>
                             <div className={styles.imageBox}>
                                 <img src={`${HTTP}/${item.img}`} alt={item.name} />
@@ -60,7 +75,7 @@ export default function ProjectHome() {
                                 </p>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </section>
 

@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.5.1">
   <diagram name="Trang-1" id="xvD8f92MhvYrbDvpq_bF">
-    <mxGraphModel dx="2905" dy="1860" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2581" dy="1681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -500,7 +500,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="jbrKLT-m-JsZh-dcwkXv-112" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" value="&lt;font face=&quot;monospace&quot;&gt;Tài khoản&lt;/font&gt;" vertex="1">
-          <mxGeometry height="270" width="180" x="400" y="680" as="geometry" />
+          <mxGeometry height="270" width="180" x="420" y="640" as="geometry" />
         </mxCell>
         <mxCell id="jbrKLT-m-JsZh-dcwkXv-113" parent="jbrKLT-m-JsZh-dcwkXv-112" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#647687;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;strokeColor=#314354;fontColor=#ffffff;" value="" vertex="1">
           <mxGeometry height="30" width="180" y="30" as="geometry" />
@@ -607,7 +607,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="jbrKLT-m-JsZh-dcwkXv-138" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" value="&lt;font face=&quot;monospace&quot;&gt;Đơn hàng&lt;/font&gt;" vertex="1">
-          <mxGeometry height="360" width="180" x="680" y="600" as="geometry" />
+          <mxGeometry height="360" width="180" x="680" y="560" as="geometry" />
         </mxCell>
         <mxCell id="jbrKLT-m-JsZh-dcwkXv-139" parent="jbrKLT-m-JsZh-dcwkXv-138" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=#647687;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;strokeColor=#314354;fontColor=#ffffff;" value="" vertex="1">
           <mxGeometry height="30" width="180" y="30" as="geometry" />
@@ -1223,12 +1223,6 @@
         <mxCell id="3AQXRWaE1oui6cE9ZSV4-25" parent="3AQXRWaE1oui6cE9ZSV4-23" style="shape=partialRectangle;connectable=0;fillColor=#647687;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;strokeColor=#314354;fontColor=#ffffff;" value="" vertex="1">
           <mxGeometry height="30" width="150" x="30" as="geometry">
             <mxRectangle height="30" width="150" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="3AQXRWaE1oui6cE9ZSV4-26" edge="1" parent="1" source="jbrKLT-m-JsZh-dcwkXv-113" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;fillColor=#647687;strokeColor=#314354;" target="3AQXRWaE1oui6cE9ZSV4-5" value="">
-          <mxGeometry height="100" relative="1" width="100" as="geometry">
-            <mxPoint x="400" y="610" as="sourcePoint" />
-            <mxPoint x="459" y="646" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

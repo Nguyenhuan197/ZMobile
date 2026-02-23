@@ -29,7 +29,6 @@ export default function AdminMenu() {
             <div className={styles.bodyMenu}>
                 <nav className={styles.nav}>
                     <ul>
-                        {/* PRODUCT */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/product") ? styles.active : ""}`}
@@ -43,17 +42,18 @@ export default function AdminMenu() {
                             {openMenu === "product" && (
                                 <ul className={styles.submenu}>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product">
+                                        {/* Thêm end để chỉ active khi khớp chính xác URL này */}
+                                        <NavLink to="/admin-zmobile-2026/product" end>
                                             Danh sách sản phẩm
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/sold">
+                                        <NavLink to="/admin-zmobile-2026/product/sold" end>
                                             Lượt bán sản phẩm
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/add">
+                                        <NavLink to="/admin-zmobile-2026/product/add" end>
                                             Thêm sản phẩm
                                         </NavLink>
                                     </li>

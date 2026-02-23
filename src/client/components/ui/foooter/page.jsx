@@ -78,8 +78,8 @@ export default function Footer() {
                     <p>Địa chỉ: Trường Văn Nông Cống Thanh Hoá</p>
                     <p>Giờ làm việc :  7h00 - 21h00</p>
                     <p>
-                        <Link style={{ textDecoration: 'none ', color: "tomato", fontWeight: 'bold' }} to="/login-admin">
-                            Đăng nhập với vai trò Admin hệ thống
+                        <Link style={{ textDecoration: 'none ', color: "tomato", fontWeight: 'bold' }} to="/admin-zmobile-2026/product">
+                            Đăng nhập với vai trò Admin
                         </Link>
                     </p>
                 </div>

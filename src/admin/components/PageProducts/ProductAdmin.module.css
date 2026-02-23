@@ -1,14 +1,145 @@
 .mainContent {
     flex: 1;
-    margin-top: 60px;
+    margin-top: 80px;
     margin-left: 300px;
-    padding: 20px;
+    padding: 25px;
+    min-height: 100vh;
     transition: all 0.3s ease;
+}
+
+.headerPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.headerPage h1 {
+    font-size: 22px;
+    color: #333;
+}
+
+/* Nút thêm mới */
+.btnAdd {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+/* Bảng Responsive */
+.tableResponsive {
+    width: 100%;
+    overflow-x: auto;
+    /* Tạo thanh cuộn ngang trên mobile */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    /* Đảm bảo bảng không bị bóp quá nhỏ */
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table th {
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.productImg {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.productName {
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.productPrice {
+    color: #d63031;
+    font-weight: 700;
+}
+
+.productId {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Nút thao tác */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btnEdit,
+.btnDelete {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.btnEdit {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.btnEdit:hover {
+    background: #1976d2;
+    color: white;
+}
+
+.btnDelete {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.btnDelete:hover {
+    background: #d32f2f;
+    color: white;
 }
 
 /* Responsive cho Mobile */
 @media (max-width: 768px) {
     .mainContent {
         margin-left: 0;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .headerPage {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btnAdd {
+        width: 100%;
+        justify-content: center;
     }
 }

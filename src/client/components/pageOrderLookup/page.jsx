@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styles from "./orderLookup.module.css";
-
+import { useNavigate } from 'react-router-dom'; // 1. Import hook
+import { FiArrowLeft } from 'react-icons/fi'; // Import icon mũi tên
 
 export default function ProjectOrderLookup() {
+    const navigate = useNavigate(); // 2. Khởi tạo navigate
     const [orderId, setOrderId] = useState('');
     const [orderInfo, setOrderInfo] = useState(null);
 
-    // Giả lập hàm tra cứu
     const handleSearch = (e) => {
         e.preventDefault();
-        // Giả lập dữ liệu trả về từ API
         if (orderId.trim() === "DH123") {
             setOrderInfo({
                 productName: "iPhone 15 Pro Max 256GB",
@@ -18,11 +18,9 @@ export default function ProjectOrderLookup() {
                 quantity: 1,
                 price: "28.990.000đ",
                 status: "Đang giao hàng",
-                warrantyStatus: "Còn hạn bảo hành (đến 15/02/2027)", // Thêm dòng này
+                warrantyStatus: "Còn hạn bảo hành (đến 15/02/2027)",
                 isWarrantyValid: true
             });
-
-
         } else {
             alert("Không tìm thấy đơn hàng! Thử nhập: DH123");
             setOrderInfo(null);
@@ -31,6 +29,11 @@ export default function ProjectOrderLookup() {
 
     return (
         <div className={styles.container}>
+            {/* 3. Nút quay lại đặt phía trên SearchBox */}
+            <button className={styles.backBtn} onClick={() => navigate(-1)}>
+                <FiArrowLeft /> Quay lại
+            </button>
+
             <div className={styles.searchBox}>
                 <h2 className={styles.title}>Tra cứu đơn hàng</h2>
                 <form onSubmit={handleSearch} className={styles.form}>
@@ -53,6 +56,7 @@ export default function ProjectOrderLookup() {
                     </div>
 
                     <div className={styles.infoGrid}>
+                        {/* ... Giữ nguyên các infoItem của bạn ... */}
                         <div className={styles.infoItem}>
                             <span className={styles.label}>Tên sản phẩm:</span>
                             <span className={styles.value}>{orderInfo.productName}</span>
@@ -69,20 +73,16 @@ export default function ProjectOrderLookup() {
                             <span className={styles.label}>Số lượng:</span>
                             <span className={styles.value}>{orderInfo.quantity}</span>
                         </div>
-
                         <div className={styles.infoItem}>
                             <span className={styles.label}>Giá cả:</span>
                             <span className={styles.value + " " + styles.price}>{orderInfo.price}</span>
                         </div>
-
                         <div className={styles.infoItem}>
                             <span className={styles.label}>Trạng thái bảo hành:</span>
                             <span className={`${styles.value} ${orderInfo.isWarrantyValid ? styles.warrantyActive : styles.warrantyExpired}`}>
                                 {orderInfo.warrantyStatus}
                             </span>
                         </div>
-
-
                     </div>
                 </div>
             )}
