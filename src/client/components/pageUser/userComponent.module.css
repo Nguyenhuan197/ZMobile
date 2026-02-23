@@ -1,0 +1,128 @@
+/* ============================= */
+/* WRAPPER                       */
+/* ============================= */
+
+.wrapper {
+    min-height: 100vh;
+    padding: 120px 20px 40px;
+    /* tránh header */
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================= */
+/* CARD                          */
+/* ============================= */
+
+.card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* ============================= */
+/* PROFILE HEADER                */
+/* ============================= */
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    font-size: 70px;
+    color: tomato;
+}
+
+.role {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* ============================= */
+/* INFO SECTION                  */
+/* ============================= */
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f9fafb;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* ============================= */
+/* ACTION BUTTONS                */
+/* ============================= */
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.editBtn {
+    flex: 1;
+    padding: 10px;
+    background: tomato;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.editBtn:hover {
+    background: #e5533d;
+}
+
+.passwordBtn {
+    flex: 1;
+    padding: 10px;
+    background: #1a202c;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.passwordBtn:hover {
+    background: #2d3748;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}

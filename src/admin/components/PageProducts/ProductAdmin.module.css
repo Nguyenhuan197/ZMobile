@@ -1,0 +1,14 @@
+.mainContent {
+    flex: 1;
+    margin-top: 60px;
+    margin-left: 300px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+    }
+}

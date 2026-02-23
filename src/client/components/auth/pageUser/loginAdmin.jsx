@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./admin.module.css";
+import { Link } from 'react-router-dom';
 
 export default function AdminLoginComponent() {
     const [formData, setFormData] = useState({
@@ -65,7 +66,7 @@ export default function AdminLoginComponent() {
                 </form>
 
                 <div className={styles.footer}>
-                    <a href="/" className={styles.link}>← Quay lại trang chủ</a>
+                    <Link to="/" className={styles.link}>← Quay lại trang chủ</Link>
                 </div>
             </div>
         </div>

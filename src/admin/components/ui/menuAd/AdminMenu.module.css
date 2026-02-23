@@ -1,0 +1,109 @@
+/* ============================= */
+/* SIDEBAR DARK PROFESSIONAL     */
+/* ============================= */
+
+.sidebar {
+    width: 270px;
+    height: 100vh;
+    background: #1e1e2f;
+    color: #fff;
+    padding: 25px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+
+.bodyMenu {
+    width: 100%;
+    height: auto;
+    margin-top: 80px;
+}
+
+/* NAV */
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* MAIN ITEM */
+.item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    margin-bottom: 6px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* ACTIVE */
+
+.active {
+    background: tomato;
+    color: #fff !important;
+}
+
+/* SUBMENU */
+
+.submenu {
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.submenu li {
+    margin: 4px 0;
+}
+
+.submenu a {
+    display: block;
+    padding: 15px 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.submenu a:hover {
+    background: rgba(255, 99, 71, 0.2);
+    color: #fff;
+}
+
+/* ARROW */
+
+.arrow {
+    margin-left: auto;
+    font-size: 12px;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+}

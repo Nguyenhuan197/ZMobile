@@ -10,10 +10,17 @@ import Register from "./client/page/register";
 import Login from "./client/page/login";
 import Search from "./client/page/search";
 import LoginAdmin from "./client/page/loginAdmin";
+import { useState } from "react";
+import ProductAdmin from "./admin/page/Product";
+import CategoryAdmin from "./admin/page/Category";
+import ProtectedRoute from "./admin/components/ProtectedRoute";
+import User from "./client/page/user";
 
 
 
 function App() {
+  const [statusUser, setStatusUser] = useState("Admin");
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -26,13 +33,18 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/user" element={<User />} />
+
+
+
+      {/* Admin Routes (Chỉ Admin mới xem được) */}
+      <Route element={<ProtectedRoute isAllowed={statusUser === "Admin"} />}>
+        <Route path="/admin-zmobile-2026/product" element={<ProductAdmin />} />
+        <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
+      </Route>
+
+      {/* Trang Login cho Admin */}
       <Route path="/login-admin" element={<LoginAdmin />} />
-
-
-
-
-
-
     </Routes>
   );
 }

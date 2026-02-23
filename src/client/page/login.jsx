@@ -1,7 +1,8 @@
+import { ToastContainer } from "react-toastify";
 import styles from "../../App.module.css";
 import LoginComponent from "../components/auth/pageUser/login";
-import ContactQuickly from "../components/ui/contact/page";
 import Header from "../components/ui/header/page";
+
 
 
 export default function Login() {
@@ -9,7 +10,11 @@ export default function Login() {
         <div className={styles.container}>
             <Header />
             <LoginComponent />
-            {/* <ContactQuickly /> */}
+            <ToastContainer
+                position="top-left"
+                autoClose={3000}
+                style={{ top: '120px', marginRight: "10px" }}
+            />
         </div>
     )
 }

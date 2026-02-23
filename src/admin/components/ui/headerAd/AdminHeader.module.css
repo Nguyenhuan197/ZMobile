@@ -1,0 +1,30 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background: #1e1e2f;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 27px;
+    color: white;
+}
+
+.logoutBtn {
+    margin-left: 15px;
+    padding: 5px 12px;
+    cursor: pointer;
+    background: #e53e3e;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
