@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from "./admin.module.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { UpdateSevices } from '../../../../services/updateApi';
 import { ShowToast, ToastType } from '../../../../utils/toast';
 import UiLoadingComponent from '../../../../components/loadingComponent';
+import { ThemeContext } from '../../../../context/useThemeContext';
 
 
 export default function AdminLoginComponent() {
@@ -12,6 +13,8 @@ export default function AdminLoginComponent() {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
+    const { reloading } = useContext(ThemeContext);
+
 
     const handleChange = (e) => {
         setFormData({
@@ -27,18 +30,18 @@ export default function AdminLoginComponent() {
         const result = await UpdateSevices(`${apiUrl}/api/users/login`, formData, "POST");
 
         ResetForm();
-        setLoading(false);
-
         if (result.status) {
             if (result.role === 'Admin') {
                 ShowToast(result.message_vn, ToastType.success);
                 localStorage.setItem(KEY_NAME_USER, result.token);
 
-                // phải dùng cái này load lại trang sau khi đăng nhập
-                // nguyên nhân để load lại cho các Context hoat động lại
+                // Load lại 
+                reloading();
                 setTimeout(() => {
-                    window.location.href = "/admin-zmobile-2026/product";
+                    navigate('/admin-zmobile-2026/product');
+                    setLoading(false);
                 }, 1000);
+
             } else {
                 return ShowToast('Bạn không có quyền truy cập ', ToastType.warn);
             }

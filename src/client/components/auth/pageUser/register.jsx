@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from "./user.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShowToast, ToastType } from '../../../../utils/toast';
 import UiLoadingComponent from '../../../../components/loadingComponent';
 import { UpdateSevices } from '../../../../services/updateApi';
+import { ThemeContext } from '../../../../context/useThemeContext';
 
 
 
@@ -14,6 +15,9 @@ export default function RegisterComponent() {
 
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const { reloading } = useContext(ThemeContext);
+
 
     const handleChange = (e) => {
         setFormData({
@@ -32,11 +36,14 @@ export default function RegisterComponent() {
             ShowToast(result.message_vn, ToastType.success);
             localStorage.setItem(KEY_NAME_USER, result.token);
 
-            // phải dùng cái này load lại trang sau khi đăng nhập
-            // nguyên nhân để load lại cho các Context hoat động lại
+
+            // Load lại 
+            reloading();
             setTimeout(() => {
-                window.location.href = "/user";
+                navigate('/user');
             }, 1000);
+
+
         } else {
             ShowToast(result.message_vn, ToastType.info);
         }

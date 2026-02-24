@@ -11,7 +11,6 @@ export function LocalStorageUserContext({ children }) {
         const load = () => {
             const getLocalStorage = localStorage.getItem(KEY_NAME_USER);
             if (!getLocalStorage) return SETUSER(false);
-
             const handleTocken = DecodeJWT(getLocalStorage);
             SETUSER(handleTocken);
         };
@@ -19,13 +18,17 @@ export function LocalStorageUserContext({ children }) {
         load();
     }, []);
 
+
+    const reloading = () => {
+        const getLocalStorage = localStorage.getItem(KEY_NAME_USER);
+        if (!getLocalStorage) return SETUSER(false);
+        const handleTocken = DecodeJWT(getLocalStorage);
+        SETUSER(handleTocken);
+    };
+
     const signOutUser = () => {
         localStorage.removeItem(KEY_NAME_USER);
         SETUSER(false);
-
-        setTimeout(() => {
-            window.location.href = "/login";
-        }, 1000);
     };
 
     return (
@@ -33,6 +36,7 @@ export function LocalStorageUserContext({ children }) {
             value={{
                 USER,
                 signOutUser,
+                reloading
             }}
         >
             {children}

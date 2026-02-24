@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from "./user.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UpdateSevices } from '../../../../services/updateApi';
 import UiLoadingComponent from '../../../../components/loadingComponent';
 import { ShowToast, ToastType } from '../../../../utils/toast';
+import { ThemeContext } from '../../../../context/useThemeContext';
 
 
 export default function LoginComponent() {
@@ -11,6 +12,10 @@ export default function LoginComponent() {
     const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const navigate = useNavigate();
+    const { reloading } = useContext(ThemeContext);
+
+
 
     const handleChange = (e) => {
         setFormData({
@@ -31,11 +36,12 @@ export default function LoginComponent() {
             ShowToast(result.message_vn, ToastType.success);
             localStorage.setItem(KEY_NAME_USER, result.token);
 
-            // phải dùng cái này load lại trang sau khi đăng nhập
-            // nguyên nhân để load lại cho các Context hoat động lại
+            // Load lại 
+            reloading();
             setTimeout(() => {
-                window.location.href = "/user";
+                navigate('/user');
             }, 1000);
+
         } else {
             ShowToast(result.message_vn, ToastType.info);
         }

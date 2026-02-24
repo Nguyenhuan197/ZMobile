@@ -61,7 +61,6 @@ function App() {
         style={{ top: '120px', marginRight: "10px" }}
       />
 
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -80,8 +79,6 @@ function App() {
         {/* Admin Routes (Chỉ Admin mới xem được) */}
         <Route element={<ProtectedRoute isAllowed={statusUser === "Admin"} />}>
           <Route path="/admin-zmobile-2026/product" element={<ProductAdmin />} />
-
-
           <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
         </Route>
 
