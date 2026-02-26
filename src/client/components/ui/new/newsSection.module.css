@@ -104,6 +104,11 @@
     margin-bottom: 2px;
 }
 
+.newsDesc {
+    color: black;
+    font-size: 15px;
+}
+
 /* --- RESPONSIVE --- */
 
 /* Tablet: 2 hàng 2 cột */

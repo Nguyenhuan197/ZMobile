@@ -1,35 +1,19 @@
 import { useState, useEffect } from "react";
 import styles from "./banner.module.css";
 
-const slides = [
-    {
-        title: "iPhone 15 Pro Max",
-        subtitle: "Giảm ngay 3.000.000đ",
-        desc: "Trả góp 0% - Bảo hành 12 tháng",
-        price: "27.990.000đ",
-        oldPrice: "30.990.000đ",
-        image: "https://vcdn1-sohoa.vnecdn.net/2023/09/22/a1-5884-1695372065.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=U87hG0YGG5_q-v-BME2MmA"
-    },
-    {
-        title: "Samsung S24 Ultra",
-        subtitle: "Tặng quà 2.000.000đ",
-        desc: "Thu cũ đổi mới trợ giá cao",
-        price: "24.990.000đ",
-        oldPrice: "27.490.000đ",
-        image: "https://cdn.phuckhangmobile.com/image/galaxy-s24-ultra-chinh-thuc-ra-mat-30498j.jpg"
-    }
-
-];
-
-export default function Banner() {
+export default function Banner({ data }) {
     const [current, setCurrent] = useState(0);
+    if (!data || !data.data || data.data.length === 0) return null;
+
+    const slides = data.data;
 
     useEffect(() => {
         const timer = setInterval(() => {
-            nextSlide();
+            setCurrent((prev) => (prev + 1) % slides.length);
         }, 5000);
+
         return () => clearInterval(timer);
-    }, [current]);
+    }, [slides.length]);
 
     const nextSlide = () => {
         setCurrent((prev) => (prev + 1) % slides.length);
@@ -41,6 +25,13 @@ export default function Banner() {
         );
     };
 
+    const formatPrice = (price) => {
+        return price.toLocaleString("vi-VN") + "đ";
+    };
+
+    const currentItem = slides[current];
+    const newPrice = currentItem.price - (currentItem.priceSale || 0);
+
     return (
         <div className={styles.bannerContainer}>
             <button className={styles.prev} onClick={prevSlide}>❮</button>
@@ -48,24 +39,30 @@ export default function Banner() {
 
             <div className={styles.content}>
                 <div className={styles.left}>
-                    <h2>{slides[current].title}</h2>
-                    <p className={styles.subtitle}>{slides[current].subtitle}</p>
-                    <p className={styles.desc}>{slides[current].desc}</p>
+                    <h2>{currentItem.name}</h2>
+                    <p className={styles.subtitle}>
+                        Giảm ngay {formatPrice(currentItem.priceSale || 0)}
+                    </p>
+                    <p className={styles.desc}>
+                        Sản phẩm chính hãng - Bảo hành 12 tháng
+                    </p>
+
                     <div className={styles.priceRow}>
                         <span className={styles.oldPrice}>
-                            {slides[current].oldPrice}
+                            {formatPrice(currentItem.price)}
                         </span>
                         <span className={styles.price}>
-                            {slides[current].price}
+                            {formatPrice(newPrice)}
                         </span>
                     </div>
+
                     <button className={styles.btn}>MUA NGAY</button>
                 </div>
 
                 <div className={styles.right}>
                     <img
-                        src={slides[current].image}
-                        alt="product"
+                        src={currentItem.img.secure_url}
+                        alt={currentItem.name}
                         className={styles.productImage}
                     />
                 </div>

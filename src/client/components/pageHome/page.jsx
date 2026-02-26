@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import RecentlyViewed from "../ui/recentlyViewed/page";
 import ServicePolicy from "../ui/servicePolicy/page";
 import NewsSection from "../ui/new/page";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import UiLoadingComponent from '../../../components/loadingComponent';
 import { ThemeContext } from "../../../context/useThemeContext";
 import useSWR from "swr";
+import Banner from "../ui/banner/page";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -13,102 +15,108 @@ export default function ProjectHome() {
     const HTTP = import.meta.env.VITE_API_URL;
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const { USER } = useContext(ThemeContext);
-    const { data, error, isLoading } = useSWR(
-        USER?._id ? `${apiUrl}/api/product/view?status=true` : null,
-        fetcher
-    );
+    const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
+    const { data: dataAccessory, isLoadingAccessory } = useSWR(`${apiUrl}/api/product/view-product-accessory?status=true`, fetcher);
+
+    const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
+    const { data: dataNews, isLoadingNews } = useSWR(`${apiUrl}/api/news/view`, fetcher);
+    const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
+
+
 
     // Hàm định dạng tiền tệ VNĐ
     const formatPrice = (price) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
     };
 
+    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch) return <UiLoadingComponent />
+
     return (
-        <div className={styles.container}>
-            <section>
-                <h2 className={styles.sectionTitle}>Điện Thoại New 99%</h2>
+        <>
+            <Banner data={dataAdvertisement} />
 
-                <div className={styles.grid}>
-                    {data?.data?.map((item) => (
-                        <Link
-                            to={`/product/${item._id}`}
-                            key={item._id}
-                            className={styles.card}
-                        >
-                            <div className={styles.imageBox}>
-                                <img src={`${item.img.secure_url}`} alt={item.img.secure_url} />
-                            </div>
+            <div className={styles.container}>
+                <section>
+                    <h2 className={styles.sectionTitle}>Điện Thoại</h2>
 
-                            <div className={styles.info}>
-                                <p className={styles.name}>{item.name}</p>
-                                <p className={styles.price}>
-                                    {formatPrice(item.price)}
-                                </p>
+                    <div className={styles.grid}>
+                        {dataProducts?.data?.map((item) => (
+                            <Link
+                                to={`/product/${item._id}`}
+                                key={item._id}
+                                className={styles.card}
+                            >
+                                <div className={styles.imageBox}>
+                                    <img src={`${item.img.secure_url}`} alt={item.img.secure_url} />
+                                </div>
 
-                                <p className={styles.sold}>
-                                    Đã bán 99
-                                </p>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
+                                <div className={styles.info}>
+                                    <p className={styles.name}>{item.name}</p>
+                                    <p className={styles.price}>
+                                        {formatPrice(item.price)}
+                                    </p>
 
-
-            <section>
-                {/* <h2 className={styles.sectionTitle}>Phụ Kiện</h2> */}
-
-                <div className={styles.grid}>
-                    {/* {data.accessories.map((item) => (
-                        <div key={item.id} className={styles.card}>
-                            <div className={styles.imageBox}>
-                                <img src={`${HTTP}/${item.img}`} alt={item.name} />
-                            </div>
-
-                            <div className={styles.info}>
-                                <p className={styles.name}>{item.name}</p>
-                                <p className={styles.price}>
-                                    {formatPrice(item.price)}
-                                </p>
-                                <p className={styles.sold}>
-                                    Đã bán {item.sold}
-                                </p>
-                            </div>
-                        </div>
-                    ))} */}
-                </div>
-            </section>
-
-            <ServicePolicy />
-
-            <section>
-                <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
-                <div className={styles.gridBranch}>
-                    <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/xiaomi (1).jpg`} alt={`${HTTP}/xiaomi (1).jpg`} />
-                        <span>Xiaomi</span>
+                                    <p className={styles.sold}>
+                                        Đã bán 99
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
+                </section>
 
-                    <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/realme.jpg`} alt={`${HTTP}/realme.jpg`} />
-                        <span>Realme</span>
+
+                <section>
+                    <h2 className={styles.sectionTitle}>Phụ Kiện</h2>
+
+                    <div className={styles.grid}>
+                        {dataAccessory?.data?.map((item) => (
+                            <Link
+                                to={`/product/${item._id}`}
+                                key={item._id}
+                                className={styles.card}
+                            >
+                                <div className={styles.imageBox}>
+                                    <img src={`${item.img.secure_url}`} alt={item.img.secure_url} />
+                                </div>
+
+                                <div className={styles.info}>
+                                    <p className={styles.name}>{item.name}</p>
+                                    <p className={styles.price}>
+                                        {formatPrice(item.price)}
+                                    </p>
+
+                                    <p className={styles.sold}>
+                                        Đã bán 99
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
+                </section>
 
-                    <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/oppo.jpg`} alt={`${HTTP}/oppo.jpg`} />
-                        <span>Oppo</span>
+                <ServicePolicy />
+
+                <section>
+                    <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
+                    <div className={styles.gridBranch}>
+                        {
+                            dataBranch?.data?.map((item) => (
+                                <div key={item._id} className={styles.logoBranch}>
+                                    <img src={item.img.secure_url} alt={item.name} />
+                                    <span>{item.name}</span>
+                                </div>
+                            ))
+                        }
                     </div>
+                </section>
 
-                    <div className={styles.logoBranch}>
-                        <img src={`${HTTP}/vivo.jpg`} alt={`${HTTP}/vivo.jpg`} />
-                        <span>Vivo</span>
-                    </div>
-                </div>
-            </section>
+                <NewsSection data={dataNews} />
 
-            <NewsSection />
+                <RecentlyViewed />
+            </div>
+        </>
 
-            <RecentlyViewed />
-        </div>
+
     );
 }

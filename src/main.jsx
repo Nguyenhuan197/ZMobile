@@ -6,12 +6,11 @@ import { LocalStorageUserContext } from "./context/useThemeContext";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <LocalStorageUserContext>
-    <BrowserRouter>
+  <BrowserRouter>
+    <LocalStorageUserContext>
       <App />
-    </BrowserRouter>
-  </LocalStorageUserContext>
-
+    </LocalStorageUserContext>
+  </BrowserRouter>
 );
 
 
