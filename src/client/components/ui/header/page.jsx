@@ -8,9 +8,23 @@ import { ThemeContext } from "../../../../context/useThemeContext";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-    const cartCount = 3;
-    const { USER } = useContext(ThemeContext);
+    const [cartCount, setCountCart] = useState(0);
+    const { USER,
+        DataAdmin, isLoading_Admin,
+        loadingCart
+    } = useContext(ThemeContext);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+
+    useEffect(() => {
+        const loadding = () => {
+            const data = loadingCart();
+            setCountCart(data.count);
+        }
+
+        loadding();
+    }, [loadingCart])
+
 
     useEffect(() => {
         const checks = () => {
@@ -24,10 +38,13 @@ export default function Header() {
     }, [USER]);
 
 
+    if (isLoading_Admin) return null;
+
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <Link to="/" className={styles.logo}>Z Mobile</Link>
+                <Link to="/" className={styles.logo}>{DataAdmin?.data[0].nameLogo}</Link>
 
                 <div className={styles.rightSection}>
                     <nav className={`${styles.nav} ${open ? styles.show : ""}`}>

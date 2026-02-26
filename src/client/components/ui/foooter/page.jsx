@@ -1,26 +1,29 @@
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
+import { FaFacebook, FaTiktok, FaStore, FaHandshake, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { ThemeContext } from "../../../../context/useThemeContext";
+import { useContext, useEffect } from "react";
+
 
 export default function Footer() {
     const phone = import.meta.env.VITE_NUMBER_PHONE;
+    const { USER, DataAdmin, isLoading_Admin } = useContext(ThemeContext);
+    if (isLoading_Admin) return;
 
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
-
-                {/* Cột 1 */}
                 <div className={styles.column}>
-                    <h3 className={styles.logo}>Z Mobile</h3>
+                    <h3 className={styles.logo}>{DataAdmin?.data[0].nameLogo}</h3>
                     <p>
-                        Chuyên cung cấp điện thoại
-                        và phụ kiện chính hãng giá tốt bảo hành uy tín toàn quốc.
+                        {DataAdmin?.data[0].slogan}
                     </p>
                 </div>
 
-                {/* Cột 2 */}
+                {/* Cột 2: Hỗ trợ */}
                 <div className={styles.column}>
                     <h4>Hỗ trợ khách hàng</h4>
-                    <ul>
+                    <ul className={styles.list}>
                         <li>Chính sách bảo hành</li>
                         <li>Chính sách đổi trả</li>
                         <li>Hướng dẫn mua hàng</li>
@@ -28,67 +31,58 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                {/* Cột 3 */}
+                {/* Cột 3: Liên kết mạng xã hội - Có Icon */}
                 <div className={styles.column}>
                     <h4>Dịch vụ liên kết</h4>
-                    <ul>
-                        <p>
-                            Page FB
-                            <Link to="https://www.facebook.com/profile.php?id=61565941977491"
-                                style={{
-                                    color: 'white',
-                                    marginLeft: 10,
-                                    textDecoration: 'none'
-                                }}>
-                                Z Mobile
-                            </Link>
-                        </p>
-
-                        <p>
-                            Ticktock
-                            <Link to="Tiktok.com/@zmobile97"
-                                style={{
-                                    color: 'white',
-                                    marginLeft: 10,
-                                    textDecoration: 'none'
-                                }}>
-                                Z Mobile
-                            </Link>
-                        </p>
-
-                        <p>
-                            Shopee
-                            <Link to="https://Shopee.vn/hunnguynnh030"
-                                style={{
-                                    color: 'white',
-                                    marginLeft: 10,
-                                    textDecoration: 'none'
-                                }}>
-                                Z Mobile
-                            </Link>
-                        </p>
+                    <ul className={styles.socialLinks}>
+                        <li>
+                            <FaFacebook className={styles.iconFb} />
+                            <span>Page FB:</span>
+                            <Link to="https://www.facebook.com/profile.php?id=61565941977491">Z Mobile</Link>
+                        </li>
+                        <li>
+                            <FaTiktok className={styles.iconTiktok} />
+                            <span>TikTok:</span>
+                            <Link to="https://tiktok.com/@zmobile97">Z Mobile</Link>
+                        </li>
+                        <li>
+                            <FaStore className={styles.iconShopee} />
+                            <span>Shopee:</span>
+                            <Link to="https://Shopee.vn/hunnguynnh030">Z Mobile</Link>
+                        </li>
+                        <li>
+                            <FaHandshake className={styles.iconChotot} />
+                            <span>Chợ tốt:</span>
+                            <Link to="#">Nguyen Huan</Link>
+                        </li>
                     </ul>
                 </div>
 
-                {/* Cột 4 */}
+                {/* Cột 4: Liên hệ */}
                 <div className={styles.column}>
                     <h4>Liên hệ</h4>
-                    <p>Email: huannguyendinh14@gmail.com</p>
-                    <p>Hotline: {phone}</p>
-                    <p>Địa chỉ: Trường Văn Nông Cống Thanh Hoá</p>
-                    <p>Giờ làm việc :  7h00 - 21h00</p>
-                    <p>
-                        <Link style={{ textDecoration: 'none ', color: "tomato", fontWeight: 'bold' }} to="/admin-zmobile-2026/product">
-                            Đăng nhập với vai trò Admin
-                        </Link>
+                    <div className={styles.contactItem}>
+                        <FaEnvelope /> <span>{DataAdmin?.data[0].email}</span>
+                    </div>
+                    <div className={styles.contactItem}>
+                        <FaPhoneAlt /> <span>Hotline: {DataAdmin?.data[0].phone}</span>
+                    </div>
+                    <div className={styles.contactItem}>
+                        <FaMapMarkerAlt /> <span>{DataAdmin?.data[0].address}</span>
+                    </div>
+                    <div className={styles.contactItem}>
+                        <FaClock /> <span>7h00 - 21h00</span>
+                    </div>
+                    <p className={styles.adminLink}>
+                        <Link to="/admin-zmobile-2026/product">Đăng nhập Admin</Link>
                     </p>
                 </div>
 
             </div>
 
             <div className={styles.bottom}>
-                © {new Date().getFullYear()} Z Mobile
-                <p>Nguyen Dinh Huan.</p>
+                <p>© {new Date().getFullYear()} -{DataAdmin?.data[0].nameLogo}</p>
+                <p>Admin - {DataAdmin?.data[0].nameAdmin}</p>
             </div>
         </footer>
     );

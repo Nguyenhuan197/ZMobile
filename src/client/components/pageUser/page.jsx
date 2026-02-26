@@ -1,19 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./userComponent.module.css";
 import { FaUserCircle, FaEnvelope, FaPhone, FaMapMarkerAlt, FaClipboardList, FaSearchLocation, FaUserEdit, FaLock, FaSignOutAlt } from "react-icons/fa";
-import useSWR from "swr";
 import { ThemeContext } from "../../../context/useThemeContext";
 import UiLoadingComponent from "../../../components/loadingComponent";
 import { Link, useNavigate } from "react-router-dom";
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 
 export default function UserComponent() {
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
-    const { USER, signOutUser } = useContext(ThemeContext);
-    const { data, error, isLoading } = useSWR(USER._id ? `${apiUrl}/api/users/view-One/${USER._id}` : null, fetcher);
+    const { USER, signOutUser, DataUser, isLoading_User } = useContext(ThemeContext);
     if (!USER) {
         return navigate('/login');
     }
@@ -21,7 +18,7 @@ export default function UserComponent() {
     return (
         <>
             {
-                isLoading ? < UiLoadingComponent /> :
+                isLoading_User ? < UiLoadingComponent /> :
                     <div className={styles.wrapper}>
                         <div className={styles.container}>
 
@@ -29,10 +26,10 @@ export default function UserComponent() {
                             <aside className={styles.sidebar}>
                                 <div className={styles.sidebarHeader}>
                                     <div className={styles.avatarWrapper}>
-                                        <img src={`${apiUrl}/${data.data.image}`} alt="Avatar" className={styles.userImg} />
+                                        <img src={`${apiUrl}/${DataUser.data.image}`} alt="Avatar" className={styles.userImg} />
                                     </div>
-                                    <h3>{data.data.name}</h3>
-                                    <p>ID: {data.data._id.substring(0, 50)}</p>
+                                    <h3>{DataUser.data.name}</h3>
+                                    <p>ID: {DataUser.data._id.substring(0, 50)}</p>
                                 </div>
 
                                 <nav className={styles.navMenu}>
@@ -71,22 +68,22 @@ export default function UserComponent() {
                                 <div className={styles.infoGrid}>
                                     <div className={styles.infoBox}>
                                         <label>Họ và tên</label>
-                                        <div className={styles.infoValue}>{data.data.name}</div>
+                                        <div className={styles.infoValue}>{DataUser.data.name}</div>
                                     </div>
 
                                     <div className={styles.infoBox}>
                                         <label>Email</label>
-                                        <div className={styles.infoValue}>{data.data.email}</div>
+                                        <div className={styles.infoValue}>{DataUser.data.email}</div>
                                     </div>
 
                                     <div className={styles.infoBox}>
                                         <label>Số điện thoại</label>
-                                        <div className={styles.infoValue}>{data.data.phone}</div>
+                                        <div className={styles.infoValue}>{DataUser.data.phone}</div>
                                     </div>
 
                                     <div className={styles.infoBox}>
                                         <label>Địa chỉ</label>
-                                        <div className={styles.infoValue}>{data.data.deliveryAddress}</div>
+                                        <div className={styles.infoValue}>{DataUser.data.deliveryAddress}</div>
                                     </div>
                                 </div>
 

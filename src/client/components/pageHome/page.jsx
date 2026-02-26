@@ -57,7 +57,7 @@ export default function ProjectHome() {
                                     </p>
 
                                     <p className={styles.sold}>
-                                        Đã bán 99
+                                        Đã bán {item.remainingQuantity}
                                     </p>
                                 </div>
                             </Link>

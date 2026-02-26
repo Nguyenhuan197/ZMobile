@@ -1,43 +1,83 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./cart.module.css";
-
+import { ThemeContext } from "../../../context/useThemeContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ProjectCart() {
-    const [cart, setCart] = useState([
-        {
-            id: 1,
-            name: "iPhone 15 Pro",
-            price: 25990000,
-            quantity: 1,
-            img: "https://cdn.phuckhangmobile.com/image/iphone-15-pro-mau-titanium-1-29704j.jpg",
-            checked: true
-        },
-        {
-            id: 2,
-            name: "AirPods Pro 2",
-            price: 5500000,
-            quantity: 2,
-            img: "https://sonpixel.vn/wp-content/uploads/2025/01/redmi-note-13-9.webp",
-            checked: true
+    const navigate = useNavigate();
+    const { loadingCart, removeFromCart } = useContext(ThemeContext);
+    const [cart, setCart] = useState(() => {
+        const data = loadingCart();
+        if (data && data.status) {
+            return data.data.map(item => ({
+                ...item,
+                checked: true
+            }));
         }
-    ]);
+        return [];
+    });
 
+
+    // 🔥 Đồng bộ lại localStorage khi thay đổi số lượng
+    useEffect(() => {
+        const pureCart = cart.map(({ checked, ...rest }) => rest);
+        localStorage.setItem("data-cart", JSON.stringify(pureCart));
+    }, [cart]);
+
+    // 🔹 Tăng giảm số lượng
     const updateQuantity = (id, type) => {
-        setCart(cart.map(item => {
-            if (item.id === id) {
-                if (type === "inc") item.quantity += 1;
-                if (type === "dec" && item.quantity > 1) item.quantity -= 1;
-            }
-            return { ...item };
-        }));
+        setCart(prev =>
+            prev.map(item => {
+                if (item.id === id) {
+                    if (type === "inc")
+                        return { ...item, quantity: item.quantity + 1 };
+
+                    if (type === "dec" && item.quantity > 1)
+                        return { ...item, quantity: item.quantity - 1 };
+                }
+                return item;
+            })
+        );
     };
 
+    // 🔹 Check sản phẩm
     const toggleCheck = (id) => {
-        setCart(cart.map(item =>
-            item.id === id ? { ...item, checked: !item.checked } : item
-        ));
+        setCart(prev =>
+            prev.map(item =>
+                item.id === id ? { ...item, checked: !item.checked } : item
+            )
+        );
     };
+
+    // 🔹 Xoá sản phẩm (gọi từ context)
+    const handleRemove = (id) => {
+        removeFromCart(id);
+        setCart(prev => prev.filter(item => item.id !== id));
+    };
+
+
+    // thanh toán sản phẩm
+    const handleCheckoutCart = () => {
+        const selectedItems = cart
+            .filter(item => item.checked)
+            .map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                img: item.activeImg
+            }));
+
+        if (selectedItems.length === 0) {
+            alert("Vui lòng chọn sản phẩm để thanh toán");
+            return;
+        }
+
+        localStorage.setItem("data-pay", JSON.stringify(selectedItems));
+        navigate("/pay");
+    };
+
 
     const total = cart
         .filter(item => item.checked)
@@ -46,7 +86,7 @@ export default function ProjectCart() {
     return (
         <div className={styles.cartPage}>
             <div className={styles.container}>
-                <h2>Giỏ Hàng</h2>
+                <h2>Giỏ Hàng ({cart.length})</h2>
 
                 <div className={styles.cartList}>
                     {cart.map(item => (
@@ -58,12 +98,16 @@ export default function ProjectCart() {
                                 onChange={() => toggleCheck(item.id)}
                             />
 
-                            <img src={item.img} alt={item.name} />
+                            <img src={item.activeImg} alt={item.name} />
 
                             <div className={styles.info}>
                                 <p>{item.name}</p>
-                                <span>Giá bán {item.price.toLocaleString()}đ</span>
+                                <span>
+                                    Giá bán {item.price.toLocaleString()}đ
+                                </span>
                             </div>
+
+
 
                             <div className={styles.quantity}>
                                 <button onClick={() => updateQuantity(item.id, "dec")}>-</button>
@@ -72,17 +116,23 @@ export default function ProjectCart() {
                             </div>
 
                             <div className={styles.subtotal}>
-                                Tổng tiền {(item.price * item.quantity).toLocaleString()}đ
+                                {(item.price * item.quantity).toLocaleString()}đ
                             </div>
 
+
+                            <div
+                                className={styles.delete}
+                                onClick={() => handleRemove(item.id)}
+                            >
+                                Delete
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                {/* Summary */}
                 <div className={styles.summary}>
                     <h3>Tổng thanh toán: {total.toLocaleString()}đ</h3>
-                    <button>Thanh Toán Đơn Hàng</button>
+                    <button onClick={handleCheckoutCart}>Thanh Toán Đơn Hàng</button>
                 </div>
 
             </div>

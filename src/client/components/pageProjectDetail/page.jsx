@@ -5,13 +5,14 @@ import useSWR from "swr";
 import UiLoadingComponent from "../../../components/loadingComponent";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 import { ThemeContext } from "../../../context/useThemeContext";
+import { ShowToast, ToastType } from "../../../utils/toast";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 
 export default function ProductDetail() {
     const navigate = useNavigate();
-    const { handlePage } = useContext(ThemeContext);
+    const { handlePay, handleAddToCart, USER } = useContext(ThemeContext);
     const { id } = useParams();
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const [quantity, setQuantity] = useState(1);
@@ -36,14 +37,26 @@ export default function ProductDetail() {
     const increase = () => setQuantity((prev) => prev + 1);
     const decrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-    const handleAddToCart = () => {
-        console.log("Thêm giỏ:", product.name, "Số lượng:", quantity);
-        navigate("/cart");
+
+    const addToCart = (name, price, quantity, activeImg, id) => {
+        if (!USER) {
+            ShowToast('Đăng nhập để tiếp tục mua hàng', ToastType.info);
+            return navigate('/login');
+        }
+
+        handleAddToCart(name, price, quantity, activeImg, id);
     };
 
-    const handleBuyNow = (name, price, quantity, activeImg) => {
-        handlePage(name, price, quantity, activeImg);
+
+    const handleBuyNow = (name, price, quantity, activeImg, id) => {
+        if (!USER) {
+            ShowToast('Đăng nhập để tiếp tục mua hàng', ToastType.info);
+            return navigate('/login');
+        }
+        handlePay(name, price, quantity, activeImg, id);
     };
+
+
 
     return (
         <div className={styles.container}>
@@ -101,7 +114,16 @@ export default function ProductDetail() {
                     </div>
 
                     <div className={styles.buttonGroup}>
-                        <button className={styles.addToCart} onClick={handleAddToCart}>
+                        <button
+                            className={styles.addToCart}
+                            onClick={() => addToCart(
+                                product.name,
+                                product.price,
+                                quantity,
+                                activeImg,
+                                id
+                            )}
+                        >
                             🛒 Thêm vào giỏ hàng
                         </button>
                         <button
@@ -110,7 +132,8 @@ export default function ProductDetail() {
                                 product.name,
                                 product.price,
                                 quantity,
-                                activeImg
+                                activeImg,
+                                id
                             )}
                         >
                             Mua ngay
