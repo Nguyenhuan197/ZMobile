@@ -66,7 +66,7 @@ export default function ProjectHome() {
                 </section>
 
 
-                <section>
+                <section style={{ marginTop: 40 }}>
                     <h2 className={styles.sectionTitle}>Phụ Kiện</h2>
 
                     <div className={styles.grid}>
@@ -97,7 +97,7 @@ export default function ProjectHome() {
 
                 {/* <ServicePolicy /> */}
 
-                <section>
+                <section style={{ marginTop: 40 }}>
                     <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
                     <div className={styles.gridBranch}>
                         {
@@ -113,7 +113,7 @@ export default function ProjectHome() {
 
                 {/* <NewsSection data={dataNews} /> */}
 
-                <RecentlyViewed />
+                {/* <RecentlyViewed /> */}
 
 
             </div>

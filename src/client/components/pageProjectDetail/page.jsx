@@ -101,7 +101,7 @@ export default function ProductDetail() {
                     </div>
 
                     <p className={styles.stock}>
-                        Còn lại: <strong>{product.remainingQuantity}</strong>
+                        Đã bán : <strong>{product.remainingQuantity}</strong>
                     </p>
 
                     <div className={styles.quantityBox}>
