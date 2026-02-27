@@ -87,7 +87,7 @@ export default function ProjectHome() {
                                     </p>
 
                                     <p className={styles.sold}>
-                                        Đã bán 99
+                                        Đã bán {item.remainingQuantity}
                                     </p>
                                 </div>
                             </Link>
@@ -95,7 +95,7 @@ export default function ProjectHome() {
                     </div>
                 </section>
 
-                <ServicePolicy />
+                {/* <ServicePolicy /> */}
 
                 <section>
                     <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
@@ -111,9 +111,11 @@ export default function ProjectHome() {
                     </div>
                 </section>
 
-                <NewsSection data={dataNews} />
+                {/* <NewsSection data={dataNews} /> */}
 
                 <RecentlyViewed />
+
+
             </div>
         </>
 
