@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 import { ThemeContext } from "./context/useThemeContext";
 import useSWR from "swr";
 import UiLoadingComponent from "./components/loadingComponent";
+import Trademark from "./client/page/trademark";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -73,8 +74,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
         <Route path="/user" element={<User />} />
-
-
+        <Route path="/trademark-product/:id" element={<Trademark />} />
+        <Route path="/trademark-product" element={<Trademark />} />
 
         {/* Admin Routes (Chỉ Admin mới xem được) */}
         <Route element={<ProtectedRoute isAllowed={statusUser === "Admin"} />}>

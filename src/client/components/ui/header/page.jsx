@@ -69,6 +69,16 @@ export default function Header() {
                         </NavLink>
 
                         <NavLink
+                            to="/trademark-product"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                            }
+                        >
+                            Thương hiệu
+                        </NavLink>
+
+
+                        <NavLink
                             to="/about"
                             className={({ isActive }) =>
                                 isActive ? styles.active : ""
