@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import useSWR from 'swr';
 import styles from "./trademarkProduct.module.css";
 import UiLoadingComponent from '../../../components/loadingComponent';
@@ -131,7 +131,7 @@ export default function TrademarkProductComponent() {
                         ) : (
                             <div className={styles.productGrid}>
                                 {filteredProducts.map((product) => (
-                                    <div key={product._id} className={styles.productCard}>
+                                    <Link to={`/product/${product._id}`} key={product._id} className={styles.productCard}>
                                         <div className={styles.categoryTag}>ĐIỆN THOẠI</div>
                                         <div className={styles.imgBox}>
                                             <img src={product.img?.secure_url} alt={product.name} />
@@ -139,14 +139,8 @@ export default function TrademarkProductComponent() {
                                         <div className={styles.pDetail}>
                                             <h3 className={styles.pName}>{product.name}</h3>
                                             <div className={styles.pPrice}>{product.price?.toLocaleString()}đ</div>
-                                            <button
-                                                className={styles.viewMore}
-                                                onClick={() => window.location.href = `/product/${product._id}`}
-                                            >
-                                                Xem chi tiết
-                                            </button>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         )}

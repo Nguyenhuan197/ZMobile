@@ -5,6 +5,9 @@ import UiLoadingComponent from '../../../components/loadingComponent';
 import { ThemeContext } from "../../../context/useThemeContext";
 import useSWR from "swr";
 import Banner from "../ui/banner/page";
+import FlashSaleProduct from "../ui/sale/page";
+
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -24,6 +27,10 @@ export default function ProjectHome() {
     return (
         <>
             <Banner data={dataAdvertisement} />
+
+            <FlashSaleProduct dataProducts={dataAdvertisement} />
+
+
             <div className={styles.container}>
                 <section>
                     <h2 className={styles.sectionTitle}>Điện Thoại</h2>
@@ -83,6 +90,7 @@ export default function ProjectHome() {
                     </div>
                 </section>
 
+
                 {/* <ServicePolicy /> */}
                 <section style={{ marginTop: 40 }}>
                     <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
@@ -91,12 +99,14 @@ export default function ProjectHome() {
                             dataBranch?.data?.map((item) => (
                                 <Link to={`/trademark-product/${item._id}`} key={item._id} className={styles.logoBranch}>
                                     <img src={item.img.secure_url} alt={item.name} />
-                                    <span>{item.name}</span>
+                                    {/* <span>{item.name}</span> */}
                                 </Link>
                             ))
                         }
                     </div>
                 </section>
+
+
 
                 {/* <NewsSection data={dataNews} /> */}
 
