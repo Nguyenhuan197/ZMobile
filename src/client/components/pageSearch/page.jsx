@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from "./productSearch.module.css";
 import useSWR from 'swr';
 import UiLoadingComponent from '../../../components/loadingComponent';
+import { Link } from 'react-router-dom';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ProductSearchComponent() {
@@ -47,10 +48,9 @@ export default function ProductSearchComponent() {
             {/* Danh sách sản phẩm */}
             <div className={styles.productGrid}>
                 {filteredProducts.map(product => (
-                    <div
+                    <Link to={`/product/${product._id}`}
                         key={product._id}
                         className={styles.productCard}
-                        onClick={() => window.location.href = `/product/${product._id}`}
                     >
                         <div className={styles.imageWrapper}>
                             <img
@@ -74,15 +74,17 @@ export default function ProductSearchComponent() {
                                 Xem chi tiết
                             </button>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 
-            {filteredProducts.length === 0 && (
-                <div className={styles.noResult}>
-                    <p>Không tìm thấy sản phẩm phù hợp với từ khóa của bạn.</p>
-                </div>
-            )}
-        </div>
+            {
+                filteredProducts.length === 0 && (
+                    <div className={styles.noResult}>
+                        <p>Không tìm thấy sản phẩm phù hợp với từ khóa của bạn.</p>
+                    </div>
+                )
+            }
+        </div >
     );
 }

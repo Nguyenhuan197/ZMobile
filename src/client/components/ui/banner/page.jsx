@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./banner.module.css";
+import { Link } from "react-router-dom";
 
 export default function Banner({ data }) {
     const [current, setCurrent] = useState(0);
@@ -37,14 +38,14 @@ export default function Banner({ data }) {
             <button className={styles.prev} onClick={prevSlide}>❮</button>
             <button className={styles.next} onClick={nextSlide}>❯</button>
 
-            <div className={styles.content}>
+            <Link to={`/product/${currentItem._id}`} className={styles.content}>
                 <div className={styles.left}>
                     <h2>{currentItem.name}</h2>
                     <p className={styles.subtitle}>
                         Giảm ngay {formatPrice(currentItem.priceSale || 0)}
                     </p>
                     <p className={styles.desc}>
-                        Sản phẩm chính hãng - Bảo hành 12 tháng
+                        Sản phẩm chính hãng - Bảo hành 6 tháng
                     </p>
 
                     <div className={styles.priceRow}>
@@ -55,8 +56,6 @@ export default function Banner({ data }) {
                             {formatPrice(newPrice)}
                         </span>
                     </div>
-
-                    <button className={styles.btn}>MUA NGAY</button>
                 </div>
 
                 <div className={styles.right}>
@@ -66,7 +65,7 @@ export default function Banner({ data }) {
                         className={styles.productImage}
                     />
                 </div>
-            </div>
+            </Link>
 
             <div className={styles.pagination}>
                 {slides.map((_, index) => (

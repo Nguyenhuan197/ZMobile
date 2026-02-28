@@ -99,7 +99,6 @@
     }
 
     .logo {
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-size: 30px;
         font-weight: bold;
         color: #ee4d2d;
@@ -145,4 +144,16 @@
     height: 3px;
     background: #ee4d2d;
     border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        height: 64px;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: bold;
+        text-decoration: none;
+    }
 }

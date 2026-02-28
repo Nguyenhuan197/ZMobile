@@ -48,7 +48,6 @@ export default function Header() {
 
                 <div className={styles.rightSection}>
                     <nav className={`${styles.nav} ${open ? styles.show : ""}`}>
-
                         <NavLink
                             to="/"
                             end

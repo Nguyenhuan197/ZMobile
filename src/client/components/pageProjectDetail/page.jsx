@@ -96,7 +96,7 @@ export default function ProductDetail() {
 
                     <div className={styles.priceBox}>
                         <span className={styles.price}>
-                            {formatPrice(product.price)}
+                            {formatPrice(product.price - product.priceSale)}
                         </span>
                     </div>
 

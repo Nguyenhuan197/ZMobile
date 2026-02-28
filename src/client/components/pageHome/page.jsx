@@ -20,16 +20,17 @@ export default function ProjectHome() {
     const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
     const { data: dataNews, isLoadingNews } = useSWR(`${apiUrl}/api/news/view`, fetcher);
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
+    const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
+
+
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);;
-    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch) return <UiLoadingComponent />
+    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
 
     return (
         <>
             <Banner data={dataAdvertisement} />
-
-            <FlashSaleProduct dataProducts={dataAdvertisement} />
-
+            <FlashSaleProduct dataProducts={dataSale} />
 
             <div className={styles.container}>
                 <section>
@@ -99,7 +100,7 @@ export default function ProjectHome() {
                             dataBranch?.data?.map((item) => (
                                 <Link to={`/trademark-product/${item._id}`} key={item._id} className={styles.logoBranch}>
                                     <img src={item.img.secure_url} alt={item.name} />
-                                    {/* <span>{item.name}</span> */}
+                                    <span>{item.name}</span>
                                 </Link>
                             ))
                         }

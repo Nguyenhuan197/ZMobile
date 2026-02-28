@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./flashSaleProduct.module.css";
 import fireIcon from "../../../../assets/lửa.gif";
+import { formatPrice } from '../../../../utils/formatPrice.JS';
 
 export default function FlashSaleProduct({ dataProducts }) {
-    const [timeLeft, setTimeLeft] = useState(70 * 60); // 70 phút tính bằng giây
+    const [timeLeft, setTimeLeft] = useState(58.1 * 60); // 70 phút tính bằng giây
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -26,9 +27,7 @@ export default function FlashSaleProduct({ dataProducts }) {
 
     const time = formatTime(timeLeft);
 
-    const formatCurrency = (num) => {
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(num);
-    };
+
 
     const products = dataProducts?.data || [];
     if (products.length === 0) return null;
@@ -49,8 +48,9 @@ export default function FlashSaleProduct({ dataProducts }) {
                         <span className={styles.timeBox}>{time.s}</span>
                     </div>
                 </div>
-                <Link to="/flash-sale" className={styles.viewAll}>Xem tất cả {'>'}</Link>
+                {/* <Link to="#" className={styles.viewAll}>Xem tất cả {'>'}</Link> */}
             </div>
+
 
             <div className={styles.grid}>
                 {products.map((item) => {
@@ -75,10 +75,11 @@ export default function FlashSaleProduct({ dataProducts }) {
 
                                 <div className={styles.priceGroup}>
                                     <span className={styles.currentPrice}>
-                                        {formatCurrency(hasSale ? item.priceSale : item.price)}
+                                        {formatPrice(hasSale ? item.price - item.priceSale : item.price)}
                                     </span>
+
                                     {hasSale && (
-                                        <span className={styles.oldPrice}>{formatCurrency(item.price)}</span>
+                                        <span className={styles.oldPrice}>{formatPrice(item.price)}</span>
                                     )}
                                 </div>
 

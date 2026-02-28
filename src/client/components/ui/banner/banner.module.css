@@ -1,7 +1,7 @@
 .bannerContainer {
     width: 90%;
     height: 260px;
-    margin: 10px auto;
+    margin: 100px auto 10px;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -9,19 +9,64 @@
     align-items: center;
     padding: 0 50px;
     color: #fff;
-    animation: gradientMove 12s ease infinite;
-    background: linear-gradient(-45deg,
-            #ff7e5f,
-            #feb47b,
-            #ff9966,
-            #ffcc70,
-            #fbd786,
-            #ff9a9e,
-            #fad0c4);
-    background-size: 400% 400%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    margin-top: 100px;
+
+    /* --- CỐT LÕI CỦA HIỆU ỨNG SÓNG --- */
+
+    /* 1. Tạo nhiều lớp màu đan xen (lớp trên mờ hơn lớp dưới) */
+    background-image:
+        radial-gradient(at 10% 10%, #ffeb3b 0px, transparent 50%),
+        /* Sóng vàng góc trên trái */
+        radial-gradient(at 90% 10%, #ff7e5f 0px, transparent 50%),
+        /* Sóng cam góc trên phải */
+        radial-gradient(at 50% 90%, #feb47b 0px, transparent 50%),
+        /* Sóng hồng giữa dưới */
+        radial-gradient(at 90% 90%, #ffd700 0px, transparent 50%),
+        /* Sóng Gold góc dưới phải */
+        linear-gradient(-45deg, #ff9a9e, #fad0c4);
+    /* Lớp nền đáy mượt */
+
+    /* 2. Cần background-size lớn để các tâm sóng di chuyển */
+    background-size: 200% 200%;
+
+    /* 3. Animation phức tạp hơn */
+    animation:
+        waveMove 8s ease-in-out infinite,
+        /* Di chuyển tâm sóng */
+        colorShift 12s linear infinite;
+    /* Trộn màu lặp lại theo thời gian */
 }
+
+/* 4. Định nghĩa hiệu ứng di chuyển sóng (lắc lư) */
+@keyframes waveMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* 5. Định nghĩa hiệu ứng trộn màu (Làm cho màu sắc trông như thay đổi liên tục, không lặp lại) */
+@keyframes colorShift {
+    0% {
+        filter: hue-rotate(0deg) saturate(1);
+    }
+
+    50% {
+        filter: hue-rotate(15deg) saturate(1.2);
+        /* Nhích nhẹ tông màu và tăng độ bão hòa */
+    }
+
+    100% {
+        filter: hue-rotate(0deg) saturate(1);
+    }
+}
+
+
 
 @keyframes gradientMove {
     0% {
@@ -37,11 +82,15 @@
     }
 }
 
+
+
 .content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
+    color: white;
 }
 
 .left {
@@ -94,9 +143,9 @@
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: -70px;
+    text-decoration: none;
 }
 
 .btn:hover {
@@ -171,7 +220,7 @@
 /* ===== LARGE DESKTOP (1400px+) ===== */
 @media (min-width: 1400px) {
     .bannerContainer {
-        height: 280px;
+        height: 300px;
     }
 
     .left h2 {
@@ -179,7 +228,7 @@
     }
 
     .productImage {
-        height: 200px;
+        height: 210px;
     }
 }
 
@@ -265,7 +314,7 @@
 @media (max-width: 480px) {
     .bannerContainer {
         border-radius: 14px;
-        padding: 20px 12px;
+        padding: 23px 4px;
     }
 
     .left h2 {
@@ -295,7 +344,9 @@
     }
 
     .productImage {
-        height: 110px;
+        /* height: 110px; */
+        width: 160px;
+        height: auto;
         margin-bottom: 26px;
     }
 
