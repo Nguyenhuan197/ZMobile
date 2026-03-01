@@ -7,11 +7,9 @@ export default function ContactQuickly() {
 
     return (
         <div className={styles.wrapper}>
-            {/* Hiệu ứng sóng tỏa ra phía sau */}
             <div className={styles.pulseNode}></div>
 
-            {/* Nút chính */}
-            <a href="tel:0365555309" className={styles.block}>
+            <a href={`tel:${phone}`} className={styles.block}>
                 <span className={styles.phoneNumber}>{phone}</span>
                 <div className={styles.iconCircle}>
                     <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -19,6 +17,7 @@ export default function ContactQuickly() {
                     </svg>
                 </div>
             </a>
+
         </div>
     );
 }
