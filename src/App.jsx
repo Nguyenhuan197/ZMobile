@@ -21,7 +21,7 @@ import useSWR from "swr";
 import UiLoadingComponent from "./components/loadingComponent";
 import Trademark from "./client/page/trademark";
 import ContactQuickly from "./client/components/ui/contact/page";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./scrollToTop";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
