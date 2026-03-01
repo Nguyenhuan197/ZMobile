@@ -21,6 +21,7 @@ import useSWR from "swr";
 import UiLoadingComponent from "./components/loadingComponent";
 import Trademark from "./client/page/trademark";
 import ContactQuickly from "./client/components/ui/contact/page";
+import ScrollToTop from "./ScrollToTop";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -29,6 +30,8 @@ function App() {
   const [statusUser, setStatusUser] = useState("Cline");
   const { USER, signOutUser } = useContext(ThemeContext);
   const { data, error, isLoading } = useSWR(USER._id ? `${apiUrl}/api/users/view-One/${USER._id}` : null, fetcher);
+
+
 
 
   useEffect(() => {
@@ -57,6 +60,8 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
+
       <ToastContainer
         position="top-left"
         autoClose={3000}
