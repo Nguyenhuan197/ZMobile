@@ -95,7 +95,7 @@ export default function Footer() {
 
             <div className={styles.bottom}>
                 <p>© {new Date().getFullYear()} -{DataAdmin?.data[0].nameLogo}</p>
-                <p>Quản Trị Website  - {DataAdmin?.data[0].nameAdmin}</p>
+                <p>{DataAdmin?.data[0].nameAdmin}</p>
             </div>
         </footer>
     );
