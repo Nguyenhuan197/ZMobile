@@ -11,7 +11,13 @@ export function LocalStorageUserContext({ children }) {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const [USER, SETUSER] = useState(false);
     const navigate = useNavigate();
-    const { data: DataUser, error, isLoading: isLoading_User } = useSWR(USER._id ? `${apiUrl}/api/users/view-One/${USER._id}` : null, fetcher);
+
+    const {
+        data: DataUser,
+        error,
+        isLoading: isLoading_User,
+        mutate: seloadAPI__USER
+    } = useSWR(USER._id ? `${apiUrl}/api/users/view-One/${USER._id}` : null, fetcher);
     const { data: DataAdmin, error: errorAdmin, isLoading: isLoading_Admin } = useSWR(`${apiUrl}/api/infomation-Admin/view`, fetcher);
 
 
@@ -103,6 +109,7 @@ export function LocalStorageUserContext({ children }) {
                 signOutUser,
                 reloading,
                 handlePay,
+                seloadAPI__USER,
 
                 // giỏ hàng
                 handleAddToCart,

@@ -66,7 +66,7 @@ export default function ContactQuickly() {
             // Sau 5 giây hiển thị thì tự ẩn đi, chờ đến chu kỳ 10s tiếp theo
             setTimeout(() => setShowPop(false), 5500);
 
-        }, 10000); // Lặp lại mỗi 10 giây
+        }, 20000); // Lặp lại mỗi 10 giây
 
         // Hiển thị lần đầu tiên sau 2s khi load trang
         const firstShow = setTimeout(() => setShowPop(true), timeLopp);

@@ -211,6 +211,7 @@
     margin-bottom: 20px;
     padding: 8px 0;
     transition: color 0.3s ease;
+    text-decoration: none;
 }
 
 .backBtn:hover {
