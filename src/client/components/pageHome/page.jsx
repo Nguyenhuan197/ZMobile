@@ -6,8 +6,6 @@ import { ThemeContext } from "../../../context/useThemeContext";
 import useSWR from "swr";
 import Banner from "../ui/banner/page";
 import FlashSaleProduct from "../ui/sale/page";
-
-
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 

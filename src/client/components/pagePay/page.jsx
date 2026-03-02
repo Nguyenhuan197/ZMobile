@@ -114,9 +114,8 @@ export default function ProjectPay() {
 
                     {showQR && (
                         <div className={styles.qrSection} ref={qrSectionRef}>
-                            <h2 className={styles.sectionTitle}>📸 Quét mã VietQR Thanh Toán</h2>
                             <div className={styles.qrBox}>
-                                <p className={styles.bankName}>MB Bank - NGUYEN DINH HUAN</p>
+                                <p className={styles.bankName}>NGUYEN DINH HUAN</p>
                                 <p className={styles.bankName}>STK 199928042005</p>
 
                                 <img src={`https://img.vietqr.io/image/MB-199928042005-compact.jpg?amount=${total}&addInfo=THANHTOAN&accountName=NGUYEN DINH HUAN`} alt="QR" className={styles.qrImg} />
