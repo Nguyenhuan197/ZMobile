@@ -20,7 +20,6 @@ import { ThemeContext } from "./context/useThemeContext";
 import useSWR from "swr";
 import UiLoadingComponent from "./components/loadingComponent";
 import Trademark from "./client/page/trademark";
-import ContactQuickly from "./client/components/ui/contact/page";
 import ScrollToTop from "./scrollToTop";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -68,7 +67,7 @@ function App() {
         style={{ top: '120px', marginRight: "10px" }}
       />
 
-      <ContactQuickly />
+
 
       <Routes>
         <Route path="/" element={<Home />} />

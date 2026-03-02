@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styles from "./pay.module.css";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 import { useNavigate } from "react-router-dom";
@@ -7,29 +7,18 @@ import UiLoadingComponent from "../../../components/loadingComponent";
 
 export default function ProjectPay() {
     const navigate = useNavigate();
+    const qrSectionRef = useRef(null);
     const { USER, DataUser, isLoading_User } = useContext(ThemeContext);
 
     const [paymentMethod, setPaymentMethod] = useState("cod");
     const [cartItems, setCartItems] = useState([]);
-    const [form, setForm] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        address: ""
-    });
+    const [showQR, setShowQR] = useState(false);
+    const [form, setForm] = useState({ name: "", phone: "", email: "", address: "" });
 
-    /* =============================
-       REDIRECT IF NOT LOGIN
-    ============================== */
     useEffect(() => {
-        if (!isLoading_User && !USER) {
-            navigate("/login");
-        }
+        if (!isLoading_User && !USER) navigate("/login");
     }, [USER, isLoading_User, navigate]);
 
-    /* =============================
-       LOAD USER INFO INTO FORM
-    ============================== */
     useEffect(() => {
         if (DataUser?.data) {
             setForm({
@@ -41,224 +30,129 @@ export default function ProjectPay() {
         }
     }, [DataUser]);
 
-    /* =============================
-       LOAD PAYMENT DATA
-    ============================== */
     useEffect(() => {
         const raw = localStorage.getItem("data-pay");
         if (!raw) return;
-
         try {
             const data = JSON.parse(raw);
             setCartItems(Array.isArray(data) ? data : [data]);
-        } catch (error) {
-            console.error("Parse error:", error);
-        }
+        } catch (error) { console.error("Lỗi parse data:", error); }
     }, []);
 
-    /* =============================
-       CALCULATE TOTAL
-    ============================== */
-    const subTotal = cartItems.reduce(
-        (acc, item) => acc + Number(item.price) * Number(item.quantity),
-        0
-    );
-
+    const subTotal = cartItems.reduce((acc, item) => acc + Number(item.price) * Number(item.quantity), 0);
     const shippingFee = cartItems.length > 0 ? 30000 : 0;
     const total = subTotal + shippingFee;
 
-    /* =============================
-       HANDLE FORM CHANGE
-    ============================== */
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-    /* =============================
-       VALIDATE
-    ============================== */
-    const validateForm = () => {
-        if (!form.name.trim()) return "Vui lòng nhập họ tên";
-        if (!form.phone.trim()) return "Vui lòng nhập số điện thoại";
-        if (!form.address.trim()) return "Vui lòng nhập địa chỉ";
-        return null;
-    };
-
-    /* =============================
-       HANDLE CHECKOUT
-    ============================== */
     const handleCheckout = () => {
-        if (cartItems.length === 0) {
-            alert("Không có sản phẩm để thanh toán!");
-            return;
+        if (cartItems.length === 0) return alert("Giỏ hàng của bạn đang trống!");
+        if (!form.name || !form.phone || !form.address) return alert("Vui lòng nhập đầy đủ thông tin!");
+
+        if (paymentMethod === "bank") {
+            setShowQR(true);
+            setTimeout(() => {
+                qrSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        } else {
+            alert("Đặt hàng thành công 🎉");
+            finishOrder();
         }
+    };
 
-        const error = validateForm();
-        if (error) {
-            alert(error);
-            return;
-        }
-
-        alert("Đặt hàng thành công 🎉");
-
+    const finishOrder = () => {
         localStorage.removeItem("data-pay");
         navigate("/");
     };
 
-    /* =============================
-       LOADING STATE
-    ============================== */
     if (isLoading_User) return <UiLoadingComponent />;
 
-    /* =============================
-       JSX RENDER
-    ============================== */
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-
-                {/* LEFT */}
+                {/* CỘT TRÁI */}
                 <div className={styles.left}>
                     <div className={styles.section}>
-                        <h2 className={styles.sectionTitle}>
-                            📍 Thông tin giao hàng
-                        </h2>
-
+                        <h2 className={styles.sectionTitle}>📍 Thông tin giao hàng</h2>
                         <div className={styles.formGroup}>
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Họ và tên</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={form.name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            <div className={styles.inputField}>
-                                <label>Số điện thoại</label>
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    value={form.phone}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            <div className={styles.inputField}>
-                                <label>Email</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={form.email}
-                                    onChange={handleChange}
-                                />
+                                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Tên người nhận hàng" />
                             </div>
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
-                                <label>Địa chỉ cụ thể</label>
-                                <textarea
-                                    rows="4"
-                                    name="address"
-                                    value={form.address}
-                                    onChange={handleChange}
-                                />
+                                <label>Số điện thoại</label>
+                                <input type="text" name="phone" value={form.phone} onChange={handleChange} placeholder="Số điện thoại" />
+                            </div>
+
+
+                            <div className={`${styles.inputField} ${styles.fullWidth}`}>
+                                <label>Email</label>
+                                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email (không bắt buộc)" />
+                            </div>
+
+                            <div className={`${styles.inputField} ${styles.fullWidth}`}>
+                                <label>Địa chỉ chi tiết nhận hàng</label>
+                                <textarea rows="5" name="address" value={form.address} onChange={handleChange} placeholder="Số nhà, tên đường..." />
                             </div>
                         </div>
                     </div>
 
                     <div className={styles.section}>
-                        <h2 className={styles.sectionTitle}>
-                            💳 Phương thức thanh toán
-                        </h2>
-
+                        <h2 className={styles.sectionTitle}>💳 Phương thức thanh toán</h2>
                         <div className={styles.paymentMethods}>
-                            {["cod", "bank"].map(method => (
-                                <div
-                                    key={method}
-                                    className={`${styles.method} ${paymentMethod === method ? styles.activeMethod : ""
-                                        }`}
-                                    onClick={() => setPaymentMethod(method)}
-                                >
-                                    <input
-                                        type="radio"
-                                        checked={paymentMethod === method}
-                                        readOnly
-                                    />
-                                    <span>
-                                        {method === "cod"
-                                            ? "Thanh toán khi nhận hàng (COD)"
-                                            : "Chuyển khoản ngân hàng (QR Code)"}
-                                    </span>
+                            <div className={`${styles.method} ${paymentMethod === "cod" ? styles.activeMethod : ""}`} onClick={() => { setPaymentMethod("cod"); setShowQR(false); }}>
+                                <input type="radio" checked={paymentMethod === "cod"} readOnly />
+                                <span>Thanh toán khi nhận hàng (COD)</span>
+                            </div>
+                            <div className={`${styles.method} ${paymentMethod === "bank" ? styles.activeMethod : ""}`} onClick={() => setPaymentMethod("bank")}>
+                                <input type="radio" checked={paymentMethod === "bank"} readOnly />
+                                <span>Chuyển khoản ngân hàng (VietQR)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {showQR && (
+                        <div className={styles.qrSection} ref={qrSectionRef}>
+                            <h2 className={styles.sectionTitle}>📸 Quét mã VietQR Thanh Toán</h2>
+                            <div className={styles.qrBox}>
+                                <p className={styles.bankName}>MB Bank - NGUYEN DINH HUAN</p>
+                                <p className={styles.bankName}>STK 199928042005</p>
+
+                                <img src={`https://img.vietqr.io/image/MB-199928042005-compact.jpg?amount=${total}&addInfo=THANHTOAN&accountName=NGUYEN DINH HUAN`} alt="QR" className={styles.qrImg} />
+                                <div className={styles.qrDetail}>
+                                    <p>Số tiền: <strong>{formatPrice(total)}</strong></p>
+                                    <button onClick={finishOrder} className={styles.finishBtn}>TÔI ĐÃ CHUYỂN KHOẢN XONG</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* CỘT PHẢI */}
+                <div className={styles.right}>
+                    <div className={`${styles.section} ${styles.summaryBox}`}>
+                        <h2 className={styles.sectionTitle}>🛒 Đơn hàng</h2>
+                        <div className={styles.productList}>
+                            {cartItems.map((item, idx) => (
+                                <div key={idx} className={styles.productItem}>
+                                    <img src={item.img} alt={item.name} className={styles.productImg} />
+                                    <div className={styles.productInfo}>
+                                        <p className={styles.productName}>{item.name}</p>
+                                        <p className={styles.productPrice}>{formatPrice(item.price)} x {item.quantity}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
-                    </div>
-                </div>
-
-                {/* RIGHT */}
-                <div className={styles.right}>
-                    <div className={`${styles.section} ${styles.summaryBox}`}>
-                        <h2 className={styles.sectionTitle}>
-                            🛒 Đơn hàng của bạn
-                        </h2>
-
-                        <div className={styles.productList}>
-                            {cartItems.length === 0 ? (
-                                <p>Không có sản phẩm nào.</p>
-                            ) : (
-                                cartItems.map(item => (
-                                    <div
-                                        key={item.id}
-                                        className={styles.productItem}
-                                    >
-                                        <img
-                                            src={item.img}
-                                            alt={item.name}
-                                            className={styles.productImg}
-                                        />
-                                        <div className={styles.productInfo}>
-                                            <p className={styles.productName}>
-                                                {item.name}
-                                            </p>
-                                            <p className={styles.productPrice}>
-                                                {formatPrice(item.price)} x {item.quantity}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
-                        </div>
-
                         <div className={styles.summaryDetail}>
-                            <div className={styles.summaryRow}>
-                                <span>Tạm tính:</span>
-                                <span>{formatPrice(subTotal)}</span>
-                            </div>
-
-                            <div className={styles.summaryRow}>
-                                <span>Phí vận chuyển:</span>
-                                <span>{formatPrice(shippingFee)}</span>
-                            </div>
-
+                            <div className={styles.summaryRow}><span>Tổng tiền sản phẩm:</span><span>{formatPrice(subTotal)}</span></div>
+                            <div className={styles.summaryRow}><span>Phí vận chuyển:</span><span>{formatPrice(shippingFee)}</span></div>
                             <div className={`${styles.summaryRow} ${styles.totalRow}`}>
-                                <span>Tổng cộng:</span>
-                                <span className={styles.totalPrice}>
-                                    {formatPrice(total)}
-                                </span>
+                                <span>Tổng cộng:</span><span className={styles.totalPrice}>{formatPrice(total)}</span>
                             </div>
                         </div>
-
-                        <button
-                            className={styles.checkoutBtn}
-                            onClick={handleCheckout}
-                            disabled={cartItems.length === 0}
-                        >
-                            ĐẶT HÀNG NGAY
+                        <button className={styles.checkoutBtn} onClick={handleCheckout}>
+                            {paymentMethod === 'bank' && !showQR ? 'TIẾP TỤC THANH TOÁN' : 'ĐẶT HÀNG NGAY'}
                         </button>
                     </div>
                 </div>

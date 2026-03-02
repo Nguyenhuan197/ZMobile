@@ -1,6 +1,7 @@
 
 import styles from "../../App.module.css";
 import TrademarkProductComponent from "../components/pageTrademark/page";
+import ContactQuickly from "../components/ui/contactQuickly/page";
 import Footer from "../components/ui/foooter/page";
 import Header from "../components/ui/header/page";
 
@@ -11,6 +12,7 @@ export default function Trademark() {
             <Header />
             <TrademarkProductComponent />
             <Footer />
+            <ContactQuickly />
         </div>
     )
 }
