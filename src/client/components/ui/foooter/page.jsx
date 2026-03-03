@@ -87,7 +87,7 @@ export default function Footer() {
 
 
                     <p className={styles.adminLink}>
-                        <Link to="/admin-zmobile-2026/product">Đăng nhập Admin</Link>
+                        <Link to="/admin-zmobile-2026/product/list">Đăng nhập Admin</Link>
                     </p>
                 </div>
 

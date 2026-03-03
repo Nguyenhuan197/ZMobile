@@ -1,7 +1,4 @@
-/* ============================= */
-/* SIDEBAR DARK PROFESSIONAL     */
-/* ============================= */
-
+/* GIỮ NGUYÊN CẤU TRÚC CŨ CỦA BẠN */
 .sidebar {
     width: 270px;
     height: 100vh;
@@ -15,21 +12,18 @@
     transition: all 0.3s ease;
 }
 
-
 .bodyMenu {
     width: 100%;
     height: auto;
     margin-top: 80px;
 }
 
-/* NAV */
 .nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* MAIN ITEM */
 .item {
     display: flex;
     align-items: center;
@@ -50,14 +44,11 @@
     color: #fff;
 }
 
-/* ACTIVE */
-
+/* ITEM CHA ĐANG ACTIVE - NỀN ĐỎ CHỮ TRẮNG */
 .active {
-    background: tomato;
+    background: tomato !important;
     color: #fff !important;
 }
-
-/* SUBMENU */
 
 .submenu {
     padding-left: 20px;
@@ -74,26 +65,32 @@
     border-radius: 6px;
     font-size: 16px;
     color: #ffffff;
+    /* Mặc định chữ trắng */
     text-decoration: none;
     transition: 0.2s ease;
 }
 
 .submenu a:hover {
-    background: rgba(255, 99, 71, 0.2);
-    color: #fff;
+    background: rgba(255, 99, 71, 0.1);
+    color: tomato;
 }
 
-/* ARROW */
+/* ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT: TRANG CON ĐANG ACTIVE */
+.submenu a:global(.active) {
+    background: rgba(255, 99, 71, 0.15) !important;
+    /* Nền hồng mờ */
+    color: tomato !important;
+    /* CHỮ ĐỎ TOMATO NHƯ BẠN CẦN */
+    font-weight: 600;
+    border-left: 3px solid tomato;
+}
 
 .arrow {
     margin-left: auto;
     font-size: 12px;
 }
 
-/* ============================= */
-/* RESPONSIVE                    */
-/* ============================= */
-
+/* RESPONSIVE GIỮ NGUYÊN */
 @media (max-width: 1024px) {
     .sidebar {
         width: 220px;
@@ -106,21 +103,4 @@
         width: 100%;
         height: auto;
     }
-}
-
-/* Tìm đến thẻ a có class active mặc định của NavLink */
-.submenu a.active {
-    background: rgba(255, 99, 71, 0.2);
-    /* Nền hồng nhạt */
-    color: tomato !important;
-    /* Chữ màu Tomato */
-    font-weight: 600;
-    border-left: 3px solid tomato;
-    /* Thêm vạch kẻ cho chuyên nghiệp */
-}
-
-/* Đảm bảo màu Active của các Item chính không bị lẫn */
-.item.active {
-    background: tomato;
-    color: #fff !important;
 }

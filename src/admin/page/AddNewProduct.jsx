@@ -1,12 +1,15 @@
 
-import styles from "../../App.module.css";
-import ProductAdminComponent from "../components/Project_Product/PageProducts/ProductAdmin";
 
-export default function ProductAdmin() {
+
+import styles from "../../App.module.css";
+import AddNewProductAdminComponent from "../components/Project_Product/PageAddNew/page";
+
+
+export default function AddNewProductAdmin() {
     return (
         <div className={styles.container}>
             <div className={styles.adminContainer}>
-                <ProductAdminComponent />
+                <AddNewProductAdminComponent />
             </div>
         </div>
     )

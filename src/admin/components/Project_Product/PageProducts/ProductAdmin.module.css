@@ -1,0 +1,234 @@
+.mainContent {
+    flex: 1;
+    margin-top: 80px;
+    margin-left: 300px;
+    padding: 25px;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.headerPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.headerPage h1 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
+/* Khu vực lọc */
+.filterSection {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.searchBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 10px;
+    color: #888;
+}
+
+.searchBox input {
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.searchBox input:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+.selectFilter {
+    padding: 10px 40px 10px 15px;
+    /* Tăng padding phải để chừa chỗ cho mũi tên */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background-color: #ffffff;
+    cursor: pointer;
+    min-width: 200px;
+    font-size: 14px;
+    color: #444;
+    transition: all 0.3s ease;
+
+    /* Ẩn mũi tên mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Thêm mũi tên tùy chỉnh (Icon Chevron Down) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    /* Cách mép phải 15px để cân đối */
+    background-size: 16px;
+
+    /* Hiệu ứng đổ bóng nhẹ cho chuyên nghiệp */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.selectFilter:hover {
+    border-color: #1976d2;
+    background-color: #fafafa;
+}
+
+.selectFilter:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    background-color: #fff;
+}
+
+/* Tùy chỉnh cho option bên trong (chỉ hoạt động một số trên trình duyệt) */
+.selectFilter option {
+    padding: 10px;
+    background: #fff;
+    color: #333;
+}
+
+
+/* Label trạng thái */
+.statusActive,
+.statusInactive {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.statusActive {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.statusInactive {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Bảng */
+.tableResponsive {
+    width: 100%;
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table th {
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.productImg {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.productName {
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.smallId {
+    font-size: 10px;
+    color: #999;
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+.productPrice {
+    color: #d63031;
+    font-weight: 700;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btnEdit,
+.btnDelete {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btnEdit {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.btnEdit:hover {
+    background: #1976d2;
+    color: white;
+}
+
+.btnDelete {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.btnDelete:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+        margin-top: 60px;
+    }
+
+    .headerPage {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filterSection {
+        flex-direction: column;
+    }
+
+    .searchBox input {
+        width: 100%;
+    }
+}

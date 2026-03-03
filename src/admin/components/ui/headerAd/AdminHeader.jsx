@@ -1,10 +1,19 @@
 import React, { useContext } from 'react';
 import styles from './AdminHeader.module.css';
 import { ThemeContext } from '../../../../context/useThemeContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function AdminHeader() {
+    const keyRoleAdmin = import.meta.env.VITE_KEY_NAME_CHECK_ROLE_ADMIN;
+    const navigate = useNavigate();
     const { USER, signOutUser } = useContext(ThemeContext);
+
+
+    const logOut = () => {
+        localStorage.removeItem(keyRoleAdmin);
+        navigate('/');
+        window.location.reload();
+    }
 
     return (
         <header className={styles.header}>
@@ -14,7 +23,7 @@ export default function AdminHeader() {
 
                 <button
                     className={styles.logoutBtn}
-                    onClick={() => signOutUser()}
+                    onClick={() => logOut()}
                 >
                     Đăng xuất Admin
                 </button>

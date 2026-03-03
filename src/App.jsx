@@ -10,52 +10,42 @@ import Register from "./client/page/register";
 import Login from "./client/page/login";
 import Search from "./client/page/search";
 import LoginAdmin from "./client/page/loginAdmin";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductAdmin from "./admin/page/Product";
 import CategoryAdmin from "./admin/page/Category";
+import NumberOfProductsSold from "./admin/page/PageNumberOfProductsSold";
 import ProtectedRoute from "./admin/components/ProtectedRoute";
 import User from "./client/page/user";
 import { ToastContainer } from "react-toastify";
-import { ThemeContext } from "./context/useThemeContext";
-import useSWR from "swr";
-import UiLoadingComponent from "./components/loadingComponent";
 import Trademark from "./client/page/trademark";
 import ScrollToTop from "./scrollToTop";
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import UiLoadingComponent from "./components/loadingComponent";
+import PageSaleAdmin from "./admin/page/Sale";
+import AddNewProductAdmin from "./admin/page/AddNewProduct";
+
 
 
 function App() {
-  const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
-  const [statusUser, setStatusUser] = useState("Cline");
-  const { USER, signOutUser } = useContext(ThemeContext);
-  const { data, error, isLoading } = useSWR(USER._id ? `${apiUrl}/api/users/view-One/${USER._id}` : null, fetcher);
-
-
-
+  const keyRoleAdmin = import.meta.env.VITE_KEY_NAME_CHECK_ROLE_ADMIN
+  const [statusUser, setStatusUser] = useState(null);
 
   useEffect(() => {
-    const checks = () => {
-      if (USER._id) {
-        if (data) {
-          if (data.data.role === 'Admin') {
-            setStatusUser(data.data.role)
-          } else {
-            setStatusUser('Cline');
-          }
-        }
-
-      } else {
-        setStatusUser('Cline');
-      }
+    if (!keyRoleAdmin) {
+      setStatusUser("Cline");
+      return;
     }
 
-    checks();
+    const getRole = localStorage.getItem(keyRoleAdmin);
+
+    if (getRole === "Admin") {
+      setStatusUser("Admin");
+    } else {
+      setStatusUser("Cline");   // 👈 BẮT BUỘC PHẢI CÓ
+    }
+  }, []);
 
 
-  }, [USER, data]);
-
-
-  if (isLoading) return <UiLoadingComponent />
+  if (statusUser === null) return <UiLoadingComponent />;
 
   return (
     <>
@@ -66,8 +56,6 @@ function App() {
         autoClose={3000}
         style={{ top: '120px', marginRight: "10px" }}
       />
-
-
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -85,13 +73,18 @@ function App() {
         <Route path="/trademark-product" element={<Trademark />} />
 
         {/* Admin Routes (Chỉ Admin mới xem được) */}
+        <Route path="/login-admin" element={<LoginAdmin />} />
         <Route element={<ProtectedRoute isAllowed={statusUser === "Admin"} />}>
-          <Route path="/admin-zmobile-2026/product" element={<ProductAdmin />} />
+          <Route path="/admin-zmobile-2026/product/list" element={<ProductAdmin />} />
+          <Route path="/admin-zmobile-2026/product/sale" element={<PageSaleAdmin />} />
+          <Route path="/admin-zmobile-2026/product/numberOfProductsSold" element={<NumberOfProductsSold />} />
+          <Route path="/admin-zmobile-2026/product/addNew" element={<AddNewProductAdmin />} />
+
           <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
+
+
         </Route>
 
-        {/* Trang Login cho Admin */}
-        <Route path="/login-admin" element={<LoginAdmin />} />
       </Routes>
     </>
 

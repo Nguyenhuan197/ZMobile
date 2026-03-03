@@ -10,6 +10,7 @@ import { ThemeContext } from '../../../../context/useThemeContext';
 export default function AdminLoginComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
+    const keyRoleAdmin = import.meta.env.VITE_KEY_NAME_CHECK_ROLE_ADMIN
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
@@ -29,18 +30,18 @@ export default function AdminLoginComponent() {
         const result = await UpdateSevices(`${apiUrl}/api/users/login`, formData, "POST");
         ResetForm();
 
-
         if (result.status) {
             if (result.role === 'Admin') {
                 ShowToast(result.message_vn, ToastType.success);
                 localStorage.setItem(KEY_NAME_USER, result.token);
+                localStorage.setItem(keyRoleAdmin, result.role);
+
 
                 // Load lại 
                 reloading();
-                setTimeout(() => {
-                    navigate('/admin-zmobile-2026/product');
-                    setLoading(false);
-                }, 1000);
+                navigate('/admin-zmobile-2026/product/list');
+                window.location.reload();
+                setLoading(false);
 
             } else {
                 return ShowToast('Bạn không có quyền truy cập ', ToastType.warn);

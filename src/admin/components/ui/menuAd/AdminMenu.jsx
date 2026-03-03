@@ -25,7 +25,6 @@ export default function AdminMenu() {
 
     return (
         <aside className={styles.sidebar}>
-
             <div className={styles.bodyMenu}>
                 <nav className={styles.nav}>
                     <ul>
@@ -42,18 +41,23 @@ export default function AdminMenu() {
                             {openMenu === "product" && (
                                 <ul className={styles.submenu}>
                                     <li>
-                                        {/* Thêm end để chỉ active khi khớp chính xác URL này */}
-                                        <NavLink to="/admin-zmobile-2026/product" end>
+                                        <NavLink to="/admin-zmobile-2026/product/list" end>
                                             Danh sách sản phẩm
                                         </NavLink>
                                     </li>
+
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/sold" end>
+                                        <NavLink to="/admin-zmobile-2026/product/sale" end>
+                                            Sản phẩm Sale
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/admin-zmobile-2026/product/numberOfProductsSold" end>
                                             Lượt bán sản phẩm
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/add" end>
+                                        <NavLink to="/admin-zmobile-2026/product/addNew" end>
                                             Thêm sản phẩm
                                         </NavLink>
                                     </li>
@@ -75,12 +79,12 @@ export default function AdminMenu() {
                             {openMenu === "category" && (
                                 <ul className={styles.submenu}>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/category">
+                                        <NavLink to="/admin-zmobile-2026/category" end>
                                             Danh sách danh mục
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/category/add">
+                                        <NavLink to="/admin-zmobile-2026/category/add" end>
                                             Thêm danh mục
                                         </NavLink>
                                     </li>
@@ -88,77 +92,16 @@ export default function AdminMenu() {
                             )}
                         </li>
 
-                        {/* ORDER */}
-                        <li>
-                            <div
-                                className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/order") ? styles.active : ""}`}
-                                onClick={() => toggleMenu("order")}
-                            >
-                                <FaShoppingCart />
-                                <span>Đơn hàng</span>
-                                <FaChevronDown className={styles.arrow} />
-                            </div>
-
-                            {openMenu === "order" && (
-                                <ul className={styles.submenu}>
-                                    <li>
-                                        <NavLink to="/admin-zmobile-2026/order">
-                                            Danh sách đơn hàng
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/admin-zmobile-2026/order/province">
-                                            Đơn hàng tỉnh thành
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/admin-zmobile-2026/order/revenue">
-                                            Doanh thu
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            )}
-                        </li>
-
-                        {/* ACCOUNT */}
+                        {/* Các mục khác giữ nguyên cấu trúc NavLink */}
                         <li>
                             <NavLink
                                 to="/admin-zmobile-2026/account"
-                                className={({ isActive }) =>
-                                    `${styles.item} ${isActive ? styles.active : ""}`
-                                }
+                                className={({ isActive }) => `${styles.item} ${isActive ? styles.active : ""}`}
                             >
                                 <FaUser />
                                 <span>Tài khoản</span>
                             </NavLink>
                         </li>
-
-                        {/* Dashboard */}
-                        <li>
-                            <NavLink
-                                to="/admin-zmobile-2026/dashboard"
-                                className={({ isActive }) =>
-                                    `${styles.item} ${isActive ? styles.active : ""}`
-                                }
-                            >
-                                <FaChartLine />
-                                <span>Bảng điều khiển</span>
-                            </NavLink>
-                        </li>
-
-                        {/* SETTING */}
-                        <li>
-                            <NavLink
-                                to="/admin-zmobile-2026/setting"
-                                className={({ isActive }) =>
-                                    `${styles.item} ${isActive ? styles.active : ""}`
-                                }
-                            >
-                                <FaCog />
-                                <span>Cài đặt</span>
-                            </NavLink>
-                        </li>
-
                     </ul>
                 </nav>
             </div>
