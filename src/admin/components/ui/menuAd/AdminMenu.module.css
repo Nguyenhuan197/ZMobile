@@ -1,8 +1,7 @@
-/* GIỮ NGUYÊN CẤU TRÚC CŨ CỦA BẠN */
 .sidebar {
     width: 270px;
-    height: 100vh;
-    background: #1e1e2f;
+    height: 90vh;
+    margin-top: 90px;
     color: #fff;
     padding: 25px 18px;
     position: fixed;
@@ -10,12 +9,13 @@
     top: 0;
     overflow-y: auto;
     transition: all 0.3s ease;
+    z-index: 1000;
+    background: #000000;
 }
 
 .bodyMenu {
     width: 100%;
-    height: auto;
-    margin-top: 80px;
+    margin-top: 10px;
 }
 
 .nav ul {
@@ -28,14 +28,14 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 18px 10px;
+    padding: 15px 12px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     transition: all 0.25s ease;
-    margin-bottom: 6px;
-    color: #ccc;
+    margin-bottom: 4px;
+    color: #b3b3b3;
     text-decoration: none;
 }
 
@@ -44,53 +44,56 @@
     color: #fff;
 }
 
-/* ITEM CHA ĐANG ACTIVE - NỀN ĐỎ CHỮ TRẮNG */
+/* Menu cha đang active (Nền đỏ) */
 .active {
     background: tomato !important;
     color: #fff !important;
 }
 
 .submenu {
-    padding-left: 20px;
-    margin-bottom: 8px;
+    padding-left: 35px;
+    /* Thụt đầu dòng cho trang con */
+    margin-bottom: 10px;
 }
 
 .submenu li {
-    margin: 4px 0;
+    margin: 2px 0;
 }
 
 .submenu a {
     display: block;
-    padding: 15px 12px;
-    border-radius: 6px;
-    font-size: 16px;
-    color: #ffffff;
-    /* Mặc định chữ trắng */
+    padding: 16px 0;
+    font-size: 18px;
+    color: #b3b3b3;
     text-decoration: none;
     transition: 0.2s ease;
 }
 
 .submenu a:hover {
-    background: rgba(255, 99, 71, 0.1);
     color: tomato;
 }
 
-/* ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT: TRANG CON ĐANG ACTIVE */
+/* Trang con đang active - Chỉ đổi màu chữ */
 .submenu a:global(.active) {
-    background: rgba(255, 99, 71, 0.15) !important;
-    /* Nền hồng mờ */
     color: tomato !important;
-    /* CHỮ ĐỎ TOMATO NHƯ BẠN CẦN */
     font-weight: 600;
-    border-left: 3px solid tomato;
+    background: none !important;
+    /* Xóa nền */
+    border: none !important;
+    /* Xóa viền */
 }
 
 .arrow {
     margin-left: auto;
     font-size: 12px;
+    transition: transform 0.3s ease;
 }
 
-/* RESPONSIVE GIỮ NGUYÊN */
+/* Xoay mũi tên khi menu mở */
+.rotate {
+    transform: rotate(180deg);
+}
+
 @media (max-width: 1024px) {
     .sidebar {
         width: 220px;

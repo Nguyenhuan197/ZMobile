@@ -232,3 +232,37 @@
         width: 100%;
     }
 }
+
+
+.btnStatus {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+/* Khi trạng thái đang Bật (Active) */
+.active {
+    color: #2e7d32;
+    /* Màu xanh lá */
+    border-color: #2e7d32;
+    background-color: #e8f5e9;
+}
+
+/* Khi trạng thái đang Tắt (Inactive) */
+.inactive {
+    color: #757575;
+    /* Màu xám */
+    border-color: #bdbdbd;
+    background-color: #f5f5f5;
+}
+
+.btnStatus:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

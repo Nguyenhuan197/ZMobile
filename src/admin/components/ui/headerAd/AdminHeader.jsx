@@ -17,7 +17,9 @@ export default function AdminHeader() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>ADMIN PANEL</div>
+            <div className={styles.logoAdmin}>HUAN ADMIN PANEL</div>
+
+
             <div className={styles.userProfile}>
                 <span className={styles.wellcom}>Chào Mừng Admin Đã Quay Lại</span>
 

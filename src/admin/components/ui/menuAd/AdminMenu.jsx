@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./AdminMenu.module.css";
 import {
-    FaChartLine,
     FaBoxOpen,
-    FaShoppingCart,
-    FaCog,
+    FaChevronDown,
     FaUser,
     FaLayerGroup,
-    FaChevronDown
+    FaClipboardList
 } from "react-icons/fa";
 
 export default function AdminMenu() {
     const location = useLocation();
     const [openMenu, setOpenMenu] = useState(null);
 
+    // Tự động mở menu cha dựa trên URL hiện tại khi load trang hoặc chuyển trang
+    useEffect(() => {
+        if (location.pathname.includes("/admin-zmobile-2026/product")) {
+            setOpenMenu("product");
+        } else if (location.pathname.includes("/admin-zmobile-2026/category")) {
+            setOpenMenu("category");
+        }
+    }, [location.pathname]);
+
     const toggleMenu = (menu) => {
+        // Chỉ đóng/mở khi người dùng chủ động click vào menu cha
         setOpenMenu(openMenu === menu ? null : menu);
     };
 
@@ -28,6 +36,7 @@ export default function AdminMenu() {
             <div className={styles.bodyMenu}>
                 <nav className={styles.nav}>
                     <ul>
+                        {/* PRODUCT */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/product") ? styles.active : ""}`}
@@ -35,31 +44,28 @@ export default function AdminMenu() {
                             >
                                 <FaBoxOpen />
                                 <span>Sản phẩm</span>
-                                <FaChevronDown className={styles.arrow} />
+                                <FaChevronDown className={`${styles.arrow} ${openMenu === "product" ? styles.rotate : ""}`} />
                             </div>
 
                             {openMenu === "product" && (
                                 <ul className={styles.submenu}>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/list" end>
-                                            Danh sách sản phẩm
-                                        </NavLink>
+                                        <NavLink to="/admin-zmobile-2026/product/list">Danh sách sản phẩm</NavLink>
                                     </li>
 
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/sale" end>
-                                            Sản phẩm Sale
-                                        </NavLink>
+                                        <NavLink to="/admin-zmobile-2026/product/sale">Sản phẩm Sale</NavLink>
+                                    </li>
+
+                                    <li>
+                                        <NavLink to="/admin-zmobile-2026/product/slide">Sản phẩm chạy slide</NavLink>
+                                    </li>
+
+                                    <li>
+                                        <NavLink to="/admin-zmobile-2026/product/numberOfProductsSold">Lượt bán sản phẩm</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/product/numberOfProductsSold" end>
-                                            Lượt bán sản phẩm
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/admin-zmobile-2026/product/addNew" end>
-                                            Thêm sản phẩm
-                                        </NavLink>
+                                        <NavLink to="/admin-zmobile-2026/product/addNew">Thêm sản phẩm</NavLink>
                                     </li>
                                 </ul>
                             )}
@@ -73,26 +79,34 @@ export default function AdminMenu() {
                             >
                                 <FaLayerGroup />
                                 <span>Danh mục</span>
-                                <FaChevronDown className={styles.arrow} />
+                                <FaChevronDown className={`${styles.arrow} ${openMenu === "category" ? styles.rotate : ""}`} />
                             </div>
 
                             {openMenu === "category" && (
                                 <ul className={styles.submenu}>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/category" end>
-                                            Danh sách danh mục
-                                        </NavLink>
+                                        <NavLink to="/admin-zmobile-2026/category" end>Danh sách danh mục</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/admin-zmobile-2026/category/add" end>
-                                            Thêm danh mục
-                                        </NavLink>
+                                        <NavLink to="/admin-zmobile-2026/category/add">Thêm danh mục</NavLink>
                                     </li>
                                 </ul>
                             )}
                         </li>
 
-                        {/* Các mục khác giữ nguyên cấu trúc NavLink */}
+                        {/* Đơn hàng */}
+                        <li>
+                            <NavLink
+                                to="/admin-zmobile-2026/orders" // Bạn nên đổi path thành orders cho đúng nghĩa
+                                className={({ isActive }) => `${styles.item} ${isActive ? styles.active : ""}`}
+                            >
+                                <FaClipboardList />
+                                <span>Đơn hàng</span>
+                            </NavLink>
+                        </li>
+
+
+                        {/* ACCOUNT */}
                         <li>
                             <NavLink
                                 to="/admin-zmobile-2026/account"

@@ -100,3 +100,62 @@ export async function DeleteService(API) {
         return false;
     }
 }
+
+
+
+// ADMIN 
+export async function UpdateSevicesNo__JSON__ADMIN(API, Method) {
+    const token = localStorage.getItem('ZMOBILE_KEY_2026');
+    if (!token) return false;
+
+    try {
+        const response = await fetch(API, {
+            method: Method,
+
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) return null;
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error('Fetch lỗi:', error);
+        return false;
+    }
+}
+
+
+export async function UpdateSevicesYES__JSON__ADMIN(API, Data, Method) {
+    const token = localStorage.getItem('ZMOBILE_KEY_2026');
+    if (!token) return false;
+
+    try {
+        const response = await fetch(API, {
+            method: Method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(Data),
+        });
+
+        let result;
+        try {
+            result = await response.json();
+        } catch (err) {
+            console.log(err);
+            const text = await response.text();
+            console.error("Server trả về không phải JSON:", text);
+            return { status: false, message: text }; // trả về object an toàn
+        }
+
+        return result; // JSON hợp lệ từ server
+    } catch (error) {
+        console.error('Fetch lỗi:', error);
+        return false
+    }
+}

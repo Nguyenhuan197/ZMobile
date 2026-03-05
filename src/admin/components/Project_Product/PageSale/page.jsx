@@ -28,11 +28,8 @@ export default function ProductSaleAdminComponent() {
             setError(null);
 
             try {
-                // Sử dụng API mới: admin-Select-ProductSale&No-Sale
                 let url = `${apiUrl}/api/product/admin-Select-ProductSale&No-Sale/${USER?._id}?statusSale=${saleFilter}`;
-
                 if (searchTerm) url += `&search=${searchTerm}`;
-
                 const response = await GetAPI_Authorization(url);
 
                 if (response && response.data) {
@@ -54,6 +51,12 @@ export default function ProductSaleAdminComponent() {
 
         return () => clearTimeout(delayDebounceFn);
     }, [apiUrl, USER?._id, saleFilter, searchTerm]);
+
+
+
+
+
+
 
     return (
         <>
@@ -102,7 +105,7 @@ export default function ProductSaleAdminComponent() {
                                         <th>Giá gốc</th>
                                         <th>Mức giảm</th>
                                         <th>Giá sau giảm</th>
-                                        <th>Thao tác</th>
+                                        {/* <th>Thao tác</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,15 +129,18 @@ export default function ProductSaleAdminComponent() {
                                                         -{formatPrice(product.priceSale)}
                                                     </span>
                                                 </td>
+
                                                 <td className={styles.finalPrice}>
                                                     {formatPrice(product.price - product.priceSale)}
                                                 </td>
-                                                <td>
+
+                                                {/* <td>
                                                     <div className={styles.actions}>
                                                         <button className={styles.btnEdit} title="Sửa khuyến mãi"><FiEdit /></button>
                                                         <button className={styles.btnDelete} title="Gỡ Sale"><FiTrash2 /></button>
                                                     </div>
-                                                </td>
+                                                </td> */}
+
                                             </tr>
                                         ))
                                     ) : (

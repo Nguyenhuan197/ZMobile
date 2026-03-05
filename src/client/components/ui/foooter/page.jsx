@@ -69,9 +69,9 @@ export default function Footer() {
                         <FaPhoneAlt /> <span>Hotline: {DataAdmin?.data[0].phone}</span>
                     </div>
 
-                    <div className={styles.contactItem}>
+                    {/* <div className={styles.contactItem}>
                         <FaCalendarAlt /> <span>Ngày thành lập: T5 - 2024</span>
-                    </div>
+                    </div> */}
 
                     <div className={styles.contactItem}>
                         <FaClock /> <span>{DataAdmin?.data[0].workingHours}  </span>
