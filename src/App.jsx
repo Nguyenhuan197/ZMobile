@@ -24,6 +24,7 @@ import PageSaleAdmin from "./admin/page/Sale";
 import AddNewProductAdmin from "./admin/page/AddNewProduct";
 import PagecSlideAdmin from "./admin/page/Slide";
 import UpdateProductAdmin from "./admin/page/UpdateProduct";
+import ListUserAdmin from "./admin/page/ListUsers";
 
 
 
@@ -84,8 +85,10 @@ function App() {
           <Route path="/admin-zmobile-2026/product/addNew" element={<AddNewProductAdmin />} />
           <Route path="/admin-zmobile-2026/product/slide" element={<PagecSlideAdmin />} />
           <Route path="/admin-zmobile-2026/product/update/:id" element={<UpdateProductAdmin />} />
-
           <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
+          <Route path="/admin-zmobile-2026/users/list" element={<ListUserAdmin />} />
+
+
         </Route>
 
       </Routes>

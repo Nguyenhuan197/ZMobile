@@ -1,8 +1,20 @@
 
 
+
+
+import styles from "../../App.module.css";
+import ListCategoryAdminComponent from "../components/Project_Category/PageList/page";
+
+
+
 export default function CategoryAdmin() {
     return (
-        <h1>Trang Danh Mục Admin</h1>
-
+        <div className={styles.container}>
+            <div className={styles.adminContainer}>
+                <ListCategoryAdminComponent />
+            </div>
+        </div>
     )
 }
+
+// ListCategoryAdminComponent
