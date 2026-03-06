@@ -88,7 +88,6 @@ function App() {
           <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
           <Route path="/admin-zmobile-2026/users/list" element={<ListUserAdmin />} />
 
-
         </Route>
 
       </Routes>
