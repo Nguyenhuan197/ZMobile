@@ -89,7 +89,7 @@
 .submitBtn {
     margin-top: 10px;
     padding: 16px;
-    background: #288ad6;
+    background: tomato;
     color: white;
     border: none;
     border-radius: 12px;
@@ -101,7 +101,7 @@
 }
 
 .submitBtn:hover {
-    background: #1e6fb3;
+    background: rgb(250, 83, 53);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(40, 138, 214, 0.3);
 }
@@ -157,4 +157,140 @@
     .title {
         font-size: 24px;
     }
+}
+
+
+/* Container bọc ngoài input và icon */
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Input riêng cho mật khẩu để nhường chỗ cho icon */
+.inputPassword {
+    width: 100%;
+    padding: 14px 50px 14px 20px;
+    /* Padding phải rộng ra (50px) để không bị chữ đè lên icon */
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fcfcfc;
+    box-sizing: border-box;
+}
+
+.inputPassword:focus {
+    border-color: #288ad6;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(40, 138, 214, 0.1);
+}
+
+/* Nút icon mắt */
+.eyeIcon {
+    position: absolute;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: color 0.2s;
+    z-index: 2;
+}
+
+.eyeIcon:hover {
+    color: #288ad6;
+}
+
+.eyeIcon svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+/* --- PHẦN CŨ CỦA BẠN (Cần đảm bảo có box-sizing) --- */
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    /* Đảm bảo input luôn chiếm hết chiều ngang */
+    padding: 14px 20px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fcfcfc;
+    box-sizing: border-box;
+    /* Cực kỳ quan trọng để padding không làm tăng chiều rộng input */
+}
+
+.input:focus {
+    border-color: #288ad6;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(40, 138, 214, 0.1);
+}
+
+/* --- PHẦN HOÀN THIỆN CHO MẮT MẬT KHẨU --- */
+
+.passwordWrapper {
+    position: relative;
+    /* Làm gốc tọa độ cho icon mắt */
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Input dành riêng cho mật khẩu */
+.inputPassword {
+    padding-right: 50px !important;
+    /* Chừa khoảng trống bên phải để chữ không chạm vào icon */
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 8px;
+    /* Khoảng cách từ mép phải vào */
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #a0aec0;
+    /* Màu xám trung tính */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 2;
+    border-radius: 50%;
+    /* Tạo vùng chọn tròn khi hover */
+}
+
+.eyeIcon:hover {
+    color: #288ad6;
+    /* Đổi sang màu xanh thương hiệu của bạn */
+    background-color: rgba(40, 138, 214, 0.08);
+    /* Hiệu ứng nền nhẹ khi rê chuột */
+}
+
+.eyeIcon:active {
+    transform: scale(0.9);
+    /* Hiệu ứng nhấn nút nhẹ */
+}
+
+/* Đảm bảo icon bên trong có kích thước cố định */
+.eyeIcon svg {
+    display: block;
 }

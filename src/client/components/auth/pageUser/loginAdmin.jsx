@@ -14,8 +14,7 @@ export default function AdminLoginComponent() {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-    const { reloading } = useContext(ThemeContext);
-
+    const { reloading } = useContext(ThemeContext)
 
     const handleChange = (e) => {
         setFormData({
@@ -36,7 +35,6 @@ export default function AdminLoginComponent() {
                 localStorage.setItem(KEY_NAME_USER, result.token);
                 localStorage.setItem(keyRoleAdmin, result.role);
 
-
                 // Load lại 
                 reloading();
                 navigate('/admin-zmobile-2026/product/list');
@@ -47,17 +45,13 @@ export default function AdminLoginComponent() {
                 return ShowToast('Bạn không có quyền truy cập ', ToastType.warn);
             }
 
-
         } else {
             ShowToast(result.message_vn, ToastType.info);
         }
     };
 
-    const ResetForm = () => {
-        setFormData({ email: '', password: '' });
-    }
 
-
+    const ResetForm = () => setFormData({ email: '', password: '' });
     if (loading) return <UiLoadingComponent />
 
 
@@ -66,7 +60,7 @@ export default function AdminLoginComponent() {
             <div className={styles.authCard}>
                 <div className={styles.header}>
                     <div className={styles.adminIcon}>
-                        <img src="https://scontent.fthd1-1.fna.fbcdn.net/v/t39.30808-6/561540178_1327820142051326_77602269938569945_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=tZvYdvtUrycQ7kNvwGFni_B&_nc_oc=AdlZloZcr0CxLx1U7HvgRZDMDlXmJ_Rd7vXN_F0v_SxNK751NVlTZz1O04Y-NqkHtYXGn6di2oOnvWiy3TvOkO98&_nc_zt=23&_nc_ht=scontent.fthd1-1.fna&_nc_gid=I1ChdYaQC1sshoQMl6mnwA&_nc_ss=8&oh=00_Afu28yzHN9drCuVaoognCWUiNgbJ3oEfPWFNAuvlXBq1Iw&oe=69A98851" alt="" />
+                        <img src="unnamed.jpg" alt="unnamed.jpg" />
                     </div>
 
                     <h2 className={styles.title}>Admin Panel</h2>
