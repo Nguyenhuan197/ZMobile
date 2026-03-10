@@ -94,6 +94,16 @@ export default function Header() {
                         >
                             Liên hệ
                         </NavLink>
+
+                        <NavLink
+                            to="/recruitment"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                            }
+                        >
+                            Tuyển dụng
+                        </NavLink>
+
                     </nav>
 
                     {

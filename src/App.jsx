@@ -25,6 +25,7 @@ import AddNewProductAdmin from "./admin/page/AddNewProduct";
 import PagecSlideAdmin from "./admin/page/Slide";
 import UpdateProductAdmin from "./admin/page/UpdateProduct";
 import ListUserAdmin from "./admin/page/ListUsers";
+import Recruitment from "./client/page/recruitment";
 
 
 
@@ -74,6 +75,8 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/trademark-product/:id" element={<Trademark />} />
         <Route path="/trademark-product" element={<Trademark />} />
+        <Route path="/recruitment" element={<Recruitment />} />
+
 
 
         {/* Admin Routes (Chỉ Admin mới xem được) */}

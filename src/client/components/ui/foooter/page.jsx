@@ -3,6 +3,7 @@ import styles from "./footer.module.css";
 import { FaFacebook, FaTiktok, FaStore, FaHandshake, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaCalendarAlt } from "react-icons/fa";
 import { ThemeContext } from "../../../../context/useThemeContext";
 import { useContext, useEffect } from "react";
+import { TbTruckDelivery } from "react-icons/tb";
 
 
 export default function Footer() {
@@ -69,10 +70,6 @@ export default function Footer() {
                         <FaPhoneAlt /> <span>Hotline: {DataAdmin?.data[0].phone}</span>
                     </div>
 
-                    {/* <div className={styles.contactItem}>
-                        <FaCalendarAlt /> <span>Ngày thành lập: T5 - 2024</span>
-                    </div> */}
-
                     <div className={styles.contactItem}>
                         <FaClock /> <span>{DataAdmin?.data[0].workingHours}  </span>
                     </div>
@@ -85,6 +82,9 @@ export default function Footer() {
                         <FaMapMarkerAlt /><span>CS M Nam : 200 Trần Thị Hè Hiệp Thành Q12 HCM</span>
                     </div>
 
+                    <div className={styles.contactItem}>
+                        <TbTruckDelivery /> <span>Đối tác giao hàng Vitell Post</span>
+                    </div>
 
                     <p className={styles.adminLink}>
                         <Link to="/admin-zmobile-2026/product/list">Đăng nhập Admin</Link>

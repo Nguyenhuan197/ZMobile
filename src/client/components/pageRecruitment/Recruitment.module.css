@@ -1,0 +1,355 @@
+.container {
+    max-width: 1200px;
+    margin: 140px auto 50px auto;
+    padding: 0 20px;
+    color: #1a1a1a;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.badge a {
+    display: inline-block;
+    color: #ee4d2d;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.mainTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.5px;
+    margin-bottom: 15px;
+}
+
+.subTitle {
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.subTitle strong {
+    color: #ee4d2d;
+}
+
+/* Layout */
+.contentWrapper {
+    display: flex;
+    gap: 50px;
+}
+
+.benefitsSection {
+    flex: 1.3;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Grid Benefits */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.card {
+    display: flex;
+    gap: 18px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #ee4d2d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.iconBox {
+    font-size: 24px;
+    color: #ee4d2d;
+    background: #fff5f3;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.cardTitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.cardDesc {
+    font-size: 0.92rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+.leaderShipSection {
+    margin-top: 50px;
+    padding: 30px;
+    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    border-radius: 24px;
+    border: 1px solid #eee;
+}
+
+.leaderTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.infoBoxWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.infoCard {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card dành cho chủ shop - Làm nổi bật hẳn lên */
+.highlightCard {
+    border: 1.5px solid #ee4d2d;
+    background: linear-gradient(to right, #ffffff, #fffdfd);
+    box-shadow: 0 10px 30px rgba(238, 77, 45, 0.1);
+}
+
+.iconCircle {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    /* Màu đen sang trọng cho icon */
+    color: #fff;
+    border-radius: 12px;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.highlightCard .iconCircle {
+    background: #ee4d2d;
+    /* Màu cam thương hiệu cho chủ shop */
+}
+
+.infoContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoContent span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.infoContent strong {
+    font-size: 1rem;
+    color: #1a1a1a;
+    font-weight: 800;
+}
+
+/* Huy hiệu xác minh nhỏ xinh */
+.verifiedBadge {
+    position: absolute;
+    top: 10px;
+    right: -20px;
+    background: #ee4d2d;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 20px;
+    transform: rotate(45deg);
+    text-transform: uppercase;
+}
+
+.infoCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-color: #ee4d2d;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .infoBoxWrapper {
+        grid-template-columns: 1fr;
+        /* Chuyển thành cột dọc trên mobile */
+    }
+
+    .leaderShipSection {
+        padding: 20px;
+    }
+}
+
+
+
+/* Form Section */
+.formSection {
+    flex: 0.7;
+    position: sticky;
+    top: 100px;
+}
+
+.formCard {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.formTitle {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.formSub {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #444;
+}
+
+.inputGroup input,
+.inputGroup select {
+    padding: 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    background: #fcfcfc;
+}
+
+.inputGroup input:focus {
+    border-color: #ee4d2d;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.1);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.submitBtn {
+    margin-top: 10px;
+    padding: 16px;
+    background: #ee4d2d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.submitBtn:hover {
+    background: #d73211;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(238, 77, 45, 0.2);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 1024px) {
+    .contentWrapper {
+        flex-direction: column;
+    }
+
+    .formSection {
+        position: static;
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        margin-top: 100px;
+        width: 90%;
+    }
+
+    .mainTitle {
+        font-size: 1.8rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .infoCard {
+        width: 100%;
+    }
+
+    .formCard {
+        padding: 25px;
+    }
+}
