@@ -4,64 +4,127 @@ import { formatPrice } from "../../../utils/formatPrice.JS";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../../context/useThemeContext";
 import UiLoadingComponent from "../../../components/loadingComponent";
+import { UpdateSevices } from "../../../services/updateApi";
+import { ShowToast, ToastType } from "../../../utils/toast";
+
+
 
 export default function ProjectPay() {
+    const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const navigate = useNavigate();
     const qrSectionRef = useRef(null);
     const { USER, DataUser, isLoading_User } = useContext(ThemeContext);
-
-    const [paymentMethod, setPaymentMethod] = useState("cod");
+    const [paymentMethod, setPaymentMethod] = useState("COD");
     const [cartItems, setCartItems] = useState([]);
     const [showQR, setShowQR] = useState(false);
-    const [form, setForm] = useState({ name: "", phone: "", email: "", address: "" });
+
+
+    const [form, setForm] = useState(
+        {
+            id_user: '',
+            shippingInfo: {
+                "recipientName": "Nav",
+                "phone": "Nav",
+                "address": "Nav",
+                "email": "Nav"
+            },
+
+            cartItems: [],
+            totalPrice: 0,
+            paymentMethod: paymentMethod
+        }
+    );
+
 
     useEffect(() => {
         if (!isLoading_User && !USER) navigate("/login");
     }, [USER, isLoading_User, navigate]);
 
+
+
+    // load user
     useEffect(() => {
         if (DataUser?.data) {
-            setForm({
-                name: DataUser.data.name || "",
-                phone: DataUser.data.phone || "",
-                email: DataUser.data.email || "",
-                address: DataUser.data.deliveryAddress || ""
-            });
+            setForm(prevForm => ({
+                ...prevForm,
+                id_user: DataUser.data._id,
+                shippingInfo: {
+                    recipientName: DataUser.data.name || "",
+                    phone: DataUser.data.phone || "",
+                    address: DataUser.data.deliveryAddress || "",
+                    email: DataUser.data.email || "",
+                }
+            }));
         }
     }, [DataUser]);
 
+
+
     useEffect(() => {
-        const raw = localStorage.getItem("data-pay");
+        const raw = localStorage.getItem("data-pay-view");
         if (!raw) return;
         try {
             const data = JSON.parse(raw);
             setCartItems(Array.isArray(data) ? data : [data]);
         } catch (error) { console.error("Lỗi parse data:", error); }
+
+        // load Data Cart
+        const getDataProduct = localStorage.getItem('data-pay');
+
+        // load sum price
+        const totalPrice = JSON.parse(getDataProduct).reduce((sum, item) => {
+            return sum + (item.priceAtPurchase * item.quantity);
+        }, 0);
+
+
+        if (!getDataProduct) return;
+        setForm(prevForm => ({
+            ...prevForm,
+            cartItems: JSON.parse(getDataProduct),
+            totalPrice: totalPrice
+        }));
+
     }, []);
+
 
     const subTotal = cartItems.reduce((acc, item) => acc + Number(item.price) * Number(item.quantity), 0);
     const shippingFee = cartItems.length > 0 ? 30000 : 0;
     const total = subTotal + shippingFee;
-
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-    const handleCheckout = () => {
+
+    // Submit
+    const handleCheckout = async () => {
         if (cartItems.length === 0) return alert("Giỏ hàng của bạn đang trống!");
-        if (!form.name || !form.phone || !form.address) return alert("Vui lòng nhập đầy đủ thông tin!");
+        console.log(form);
+
+
+        if (!form.shippingInfo.recipientName || !form.shippingInfo.phone || !form.shippingInfo.address) return alert("Vui lòng nhập đầy đủ thông tin!");
 
         if (paymentMethod === "bank") {
             setShowQR(true);
             setTimeout(() => {
                 qrSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
-        } else {
-            alert("Đặt hàng thành công 🎉");
-            finishOrder();
+        }
+
+        else {
+            // gửi API ĐI
+            const result = await UpdateSevices(`${apiUrl}/api/order/add`, form, "POST");
+            if (result.status) {
+                ShowToast(result.mesage_vn, ToastType.success);
+                finishOrder();
+
+            } else {
+                ShowToast(result.mesage_vn, ToastType.error);
+            }
         }
     };
 
+
     const finishOrder = () => {
         localStorage.removeItem("data-pay");
+        localStorage.removeItem("data-pay-view");
         navigate("/");
     };
 
@@ -77,23 +140,23 @@ export default function ProjectPay() {
                         <div className={styles.formGroup}>
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Họ và tên</label>
-                                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Tên người nhận hàng" />
+                                <input type="text" name="name" value={form.shippingInfo.recipientName} onChange={handleChange} placeholder="Tên người nhận hàng" />
                             </div>
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Số điện thoại</label>
-                                <input type="text" name="phone" value={form.phone} onChange={handleChange} placeholder="Số điện thoại" />
+                                <input type="text" name="phone" value={form.shippingInfo.phone} onChange={handleChange} placeholder="Số điện thoại" />
                             </div>
 
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Email</label>
-                                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email (không bắt buộc)" />
+                                <input type="email" name="email" value={form.shippingInfo.address} onChange={handleChange} placeholder="Email (không bắt buộc)" />
                             </div>
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Địa chỉ chi tiết nhận hàng</label>
-                                <textarea rows="5" name="address" value={form.address} onChange={handleChange} placeholder="Số nhà, tên đường..." />
+                                <textarea rows="5" name="address" value={form.shippingInfo.email} onChange={handleChange} placeholder="Số nhà, tên đường..." />
                             </div>
                         </div>
                     </div>
@@ -101,8 +164,8 @@ export default function ProjectPay() {
                     <div className={styles.section}>
                         <h2 className={styles.sectionTitle}>💳 Phương thức thanh toán</h2>
                         <div className={styles.paymentMethods}>
-                            <div className={`${styles.method} ${paymentMethod === "cod" ? styles.activeMethod : ""}`} onClick={() => { setPaymentMethod("cod"); setShowQR(false); }}>
-                                <input type="radio" checked={paymentMethod === "cod"} readOnly />
+                            <div className={`${styles.method} ${paymentMethod === "COD" ? styles.activeMethod : ""}`} onClick={() => { setPaymentMethod("cod"); setShowQR(false); }}>
+                                <input type="radio" checked={paymentMethod === "COD"} readOnly />
                                 <span>Thanh toán khi nhận hàng (COD)</span>
                             </div>
                             <div className={`${styles.method} ${paymentMethod === "bank" ? styles.activeMethod : ""}`} onClick={() => setPaymentMethod("bank")}>

@@ -46,9 +46,9 @@ export function LocalStorageUserContext({ children }) {
     };
 
 
-    // Thanh toán sản phẩm
+    // Thanh toán sản phẩm chỉ dùng cho trang chi tiết 
     const handlePay = (name, price, quantity, activeImg, id) => {
-        const dataPay = [
+        const dataPayView = [
             {
                 id,
                 name,
@@ -58,9 +58,19 @@ export function LocalStorageUserContext({ children }) {
             }
         ];
 
-        localStorage.setItem("data-pay", JSON.stringify(dataPay));
+        const dataPay = {
+            id_product: id,
+            quantity: quantity,
+            priceAtPurchase: price,
+            variant: name
+        }
+
+
+        localStorage.setItem("data-pay-view", JSON.stringify(dataPayView));
+        localStorage.setItem("data-pay", JSON.stringify([dataPay]));
         navigate("/pay");
     };
+
 
     const handleAddToCart = (name, price, quantity, activeImg, id) => {
         const currentCart = JSON.parse(localStorage.getItem("data-cart")) || [];

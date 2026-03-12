@@ -256,6 +256,7 @@ export default function UserComponent() {
                                 <label>Mật khẩu mới</label>
                                 <input type="password" className={styles.passwordInput} placeholder="Nhập mật khẩu mới" />
                             </div>
+
                             <div className={styles.inputGroup}>
                                 <label>Xác nhận mật khẩu</label>
                                 <input type="password" className={styles.passwordInput} placeholder="Nhập lại mật khẩu" />
@@ -285,16 +286,20 @@ export default function UserComponent() {
                                 onClick={() => setActiveTab("profile")}>
                                 <FaUserCircle /> Hồ sơ cá nhân
                             </div>
+
                             <div className={`${styles.navItem} ${activeTab === "orders" ? styles.active : ""}`}
                                 onClick={() => { setActiveTab("orders"); setidItem('#'); }}>
                                 <FaClipboardList /> Quản lý đơn hàng
                             </div>
+
                             <Link to='/orderLookup' className={styles.navItem}><FaSearchLocation /> Tra cứu đơn hàng</Link>
                             <hr className={styles.divider} />
+
                             <div className={`${styles.navItem} ${activeTab === "password" ? styles.active : ""}`}
                                 onClick={() => setActiveTab("password")}>
                                 <FaLock /> Đổi mật khẩu
                             </div>
+
                             <button className={`${styles.navItem} ${styles.logout}`} onClick={() => signOutUser()}>
                                 <FaSignOutAlt /> Đăng xuất
                             </button>

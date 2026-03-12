@@ -74,7 +74,19 @@ export default function ProjectCart() {
             return;
         }
 
-        localStorage.setItem("data-pay", JSON.stringify(selectedItems));
+
+        // data add new Pay
+        const dataPay = cart
+            .filter(item => item.checked)
+            .map(item => ({
+                id_product: item.id,
+                priceAtPurchase: item.price,
+                quantity: item.quantity,
+                variant: item.name
+            }));
+
+        localStorage.setItem("data-pay", JSON.stringify(dataPay));
+        localStorage.setItem("data-pay-view", JSON.stringify(selectedItems));
         navigate("/pay");
     };
 

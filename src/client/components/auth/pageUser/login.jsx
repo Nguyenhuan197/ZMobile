@@ -23,9 +23,7 @@ export default function LoginComponent() {
         });
     };
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+    const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
