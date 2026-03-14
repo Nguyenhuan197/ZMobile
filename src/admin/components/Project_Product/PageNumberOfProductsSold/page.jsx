@@ -25,14 +25,9 @@ export default function PageNumberOfProductsSold() {
             setError(null);
 
             try {
-                // Thêm sort=-remainingQuantity nếu backend hỗ trợ dấu trừ để đảo ngược
-                // Ở đây mình tập trung vào việc lấy dữ liệu về trước
-                let query = `status=true`;
+                let query = `status=NAV`;
                 if (priceSort) query += `&sort=${priceSort}`;
-
-                const response = await GetAPI_Authorization(
-                    `${apiUrl}/api/product/admin-SelectAll/${USER?._id}?${query}`
-                );
+                const response = await GetAPI_Authorization(`${apiUrl}/api/product/admin-SelectAll/${USER?._id}?${query}`);
 
                 if (response && response.data) {
                     // CỐ CHẤP SẮP XẾP: Luôn đưa thằng bán nhiều nhất (remainingQuantity cao nhất) lên đầu
@@ -104,10 +99,12 @@ export default function PageNumberOfProductsSold() {
                                     <tr>
                                         <th style={{ width: '50px', textAlign: 'center' }}>Top</th>
                                         <th>Thông tin sản phẩm</th>
+                                        <th>Trạng thái hoạt động</th>
+
                                         <th>Giá bán</th>
                                         <th style={{ textAlign: 'center' }}>Hiệu suất</th>
                                         <th style={{ textAlign: 'center' }}>Lượt bán ra</th>
-                                        <th style={{ textAlign: 'center' }}>Trạng thái</th>
+                                        <th style={{ textAlign: 'center' }}>Trạng thái quảng cáo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -130,6 +127,14 @@ export default function PageNumberOfProductsSold() {
                                                         </div>
                                                     </div>
                                                 </td>
+
+                                                {
+                                                    product.status ?
+                                                        <td style={{ color: '#109116', fontWeight: 'bold' }}>Hoat động</td>
+                                                        :
+                                                        <td style={{ color: '#e74c3c', fontWeight: 'bold' }}>Không hoạt động</td>
+                                                }
+
                                                 <td style={{ color: '#e74c3c', fontWeight: 'bold' }}>
                                                     {formatPrice(product.price)}
                                                 </td>

@@ -17,6 +17,7 @@ export default function ProjectPay() {
     const [paymentMethod, setPaymentMethod] = useState("COD");
     const [cartItems, setCartItems] = useState([]);
     const [showQR, setShowQR] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const [form, setForm] = useState(
@@ -95,8 +96,11 @@ export default function ProjectPay() {
 
     // Submit
     const handleCheckout = async () => {
-        if (cartItems.length === 0) return alert("Giỏ hàng của bạn đang trống!");
-        console.log(form);
+        setIsLoading(true);
+        if (cartItems.length === 0) {
+            setIsLoading(false);
+            return alert("Giỏ hàng của bạn đang trống!");
+        }
 
 
         if (!form.shippingInfo.recipientName || !form.shippingInfo.phone || !form.shippingInfo.address) return alert("Vui lòng nhập đầy đủ thông tin!");
@@ -108,10 +112,12 @@ export default function ProjectPay() {
             }, 100);
         }
 
+
         else {
             // gửi API ĐI
             const result = await UpdateSevices(`${apiUrl}/api/order/add`, form, "POST");
             if (result.status) {
+                setIsLoading(true);
                 ShowToast(result.mesage_vn, ToastType.success);
                 finishOrder();
 
@@ -128,7 +134,7 @@ export default function ProjectPay() {
         navigate("/");
     };
 
-    if (isLoading_User) return <UiLoadingComponent />;
+    if (isLoading_User || isLoading) return <UiLoadingComponent />;
 
     return (
         <div className={styles.container}>
@@ -151,12 +157,12 @@ export default function ProjectPay() {
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Email</label>
-                                <input type="email" name="email" value={form.shippingInfo.address} onChange={handleChange} placeholder="Email (không bắt buộc)" />
+                                <input type="email" name="email" value={form.shippingInfo.email} onChange={handleChange} placeholder="Email (không bắt buộc)" />
                             </div>
 
                             <div className={`${styles.inputField} ${styles.fullWidth}`}>
                                 <label>Địa chỉ chi tiết nhận hàng</label>
-                                <textarea rows="5" name="address" value={form.shippingInfo.email} onChange={handleChange} placeholder="Số nhà, tên đường..." />
+                                <textarea rows="5" name="address" value={form.shippingInfo.address} onChange={handleChange} placeholder="Số nhà, tên đường..." />
                             </div>
                         </div>
                     </div>

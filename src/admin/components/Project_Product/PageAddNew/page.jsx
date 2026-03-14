@@ -8,65 +8,101 @@ import { uploadImage } from "../../../../services/UpdateImage";
 import { ShowToast, ToastType } from "../../../../utils/toast";
 import { UpdateSevices } from "../../../../services/updateApi";
 import UiLoadingComponent from "../../../../components/loadingComponent";
-
-// Hàm format tiền tệ VNĐ
-const formatPrice = (price) => {
-    if (!price || isNaN(price)) return "0 ₫";
-    return new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    }).format(price);
-};
+import { formatPrice } from "../../../../utils/formatPrice.JS";
+import useSWR from "swr";
+import heic2any from "heic2any";
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 
 export default function AddNewProductAdminComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const navigate = useNavigate();
-
+    const { data: dataCategory, isLoading } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const [loading, setIsLoading] = useState(false);
     const [images, setImages] = useState([]);
     const [trademarks, setTrademarks] = useState([]);
+    const [productData, setProductData] = useState({ id_Trademark: "", name: "", price: "", priceSale: 0, describe: "", remainingQuantity: "", present: "" });
 
-    const [productData, setProductData] = useState({
-        id_Trademark: "",
-        name: "",
-        price: "",
-        priceSale: 0, // Bây giờ đóng vai trò là số tiền được giảm (VNĐ)
-        describe: "",
-        remainingQuantity: "",
-        present: ""
-    });
+
 
     // Load danh sách thương hiệu
     useEffect(() => {
         const fetchTrademarks = async () => {
             try {
-                const res = await fetch(`${apiUrl}/api/trademark/view?status=true`);
-                const result = await res.json();
-                if (result.status) {
-                    setTrademarks(result.data);
+                if (dataCategory.status) {
+                    setTrademarks(dataCategory.data);
                 }
             } catch (error) {
                 console.error("Lỗi load thương hiệu:", error);
             }
         };
+
         fetchTrademarks();
-    }, [apiUrl]);
+    }, [apiUrl, dataCategory]);
+
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setProductData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleImageChange = (e) => {
+    // Xử lý ảnh cũ khi thêm vào - nhưng không nhận đuôi ảnh của IP 
+    // const handleImageChange = (e) => {
+    //     const files = Array.from(e.target.files);
+    //     const newImages = files.map(file => ({
+    //         file,
+    //         preview: URL.createObjectURL(file)
+    //     }));
+    //     setImages(prev => [...prev, ...newImages]);
+    // };
+
+
+
+    const handleImageChange = async (e) => {
         const files = Array.from(e.target.files);
-        const newImages = files.map(file => ({
-            file,
-            preview: URL.createObjectURL(file)
-        }));
-        setImages(prev => [...prev, ...newImages]);
+
+        // Sử dụng Promise.all vì việc convert ảnh cần thời gian xử lý
+        const processedImages = await Promise.all(
+            files.map(async (file) => {
+                let fileToProcess = file;
+
+                // Kiểm tra nếu định dạng là HEIC hoặc HEIF
+                if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic")) {
+                    try {
+                        // Thực hiện chuyển đổi sang blob JPEG
+                        const convertedBlob = await heic2any({
+                            blob: file,
+                            toType: "image/jpeg",
+                            quality: 0.8 // Nén chất lượng 80% để giảm dung lượng
+                        });
+
+                        // Tạo lại đối tượng File mới từ Blob đã convert
+                        fileToProcess = new File(
+                            [Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob],
+                            file.name.replace(/\.[^/.]+$/, ".jpg"),
+                            { type: "image/jpeg" }
+                        );
+                    } catch (error) {
+                        console.error("Lỗi khi chuyển đổi file HEIC:", error);
+                    }
+                }
+
+                return {
+                    file: fileToProcess,
+                    preview: URL.createObjectURL(fileToProcess)
+                };
+            })
+        );
+
+        setImages(prev => [...prev, ...processedImages]);
     };
+
+
+
+
+
 
     const removeImage = (index) => {
         const newImages = [...images];
@@ -76,21 +112,12 @@ export default function AddNewProductAdminComponent() {
     };
 
     const handleAddNew = async () => {
-        // Validate dữ liệu
-        if (!productData.name || !productData.id_Trademark || !productData.price) {
-            return ShowToast("Vui lòng nhập đầy đủ tên, giá và thương hiệu!", ToastType.info);
-        }
-        if (images.length === 0) {
-            return ShowToast("Vui lòng chọn ít nhất 1 ảnh!", ToastType.info);
-        }
-        if (Number(productData.priceSale) >= Number(productData.price)) {
-            return ShowToast("Số tiền giảm không được lớn hơn hoặc bằng giá bán!", ToastType.error);
-        }
-
+        if (!productData.name || !productData.id_Trademark || !productData.price) return ShowToast("Vui lòng nhập đầy đủ tên, giá và thương hiệu!", ToastType.info);
+        if (images.length === 0) return ShowToast("Vui lòng chọn ít nhất 1 ảnh!", ToastType.info);
+        if (Number(productData.priceSale) >= Number(productData.price)) return ShowToast("Số tiền giảm không được lớn hơn hoặc bằng giá bán!", ToastType.error);
         setIsLoading(true);
 
         try {
-            // 1. Upload ảnh lên Cloudinary
             const uploadPromises = images.map(imgObj => uploadImage(imgObj.file));
             const remoteUrls = await Promise.all(uploadPromises);
             const successfulUrls = remoteUrls.filter(url => url !== null);
@@ -128,7 +155,7 @@ export default function AddNewProductAdminComponent() {
             );
 
             if (response.status) {
-                ShowToast("Thêm sản phẩm thành công!", ToastType.success);
+                ShowToast(response.message_vn, ToastType.success);
                 setTimeout(() => navigate("/admin-zmobile-2026/product/list"), 1500);
             } else {
                 ShowToast(response.message_vn || "Thêm thất bại", ToastType.error);
@@ -142,7 +169,9 @@ export default function AddNewProductAdminComponent() {
         }
     };
 
-    if (loading) return <UiLoadingComponent />;
+
+
+    if (loading || isLoading) return <UiLoadingComponent />;
 
     return (
         <>
@@ -156,7 +185,7 @@ export default function AddNewProductAdminComponent() {
                         </div>
 
                         <button onClick={handleAddNew} className={styles.btnSave}>
-                            <FiSave /> Đăng sản phẩm
+                            Đăng sản phẩm
                         </button>
                     </div>
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./banner.module.css";
 import { Link } from "react-router-dom";
+import { formatPrice } from "../../../../utils/formatPrice.JS";
 
 export default function Banner({ data }) {
     const [current, setCurrent] = useState(0);
@@ -26,9 +27,7 @@ export default function Banner({ data }) {
         );
     };
 
-    const formatPrice = (price) => {
-        return price.toLocaleString("vi-VN") + "đ";
-    };
+
 
     const currentItem = slides[current];
     const newPrice = currentItem.price - (currentItem.priceSale || 0);
