@@ -17,11 +17,12 @@ export default function AdminHeader() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.logoAdmin}>HUAN ADMIN</div>
+            <Link to={'/admin-zmobile-2026/product/list'} className={styles.logoAdmin}>
+                ADMIN CPANEL
+            </Link>
 
             <div className={styles.userProfile}>
-                <span className={styles.wellcom}>Chào Mừng Admin Đã Quay Lại</span>
-
+                <span className={styles.wellcom}>Chào Mừng Huan IT Đã Quay Lại</span>
                 <button
                     className={styles.logoutBtn}
                     onClick={() => logOut()}

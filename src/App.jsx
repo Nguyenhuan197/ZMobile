@@ -10,7 +10,7 @@ import Register from "./client/page/register";
 import Login from "./client/page/login";
 import Search from "./client/page/search";
 import LoginAdmin from "./client/page/loginAdmin";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductAdmin from "./admin/page/Product";
 import CategoryAdmin from "./admin/page/Category";
 import NumberOfProductsSold from "./admin/page/PageNumberOfProductsSold";
@@ -26,12 +26,21 @@ import PagecSlideAdmin from "./admin/page/Slide";
 import UpdateProductAdmin from "./admin/page/UpdateProduct";
 import ListUserAdmin from "./admin/page/ListUsers";
 import Recruitment from "./client/page/recruitment";
+import AddNewCategoryAdmin from "./admin/page/AddNewCategory";
+import SettingAdmin from "./admin/page/Setting";
+import UpdateSettingAdmin from "./admin/page/UpdateSetting";
+import { ThemeContext } from "./context/useThemeContext";
+import Maintenance from "./client/components/ui/sytems_Stop/page";
+import Recruitment_waitingListAdmin from "./admin/page/Recruitment_waitingList";
+import Recruitment_EmployeeListAdmin from "./admin/page/Recruitment_employeeList";
+import ListOrderAdmin from "./admin/page/OrdersAll";
 
 
 
 function App() {
   const keyRoleAdmin = import.meta.env.VITE_KEY_NAME_CHECK_ROLE_ADMIN
   const [statusUser, setStatusUser] = useState(null);
+  const { DataAdmin } = useContext(ThemeContext);
 
   useEffect(() => {
     if (!keyRoleAdmin) {
@@ -41,15 +50,20 @@ function App() {
 
     const getRole = localStorage.getItem(keyRoleAdmin);
 
+
     if (getRole === "Admin") {
       setStatusUser("Admin");
     } else {
       setStatusUser("Cline");   // 👈 BẮT BUỘC PHẢI CÓ
     }
-  }, []);
+
+  }, [DataAdmin]);
 
 
-  if (statusUser === null) return <UiLoadingComponent />;
+  if (statusUser === null || !DataAdmin) return <UiLoadingComponent />;
+  if (!DataAdmin?.data[0]?.accountStatus && statusUser !== "Admin") {
+    return <Maintenance />;
+  }
 
   return (
     <>
@@ -88,10 +102,28 @@ function App() {
           <Route path="/admin-zmobile-2026/product/addNew" element={<AddNewProductAdmin />} />
           <Route path="/admin-zmobile-2026/product/slide" element={<PagecSlideAdmin />} />
           <Route path="/admin-zmobile-2026/product/update/:id" element={<UpdateProductAdmin />} />
-          <Route path="/admin-zmobile-2026/category" element={<CategoryAdmin />} />
+
+          {/* Category */}
+          <Route path="/admin-zmobile-2026/category/list" element={<CategoryAdmin />} />
+          <Route path="/admin-zmobile-2026/category/add" element={<AddNewCategoryAdmin />} />
+
+          {/* users */}
           <Route path="/admin-zmobile-2026/users/list" element={<ListUserAdmin />} />
 
+          {/* Hệ thống */}
+          <Route path="/admin-zmobile-2026/system/settings" element={<SettingAdmin />} />
+          <Route path="/admin-zmobile-2026/system/settings/update" element={<UpdateSettingAdmin />} />
+
+          {/* Tuyển dụng */}
+          <Route path="/admin-zmobile-2026/recruitment/waiting-list" element={<Recruitment_waitingListAdmin />} />
+          <Route path="/admin-zmobile-2026/recruitment/employees" element={<Recruitment_EmployeeListAdmin />} />
+
+          {/* Danh sách đơn hàng  */}
+          <Route path="/admin-zmobile-2026/orders/all" element={<ListOrderAdmin />} />
+
+
         </Route>
+
 
       </Routes>
     </>

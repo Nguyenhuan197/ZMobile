@@ -4,19 +4,20 @@ import styles from "./AdminMenu.module.css";
 import {
     FaBoxOpen,
     FaChevronDown,
-    FaUser,
     FaLayerGroup,
     FaClipboardList,
     FaUsers,
     FaCogs,
-    FaUserShield
+    FaUserShield,
+    FaBriefcase, // Icon mới cho Tuyển dụng
+    FaBell,      // Icon cho Thông báo
+    FaComments   // Icon cho Message
 } from "react-icons/fa";
 
 export default function AdminMenu() {
     const location = useLocation();
     const [openMenu, setOpenMenu] = useState(null);
 
-    // Tự động mở menu cha dựa trên URL hiện tại
     useEffect(() => {
         const path = location.pathname;
         if (path.includes("/admin-zmobile-2026/product")) {
@@ -31,6 +32,8 @@ export default function AdminMenu() {
             setOpenMenu("system");
         } else if (path.includes("/admin-zmobile-2026/account")) {
             setOpenMenu("account");
+        } else if (path.includes("/admin-zmobile-2026/recruitment")) {
+            setOpenMenu("recruitment"); // Logic tự động mở cho Tuyển dụng
         }
     }, [location.pathname]);
 
@@ -80,13 +83,15 @@ export default function AdminMenu() {
                             </div>
                             {openMenu === "category" && (
                                 <ul className={styles.submenu}>
-                                    <li><NavLink to="/admin-zmobile-2026/category" end>Danh sách danh mục</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/category/list" end>Danh sách danh mục</NavLink></li>
                                     <li><NavLink to="/admin-zmobile-2026/category/add">Thêm danh mục</NavLink></li>
                                 </ul>
                             )}
                         </li>
 
-                        {/* 3. ĐƠN HÀNG */}
+
+
+                        {/* 4. ĐƠN HÀNG */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/orders") ? styles.active : ""}`}
@@ -108,7 +113,27 @@ export default function AdminMenu() {
                             )}
                         </li>
 
-                        {/* 4. NGƯỜI DÙNG */}
+                        {/* 3. TUYỂN DỤNG (MỤC MỚI) */}
+                        <li>
+                            <div
+                                className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/recruitment") ? styles.active : ""}`}
+                                onClick={() => toggleMenu("recruitment")}
+                            >
+                                <FaBriefcase />
+                                <span>Tuyển dụng</span>
+                                <FaChevronDown className={`${styles.arrow} ${openMenu === "recruitment" ? styles.rotate : ""}`} />
+                            </div>
+                            {openMenu === "recruitment" && (
+                                <ul className={styles.submenu}>
+                                    <li><NavLink to="/admin-zmobile-2026/recruitment/waiting-list">Danh sách tuyển dụng</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/recruitment/employees">Danh sách nhân viên</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/recruitment/notifications">Thông báo</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/recruitment/messages">Message</NavLink></li>
+                                </ul>
+                            )}
+                        </li>
+
+                        {/* 5. NGƯỜI DÙNG */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/users") ? styles.active : ""}`}
@@ -121,12 +146,12 @@ export default function AdminMenu() {
                             {openMenu === "users" && (
                                 <ul className={styles.submenu}>
                                     <li><NavLink to="/admin-zmobile-2026/users/list">Danh sách người dùng</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/users/analytics">Lượt truy cập</NavLink></li>
+
                                 </ul>
                             )}
                         </li>
 
-                        {/* 5. HỆ THỐNG */}
+                        {/* 6. HỆ THỐNG */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/system") ? styles.active : ""}`}
@@ -139,12 +164,13 @@ export default function AdminMenu() {
                             {openMenu === "system" && (
                                 <ul className={styles.submenu}>
                                     <li><NavLink to="/admin-zmobile-2026/system/settings">Quản lý hệ thống</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/users/analytics">Thống kê hệ thống</NavLink></li>
                                     <li><NavLink to="/admin-zmobile-2026/system/sale-config">Quản lý Sale</NavLink></li>
                                 </ul>
                             )}
                         </li>
 
-                        {/* 6. TÀI KHOẢN (Đã cập nhật menu con quản trị) */}
+                        {/* 7. TÀI KHOẢN */}
                         <li>
                             <div
                                 className={`${styles.item} ${isActiveParent("/admin-zmobile-2026/account") ? styles.active : ""}`}

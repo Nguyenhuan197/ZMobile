@@ -1,29 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminHeader from "../../ui/headerAd/AdminHeader";
 import AdminMenu from "../../ui/menuAd/AdminMenu";
-import { FiArrowLeft, FiSave, FiPlus, FiTrash2, FiImage, FiInfo, FiTag, FiShoppingBag } from "react-icons/fi";
+import { FiPlus, FiTrash2, FiImage, FiInfo, FiTag, FiShoppingBag } from "react-icons/fi";
 import styles from "./AddProduct.module.css";
 import { uploadImage } from "../../../../services/UpdateImage";
 import { ShowToast, ToastType } from "../../../../utils/toast";
-import { UpdateSevices } from "../../../../services/updateApi";
+import { UpdateSevicesYES__JSON__ADMIN } from "../../../../services/updateApi";
 import UiLoadingComponent from "../../../../components/loadingComponent";
 import { formatPrice } from "../../../../utils/formatPrice.JS";
 import useSWR from "swr";
 import heic2any from "heic2any";
+import { ThemeContext } from "../../../../context/useThemeContext";
 const fetcher = (url) => fetch(url).then((res) => res.json());
+
 
 
 
 export default function AddNewProductAdminComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const navigate = useNavigate();
+    const { DataUser } = useContext(ThemeContext);
     const { data: dataCategory, isLoading } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const [loading, setIsLoading] = useState(false);
     const [images, setImages] = useState([]);
     const [trademarks, setTrademarks] = useState([]);
     const [productData, setProductData] = useState({ id_Trademark: "", name: "", price: "", priceSale: 0, describe: "", remainingQuantity: "", present: "" });
-
 
 
     // Load danh sách thương hiệu
@@ -75,7 +77,7 @@ export default function AddNewProductAdminComponent() {
                         const convertedBlob = await heic2any({
                             blob: file,
                             toType: "image/jpeg",
-                            quality: 0.8 // Nén chất lượng 80% để giảm dung lượng
+                            quality: 0.9 // Nén chất lượng 90% để giảm dung lượng
                         });
 
                         // Tạo lại đối tượng File mới từ Blob đã convert
@@ -148,8 +150,8 @@ export default function AddNewProductAdminComponent() {
                 imgDetail: detailImagesData
             };
 
-            const response = await UpdateSevices(
-                `${apiUrl}/api/product/add`,
+            const response = await UpdateSevicesYES__JSON__ADMIN(
+                `${apiUrl}/api/product/add/${DataUser.data._id}`,
                 finalData,
                 "POST"
             );
@@ -170,8 +172,8 @@ export default function AddNewProductAdminComponent() {
     };
 
 
+    if (isLoading) return <UiLoadingComponent />;
 
-    if (loading || isLoading) return <UiLoadingComponent />;
 
     return (
         <>
@@ -179,142 +181,145 @@ export default function AddNewProductAdminComponent() {
             <div style={{ display: 'flex', width: '100%' }}>
                 <AdminMenu />
                 <main className={styles.mainContent}>
-                    <div className={styles.headerPage}>
-                        <div className={styles.titleGroup}>
-                            <h1>Thêm sản phẩm mới</h1>
-                        </div>
-
-                        <button onClick={handleAddNew} className={styles.btnSave}>
-                            Đăng sản phẩm
-                        </button>
-                    </div>
-
-                    <div className={styles.formContainer}>
-                        {/* CỘT TRÁI: Thông tin chữ & Ảnh */}
-                        <div className={styles.leftCol}>
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiInfo /> Thông tin cơ bản</div>
-                                <div className={styles.inputGroup}>
-                                    <label>Tên sản phẩm *</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={productData.name}
-                                        onChange={handleInputChange}
-                                        placeholder="Nhập tên sản phẩm..."
-                                    />
+                    {
+                        loading ? <UiLoadingComponent /> :
+                            <>
+                                <div className={styles.headerPage}>
+                                    <div className={styles.titleGroup}><h1>Thêm sản phẩm mới</h1></div>
+                                    <button onClick={handleAddNew} className={styles.btnSave}>  Đăng sản phẩm</button>
                                 </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Quà tặng kèm (Present)</label>
-                                    <input
-                                        type="text"
-                                        name="present"
-                                        value={productData.present}
-                                        onChange={handleInputChange}
-                                        placeholder="Ví dụ: Sạc dự phòng, ốp lưng..."
-                                    />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Mô tả chi tiết</label>
-                                    <textarea
-                                        name="describe"
-                                        value={productData.describe}
-                                        onChange={handleInputChange}
-                                        placeholder="Viết nội dung sản phẩm..."
-                                        rows="10"
-                                        className={styles.textareaDescription}
-                                    ></textarea>
-                                </div>
-                            </div>
 
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiImage /> Hình ảnh sản phẩm</div>
-                                <div className={styles.uploadWrapper}>
-                                    <label className={styles.dropzone}>
-                                        <input type="file" multiple accept="image/*" onChange={handleImageChange} hidden />
-                                        <div className={styles.uploadPlaceholder}>
-                                            <div className={styles.uploadIcon}><FiPlus /></div>
-                                            <p>Thêm nhiều ảnh cùng lúc</p>
-                                        </div>
-                                    </label>
-                                    <div className={styles.imageGrid}>
-                                        {images.map((img, index) => (
-                                            <div key={index} className={styles.imageItem}>
-                                                <img src={img.preview} alt="preview" />
-                                                <button className={styles.removeBtn} onClick={() => removeImage(index)}><FiTrash2 /></button>
-                                                {index === 0 && <div className={styles.mainTag}>Ảnh bìa</div>}
+                                <div className={styles.formContainer}>
+                                    <div className={styles.leftCol}>
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiInfo /> Thông tin cơ bản</div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Tên sản phẩm *</label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    value={productData.name}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Nhập tên sản phẩm..."
+                                                />
                                             </div>
-                                        ))}
+                                            <div className={styles.inputGroup}>
+                                                <label>Quà tặng kèm (Present)</label>
+                                                <input
+                                                    type="text"
+                                                    name="present"
+                                                    value={productData.present}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Ví dụ: Sạc dự phòng, ốp lưng..."
+                                                />
+                                            </div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Mô tả chi tiết</label>
+                                                <textarea
+                                                    name="describe"
+                                                    value={productData.describe}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Viết nội dung sản phẩm..."
+                                                    rows="10"
+                                                    className={styles.textareaDescription}
+                                                ></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiImage /> Hình ảnh sản phẩm</div>
+                                            <div className={styles.uploadWrapper}>
+                                                <label className={styles.dropzone}>
+                                                    <input type="file" multiple accept="image/*" onChange={handleImageChange} hidden />
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <div className={styles.uploadIcon}><FiPlus /></div>
+                                                        <p>Thêm nhiều ảnh cùng lúc</p>
+                                                    </div>
+                                                </label>
+                                                <div className={styles.imageGrid}>
+                                                    {images.map((img, index) => (
+                                                        <div key={index} className={styles.imageItem}>
+                                                            <img src={img.preview} alt="preview" />
+                                                            <button className={styles.removeBtn} onClick={() => removeImage(index)}><FiTrash2 /></button>
+                                                            {index === 0 && <div className={styles.mainTag}>Ảnh bìa</div>}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* CỘT PHẢI: Phân loại & Giá */}
+                                    <div className={styles.rightCol}>
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiTag /> Phân loại</div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Thương hiệu *</label>
+                                                <select
+                                                    name="id_Trademark"
+                                                    value={productData.id_Trademark}
+                                                    onChange={handleInputChange}
+                                                    className={styles.selectCustom}
+                                                >
+                                                    <option value="">Chọn thương hiệu</option>
+                                                    {trademarks.map(item => (
+                                                        <option key={item._id} value={item._id}>{item.name}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiShoppingBag /> Giá & Kho hàng</div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Giá niêm yết (VNĐ) *</label>
+                                                <input
+                                                    type="number"
+                                                    name="price"
+                                                    value={productData.price}
+                                                    onChange={handleInputChange}
+                                                    placeholder="0"
+                                                />
+                                                <div className={styles.pricePreview}>
+                                                    Giá gốc: <span>{formatPrice(productData.price)}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.inputGroup}>
+                                                <label>Số tiền giảm (VNĐ)</label>
+                                                <input
+                                                    type="number"
+                                                    name="priceSale"
+                                                    value={productData.priceSale}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Nhập số tiền muốn giảm..."
+                                                />
+                                                <div className={styles.pricePreview}>
+                                                    Giá thực tế: <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>
+                                                        {formatPrice(Number(productData.price) - Number(productData.priceSale))}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.inputGroup}>
+                                                <label>Số lượng kho</label>
+                                                <input
+                                                    type="number"
+                                                    name="remainingQuantity"
+                                                    value={productData.remainingQuantity}
+                                                    onChange={handleInputChange}
+                                                    placeholder="0"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        {/* CỘT PHẢI: Phân loại & Giá */}
-                        <div className={styles.rightCol}>
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiTag /> Phân loại</div>
-                                <div className={styles.inputGroup}>
-                                    <label>Thương hiệu *</label>
-                                    <select
-                                        name="id_Trademark"
-                                        value={productData.id_Trademark}
-                                        onChange={handleInputChange}
-                                        className={styles.selectCustom}
-                                    >
-                                        <option value="">Chọn thương hiệu</option>
-                                        {trademarks.map(item => (
-                                            <option key={item._id} value={item._id}>{item.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
+                            </>
+                    }
 
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiShoppingBag /> Giá & Kho hàng</div>
-                                <div className={styles.inputGroup}>
-                                    <label>Giá niêm yết (VNĐ) *</label>
-                                    <input
-                                        type="number"
-                                        name="price"
-                                        value={productData.price}
-                                        onChange={handleInputChange}
-                                        placeholder="0"
-                                    />
-                                    <div className={styles.pricePreview}>
-                                        Giá gốc: <span>{formatPrice(productData.price)}</span>
-                                    </div>
-                                </div>
 
-                                <div className={styles.inputGroup}>
-                                    <label>Số tiền giảm (VNĐ)</label>
-                                    <input
-                                        type="number"
-                                        name="priceSale"
-                                        value={productData.priceSale}
-                                        onChange={handleInputChange}
-                                        placeholder="Nhập số tiền muốn giảm..."
-                                    />
-                                    <div className={styles.pricePreview}>
-                                        Giá thực tế: <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>
-                                            {formatPrice(Number(productData.price) - Number(productData.priceSale))}
-                                        </span>
-                                    </div>
-                                </div>
 
-                                <div className={styles.inputGroup}>
-                                    <label>Số lượng kho</label>
-                                    <input
-                                        type="number"
-                                        name="remainingQuantity"
-                                        value={productData.remainingQuantity}
-                                        onChange={handleInputChange}
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </main>
             </div>
         </>

@@ -66,7 +66,7 @@ export default function ProjectHome() {
 
 
                 {
-                    dataAccessory.data.length > 0 &&
+                    dataAccessory?.data.length > 0 &&
                     <section style={{ marginTop: 40 }}>
                         <h2 className={styles.sectionTitle}>Phụ Kiện</h2>
 

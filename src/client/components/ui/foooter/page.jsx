@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 import { FaFacebook, FaTiktok, FaStore, FaHandshake, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaCalendarAlt } from "react-icons/fa";
 import { ThemeContext } from "../../../../context/useThemeContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 
 
 export default function Footer() {
-    const phone = import.meta.env.VITE_NUMBER_PHONE;
     const { USER, DataAdmin, isLoading_Admin } = useContext(ThemeContext);
     if (isLoading_Admin) return;
 
@@ -39,22 +38,23 @@ export default function Footer() {
                         <li>
                             <FaFacebook className={styles.iconFb} />
                             <span>Page FB:</span>
-                            <Link to="https://www.facebook.com/profile.php?id=61565941977491">Z Mobile</Link>
+                            <Link to={DataAdmin?.data[0].pageFB}>Z Mobile</Link>
                         </li>
+
                         <li>
                             <FaTiktok className={styles.iconTiktok} />
                             <span>TikTok:</span>
-                            <Link to="https://tiktok.com/@zmobile97">Z Mobile</Link>
+                            <Link to={DataAdmin?.data[0].ticktock}>Z Mobile</Link>
                         </li>
                         <li>
                             <FaStore className={styles.iconShopee} />
                             <span>Shopee:</span>
-                            <Link to="https://Shopee.vn/hunnguynnh030">Z Mobile</Link>
+                            <Link to={DataAdmin?.data[0].shopee}>Z Mobile</Link>
                         </li>
                         <li>
                             <FaHandshake className={styles.iconChotot} />
                             <span>Chợ tốt:</span>
-                            <Link to="#">Nguyen Huan</Link>
+                            <Link to={DataAdmin?.data[0].chotot}>Nguyen Huan</Link>
                         </li>
                     </ul>
                 </div>
@@ -83,7 +83,7 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.contactItem}>
-                        <TbTruckDelivery /> <span>Đối tác giao hàng Vitell Post</span>
+                        <TbTruckDelivery /><span>Đối tác giao hàng {DataAdmin?.data[0].partnerDelivery}</span>
                     </div>
 
                     <p className={styles.adminLink}>

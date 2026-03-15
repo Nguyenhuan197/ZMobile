@@ -1,0 +1,196 @@
+.mainContent {
+    flex: 1;
+    padding: 30px;
+    min-height: 100vh;
+    margin-top: 80px;
+    margin-left: 300px;
+}
+
+.headerPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.headerPage h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* Card Chính */
+.profileCard {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+/* Banner Đầu Card */
+.cardBanner {
+    background: linear-gradient(135deg, #4abb09 0%, #7c3aed 100%);
+    padding: 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.brandMain h2 {
+    font-size: 32px;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.brandMain p {
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+/* Bố cục Grid Thông tin */
+.sectionTitle {
+    grid-column: 1 / -1;
+    font-size: 18px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-top: 20px;
+}
+
+.gridContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 30px;
+}
+
+.infoBox {
+    background: #f8fafc;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid #edf2f7;
+    transition: all 0.3s ease;
+}
+
+.infoBox:hover {
+    background: #fff;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.infoBox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #64748b;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.infoBox span,
+.infoBox a {
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 500;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.infoBox a {
+    color: #2563eb;
+}
+
+/* Nút Gạt Switch */
+.statusFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background: #f1f5f9;
+    border-top: 1px solid #e2e8f0;
+}
+
+.toggleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.switch {
+    position: relative;
+    width: 54px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #cbd5e0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked+.slider {
+    background: #10b981;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Nút nhấn */
+.btnEdit {
+    background: #ffffff;
+    color: #1e293b;
+    border: none;
+    padding: 14px 27px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.btnEdit:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+    .gridContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

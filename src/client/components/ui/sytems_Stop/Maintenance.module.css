@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg,
+            #ff4d4f,
+            #ff7a45,
+            #4b7bec,
+            #8e44ad);
+
+    background-size: 400% 400%;
+    animation: bgMove 14s ease infinite;
+}
+
+.card {
+    width: 100%;
+    max-width: 490px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 20px;
+    padding: 45px 28px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    animation: cardShow .6s ease;
+}
+
+.logoText span {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+    color: #c70202;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.message {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6b7280;
+    margin-bottom: 36px;
+}
+
+/* SOCIAL */
+.socialGroup {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin-bottom: 35px;
+}
+
+.iconItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    transition: .25s;
+}
+
+.iconCircle {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
+    transition: .25s;
+}
+
+/* FACEBOOK */
+
+.fb {
+    background: #1877F2;
+}
+
+/* ZALO */
+
+.zalo {
+    background: #0084ff;
+    font-weight: 900;
+    font-size: 22px;
+    font-family: Arial;
+}
+
+/* PHONE */
+
+.phone {
+    background: linear-gradient(135deg,
+            #00c853,
+            #00e676);
+}
+
+.iconItem:hover {
+    transform: translateY(-6px);
+}
+
+.iconItem:hover .iconCircle {
+    transform: scale(1.08);
+}
+
+/* FOOTER */
+
+.footer {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #9ca3af;
+}
+
+/* ANIMATION */
+
+@keyframes bgMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+@keyframes cardShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width:480px) {
+    .card {
+        padding: 38px 22px;
+        border-radius: 26px;
+    }
+
+    .logoText {
+        font-size: 24px;
+
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .message {
+        font-size: 13px;
+    }
+
+    .iconCircle {
+        width: 56px;
+        height: 56px;
+    }
+
+    .socialGroup {
+        gap: 22px;
+    }
+
+}

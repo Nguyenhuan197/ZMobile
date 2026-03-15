@@ -1,0 +1,149 @@
+.mainContent {
+    flex: 1;
+    padding: 25px;
+    min-height: 100vh;
+    margin-top: 80px;
+    margin-left: 300px;
+}
+
+.headerPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.headerPage h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
+.btnSave {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 18px;
+}
+
+.btnSave:hover {
+    background-color: #0056b3;
+}
+
+.formContainer {
+    max-width: 800px;
+    /* Thu hẹp lại so với trang sản phẩm cho cân đối */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    color: #666;
+}
+
+.inputGroup input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+
+.inputGroup input:focus {
+    border-color: #007bff;
+}
+
+.dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dropzone:hover {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+}
+
+.uploadPlaceholder {
+    text-align: center;
+    color: #888;
+}
+
+.uploadIcon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.imagePreviewBox {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.imagePreviewBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.removeBtn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 6px;
+}

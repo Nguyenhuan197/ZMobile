@@ -76,6 +76,7 @@ Footer {
 
 
 
+
 /* Phần Admin */
 .bodyAdmin {
   width: 100%;
@@ -87,7 +88,6 @@ Footer {
 .adminContainer {
   display: flex;
   min-height: 100vh;
-  background-color: #f4f7f6;
 }
 
 

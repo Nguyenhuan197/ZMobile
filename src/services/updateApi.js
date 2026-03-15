@@ -111,7 +111,6 @@ export async function UpdateSevicesNo__JSON__ADMIN(API, Method) {
     try {
         const response = await fetch(API, {
             method: Method,
-
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,

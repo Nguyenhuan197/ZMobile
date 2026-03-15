@@ -95,7 +95,7 @@ export default function UpdateProductAdminComponent() {
         }
     };
 
-    if (loading) return <UiLoadingComponent />;
+
 
     return (
         <>
@@ -103,68 +103,78 @@ export default function UpdateProductAdminComponent() {
             <div style={{ display: 'flex', width: '100%' }}>
                 <AdminMenu />
                 <main className={styles.mainContent}>
-                    <div className={styles.headerPage}>
-                        <div className={styles.titleGroup}>
-                            <button className={styles.btnBack} onClick={() => navigate(-1)}>
-                                <FiArrowLeft />
-                            </button>
-                            <h1>Cập nhật: {productData.name}</h1>
-                        </div>
-                        <button onClick={handleUpdate} className={styles.btnSave}>
-                            <FiSave /> Lưu thay đổi
-                        </button>
-                    </div>
-
-                    <div className={styles.formContainer}>
-                        <div className={styles.leftCol}>
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiInfo /> Nội dung sản phẩm</div>
-                                <div className={styles.inputGroup}>
-                                    <label>Tên</label>
-                                    <input type="text" name="name" value={productData.name} onChange={handleInputChange} />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Mô tả</label>
-                                    <textarea name="describe" value={productData.describe} onChange={handleInputChange} rows="18" />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label>Quà tặng</label>
-                                    <input type="text" name="present" value={productData.present} onChange={handleInputChange} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.rightCol}>
-                            <div className={styles.card}>
-                                <div className={styles.cardTitle}><FiShoppingBag /> Kho & Giá</div>
-
-                                {/* GIÁ GỐC */}
-                                <div className={styles.inputGroup}>
-                                    <label>Giá niêm yết (VNĐ) *</label>
-                                    <input type="number" name="price" value={productData.price} onChange={handleInputChange} />
-                                    <div className={styles.pricePreview}>
-                                        Giá gốc: <span>{formatPrice(productData.price)}</span>
+                    {
+                        loading ? <UiLoadingComponent /> :
+                            <>
+                                <div className={styles.headerPage}>
+                                    <div className={styles.titleGroup}>
+                                        <button className={styles.btnBack} onClick={() => navigate(-1)}>
+                                            <FiArrowLeft />
+                                        </button>
+                                        <h1>Cập nhật: {productData.name}</h1>
                                     </div>
                                 </div>
 
-                                {/* SỐ TIỀN GIẢM */}
-                                <div className={styles.inputGroup}>
-                                    <label>Số tiền giảm (VNĐ)</label>
-                                    <input type="number" name="priceSale" value={productData.priceSale} onChange={handleInputChange} />
-                                    <div className={styles.pricePreview}>
-                                        Giá thực tế: <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>
-                                            {formatPrice(Number(productData.price) - Number(productData.priceSale))}
-                                        </span>
+                                <div className={styles.formContainer}>
+                                    <div className={styles.leftCol}>
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiInfo /> Nội dung sản phẩm</div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Tên</label>
+                                                <input type="text" name="name" value={productData.name} onChange={handleInputChange} />
+                                            </div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Mô tả</label>
+                                                <textarea name="describe" value={productData.describe} onChange={handleInputChange} rows="20" />
+                                            </div>
+                                            <div className={styles.inputGroup}>
+                                                <label>Quà tặng</label>
+                                                <input type="text" name="present" value={productData.present} onChange={handleInputChange} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.rightCol}>
+                                        <div className={styles.card}>
+                                            <div className={styles.cardTitle}><FiShoppingBag /> Kho & Giá</div>
+
+                                            {/* GIÁ GỐC */}
+                                            <div className={styles.inputGroup}>
+                                                <label>Giá niêm yết (VNĐ) *</label>
+                                                <input type="number" name="price" value={productData.price} onChange={handleInputChange} />
+                                                <div className={styles.pricePreview}>
+                                                    Giá gốc: <span>{formatPrice(productData.price)}</span>
+                                                </div>
+                                            </div>
+
+                                            {/* SỐ TIỀN GIẢM */}
+                                            <div className={styles.inputGroup}>
+                                                <label>Số tiền giảm (VNĐ)</label>
+                                                <input type="number" name="priceSale" value={productData.priceSale} onChange={handleInputChange} />
+                                                <div className={styles.pricePreview}>
+                                                    Giá thực tế: <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>
+                                                        {formatPrice(Number(productData.price) - Number(productData.priceSale))}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.inputGroup}>
+                                                <label>Số lượng kho</label>
+                                                <input type="number" name="remainingQuantity" value={productData.remainingQuantity} onChange={handleInputChange} />
+                                            </div>
+
+                                            <button onClick={handleUpdate} className={styles.btnSave}>
+                                                Cập nhật sản phẩm
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className={styles.inputGroup}>
-                                    <label>Số lượng kho</label>
-                                    <input type="number" name="remainingQuantity" value={productData.remainingQuantity} onChange={handleInputChange} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </>
+                    }
+
+
+
                 </main>
             </div>
         </>

@@ -7,6 +7,8 @@ import { ShowToast, ToastType } from '../../../../utils/toast';
 import { ThemeContext } from '../../../../context/useThemeContext';
 import { Eye, EyeOff } from "lucide-react"; // Đảm bảo đã npm install lucide-react
 
+
+
 export default function LoginComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
@@ -33,6 +35,7 @@ export default function LoginComponent() {
         if (result.status) {
             ShowToast(result.message_vn, ToastType.success);
             localStorage.setItem(KEY_NAME_USER, result.token);
+
             reloading();
             ResetForm();
             setLoading(false);
