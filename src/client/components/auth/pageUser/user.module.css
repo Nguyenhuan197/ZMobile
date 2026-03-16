@@ -294,3 +294,75 @@
 .eyeIcon svg {
     display: block;
 }
+
+
+
+/* login Google */
+
+.googleBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #374151;
+    /* Màu xám đậm Slate 700 */
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    /* Đổ bóng nhẹ tạo độ nổi */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.googleBtn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+    /* Đổ bóng đậm hơn khi hover */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+    /* Nhấc nút lên nhẹ */
+}
+
+.googleBtn:active {
+    background-color: #f3f4f6;
+    transform: translateY(0);
+    /* Nhấn xuống khi click */
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.googleIcon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.googleBtn:hover .googleIcon {
+    transform: scale(1.1);
+    /* Icon to nhẹ khi hover nút */
+}
+
+/* Thêm hiệu ứng gợn sóng nhẹ khi click (tùy chọn) */
+.googleBtn::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.googleBtn:active::after {
+    opacity: 1;
+}
