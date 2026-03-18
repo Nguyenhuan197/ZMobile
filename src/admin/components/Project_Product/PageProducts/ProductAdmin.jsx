@@ -2,7 +2,6 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import { ThemeContext } from "../../../../context/useThemeContext";
 import AdminHeader from "../../ui/headerAd/AdminHeader";
 import AdminMenu from "../../ui/menuAd/AdminMenu";
-import styles from "./ProductAdmin.module.css";
 import { FiEdit, FiSearch, FiToggleLeft, FiToggleRight } from "react-icons/fi";
 import { GetAPI_Authorization } from "../../../../services/getTockenAdmin";
 import UiLoadingComponent from '../../../../components/loadingComponent';
@@ -10,6 +9,7 @@ import { formatPrice } from "../../../../utils/formatPrice.JS";
 import { ShowToast, ToastType } from "../../../../utils/toast";
 import { UpdateSevicesNo__JSON } from "../../../../services/updateApi";
 import { useNavigate } from "react-router-dom";
+import styles from "../../Css__Admin.module.css";
 
 
 

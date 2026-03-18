@@ -4,30 +4,28 @@ import { ThemeContext } from "../../../../context/useThemeContext";
 import AdminHeader from "../../ui/headerAd/AdminHeader";
 import AdminMenu from "../../ui/menuAd/AdminMenu";
 import styles from "../../Css__Admin.module.css";
-import { FiSearch, FiPhone, FiMapPin } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import UiLoadingComponent from '../../../../components/loadingComponent';
 import { GetAPI_Authorization } from "../../../../services/getTockenAdmin";
-
+import { UpdateSevicesNo__JSON__ADMIN } from "../../../../services/updateApi";
+import { ShowToast, ToastType } from "../../../../utils/toast";
 
 
 export default function ListRecruitmentAdminComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const { USER } = useContext(ThemeContext);
-
     const [applicants, setApplicants] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
 
-    // Hàm lấy danh sách ứng viên
-    const loadApplicants = useCallback(async () => {
+
+
+    const loaddingData = async () => {
         if (!USER?._id) return;
-
         setIsLoading(true);
-        try {
-            const result = await GetAPI_Authorization(
-                `${apiUrl}/api/recruitment/view/6999b03b8ebf1e4f0dd57d18?status=false`
-            );
 
+        try {
+            const result = await GetAPI_Authorization(`${apiUrl}/api/recruitment/view/6999b03b8ebf1e4f0dd57d18?status=false`);
             if (result && result.data) {
                 setApplicants(result.data);
             } else {
@@ -39,11 +37,17 @@ export default function ListRecruitmentAdminComponent() {
         } finally {
             setIsLoading(false);
         }
-    }, [apiUrl, USER?._id]);
+    }
+
+    const loadApplicants = useCallback(async () => {
+        loaddingData();
+    }, []);
+
 
     useEffect(() => {
         loadApplicants();
     }, [loadApplicants]);
+
 
     // Lọc dữ liệu theo tên hoặc số điện thoại tại client
     const filteredApplicants = applicants.filter(item =>
@@ -51,6 +55,40 @@ export default function ListRecruitmentAdminComponent() {
         item.phone.toString().includes(searchTerm)
     );
 
+
+    const handlePersonnelApproval = async (_id) => {
+        if (!_id) return;
+        setIsLoading(true);
+        const result = await UpdateSevicesNo__JSON__ADMIN(
+            `${apiUrl}/api/recruitment/stateTransition/${_id}/6999b03b8ebf1e4f0dd57d18?status=true`,
+            'PUT'
+        );
+
+        if (result.status) {
+            ShowToast(result.mesage_vn || "Chuyển đổi trạng thái thành công", ToastType.success);
+            loaddingData();
+            setIsLoading(false);
+        } else {
+            ShowToast(result.mesage_vn || "Chuyển đổi trạng thái thất bại", ToastType.warn);
+        }
+    }
+
+    const handleDelete = async (_id) => {
+        if (!_id) return;
+        setIsLoading(true);
+        const result = await UpdateSevicesNo__JSON__ADMIN(
+            `${apiUrl}/api/recruitment/delete/${_id}/6999b03b8ebf1e4f0dd57d18`,
+            'DELETE'
+        );
+
+        if (result.status) {
+            ShowToast(result.mesage_vn || "Xoá thành công", ToastType.success);
+            loaddingData();
+            setIsLoading(false);
+        } else {
+            ShowToast(result.mesage_vn || "Xoá thất bại", ToastType.warn);
+        }
+    }
 
 
     return (
@@ -105,12 +143,11 @@ export default function ListRecruitmentAdminComponent() {
                                                     <td>{item.age}</td>
                                                     <td>
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                            {item.phone}
+                                                            0{item.phone}
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                            <FiMapPin style={{ color: '#666' }} />
                                                             {item.city}
                                                         </div>
                                                     </td>
@@ -129,6 +166,7 @@ export default function ListRecruitmentAdminComponent() {
                                                         }}>
                                                             {/* Nút Phê Duyệt */}
                                                             <div
+                                                                onClick={() => handlePersonnelApproval(item._id)}
                                                                 style={{
                                                                     padding: '6px 12px',
                                                                     borderRadius: '6px',
@@ -151,12 +189,14 @@ export default function ListRecruitmentAdminComponent() {
                                                                     e.currentTarget.style.backgroundColor = '#e6f4ea';
                                                                     e.currentTarget.style.color = '#1e7e34';
                                                                 }}
+
                                                             >
                                                                 <span style={{ fontSize: '14px' }}>✓</span> Phê duyệt
                                                             </div>
 
                                                             {/* Nút Từ Chối */}
                                                             <div
+                                                                onClick={() => handleDelete(item._id)}
                                                                 style={{
                                                                     padding: '6px 12px',
                                                                     borderRadius: '6px',

@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../../../context/useThemeContext";
 import AdminHeader from "../../ui/headerAd/AdminHeader";
 import AdminMenu from "../../ui/menuAd/AdminMenu";
-import styles from "./ProductSaleAdmin.module.css";
-import { FiEdit, FiTrash2, FiSearch, FiPercent } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { GetAPI_Authorization } from "../../../../services/getTockenAdmin";
 import UiLoadingComponent from '../../../../components/loadingComponent';
 import { formatPrice } from "../../../../utils/formatPrice.JS";
+import styles from "../../Css__Admin.module.css";
+
+
 
 export default function ProductSaleAdminComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;

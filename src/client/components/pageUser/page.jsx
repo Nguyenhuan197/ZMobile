@@ -276,8 +276,17 @@ export default function UserComponent() {
                     <aside className={styles.sidebar}>
                         <div className={styles.sidebarHeader}>
                             <div className={styles.avatarContainer}>
-                                <img src={`${apiUrl}/${DataUser?.data?.image}`} alt="Avatar" className={styles.userImg} />
+                                {/* <img src={`${DataUser?.data?.image}`} alt="Avatar" className={styles.userImg} /> */}
+
+                                <img
+                                    src={DataUser?.data?.image}
+                                    alt="Avatar"
+                                    referrerPolicy="no-referrer" // Thêm dòng này
+                                    className={styles.userImg}
+                                    onError={(e) => { e.target.src = 'https://via.placeholder.com/150'; }}
+                                />
                             </div>
+
                             <h3>{DataUser?.data?.name}</h3>
                             <p className={styles.userEmail}>{DataUser?.data?.email}</p>
                         </div>

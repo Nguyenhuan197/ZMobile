@@ -8,7 +8,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 
 
-
 function RegisterForm() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
@@ -18,9 +17,6 @@ function RegisterForm() {
     const navigate = useNavigate();
     const { reloading } = useContext(ThemeContext);
 
-
-
-    // Xử lý đăng ký thông thường
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleAuthAction(`${apiUrl}/api/users/add`, formData);
@@ -46,17 +42,21 @@ function RegisterForm() {
     const loginGoogle = useGoogleLogin({
         onSuccess: async (codeResponse) => {
             if (codeResponse.code) {
+                setLoading(true);
                 const result = await UpdateSevices(
-                    `http://localhost:5000/api/google/google-login`,
+                    `${apiUrl}/api/google/google-register`,
                     { code: codeResponse.code },
                     "POST"
                 );
 
-                console.log("=== RESPONSE TỪ BACKEND ===");
-                console.log(result);
+                if (result.mesage_vn === 'Tài khoản đã tồn tại') {
+                    setLoading(false);
+                    ShowToast(result.mesage_vn, ToastType.info);
+                    setTimeout(() => navigate('/login'), 1000);
+                }
 
+                setLoading(false);
                 if (result.status) {
-                    console.log(result);
                     ShowToast(result.message_vn, ToastType.success);
                     localStorage.setItem(KEY_NAME_USER, result.token);
                     reloading();
@@ -64,10 +64,7 @@ function RegisterForm() {
                 } else {
                     ShowToast(result.message_vn, ToastType.info);
                 }
-
             }
-
-
         },
 
         flow: 'auth-code',
@@ -78,8 +75,6 @@ function RegisterForm() {
     });
 
 
-
-
     return (
         <div className={styles.container}>
             <div className={styles.authCard}>
@@ -87,9 +82,6 @@ function RegisterForm() {
                     <h2 className={styles.title}>Tạo tài khoản</h2>
                     <p className={styles.subtitle}>Cùng bắt đầu hành trình mua sắm của bạn</p>
                 </div>
-
-
-
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.inputGroup}>
@@ -140,10 +132,13 @@ function RegisterForm() {
                         </div>
                     </div>
 
-
-
                     <button type="submit" className={styles.submitBtn}>
-                        Đăng ký ngay
+                        {loading ? "Đang xử lý..." : " Đăng ký ngay"}
+                    </button>
+
+                    <button className={styles.googleBtn} onClick={() => loginGoogle()}>
+                        <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google" className={styles.googleIcon} />
+                        Tiếp tục với Google
                     </button>
                 </form>
 
@@ -151,13 +146,6 @@ function RegisterForm() {
                     <span>Đã có tài khoản? </span>
                     <Link to='/login' className={styles.link}>Đăng nhập</Link>
                 </div>
-
-                {/* Nút Đăng nhập Google */}
-                <button className={styles.googleBtn} onClick={() => loginGoogle()}>
-                    <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google" className={styles.googleIcon} />
-                    Tiếp tục với Google
-                </button>
-
 
 
             </div>
