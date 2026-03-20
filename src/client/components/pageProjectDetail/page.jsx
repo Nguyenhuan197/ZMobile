@@ -6,6 +6,7 @@ import UiLoadingComponent from "../../../components/loadingComponent";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 import { ThemeContext } from "../../../context/useThemeContext";
 import { ShowToast, ToastType } from "../../../utils/toast";
+import { Helmet } from "react-helmet-async";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -29,6 +30,26 @@ export default function ProductDetail() {
         }
     }, [product]);
 
+
+
+    const shareProduct = (platform) => {
+        const productUrl = window.location.href;
+        // Lấy tiêu đề từ tên sản phẩm, nếu chưa có thì dùng mặc định
+        const title = encodeURIComponent(product?.name || "Sản phẩm cực hot tại Z Mobile!");
+        const description = encodeURIComponent(product?.describe?.substring(0, 100) || "");
+
+        let shareUrl = "";
+
+        if (platform === "facebook") {
+            // Facebook chủ yếu dựa vào link, thẻ meta sẽ quyết định ảnh
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`;
+        } else if (platform === "zalo") {
+            // Zalo hỗ trợ truyền thêm tiêu đề và mô tả trong một số trường hợp
+            shareUrl = `https://sp.zalo.me/share_inline?url=${encodeURIComponent(productUrl)}&title=${title}&description=${description}`;
+        }
+
+        window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
+    };
 
     if (isLoading) return <UiLoadingComponent />;
     if (error) return <div>Có lỗi xảy ra...</div>;
@@ -60,6 +81,29 @@ export default function ProductDetail() {
 
     return (
         <div className={styles.container}>
+            {/* Thêm đoạn Helmet này vào đầu */}
+
+            <Helmet>
+                <title>{product.name} | Z Mobile</title>
+                <meta name="description" content={product.describe?.substring(0, 150)} />
+
+                {/* Facebook & Zalo (Open Graph) */}
+                <meta property="og:type" content="product" />
+                <meta property="og:title" content={product.name} />
+                <meta property="og:description" content={product.describe?.substring(0, 150)} />
+                <meta property="og:image" content={product.img?.secure_url} />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+
+                {/* Zalo Specific */}
+                <meta property="zalo:title" content={product.name} />
+                <meta property="zalo:description" content={product.describe?.substring(0, 150)} />
+                <meta property="zalo:image" content={product.img?.secure_url} />
+            </Helmet>
+
+
+
             <div className={styles.wrapper}>
                 {/* LEFT */}
 
@@ -103,6 +147,7 @@ export default function ProductDetail() {
                     <p className={styles.stock}>
                         Đã bán : <strong>{product.remainingQuantity}</strong>
                     </p>
+                    <button onClick={() => shareProduct('facebook')}>Chia sẻ Facebook</button>
 
                     <div className={styles.quantityBox}>
                         <span>Số lượng:</span>
