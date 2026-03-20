@@ -13,6 +13,7 @@ import {
 } from "react-icons/io5";
 import { UpdateSevices } from '../../../services/updateApi';
 import { ShowToast, ToastType } from '../../../utils/toast';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -57,13 +58,72 @@ export default function RecruitmentComponent() {
         }
     };
 
+
+
+    const shareProduct = (platform) => {
+        const currentUrl = window.location.href;
+        const shareTitle = "Cơ hội việc làm hấp dẫn tại Z Mobile!";
+        let shareUrl = "";
+
+        switch (platform) {
+            case "facebook":
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                break;
+            case "messenger":
+                // Messenger yêu cầu app_id nếu dùng link trực tiếp, 
+                // đơn giản nhất là dùng facebook sharer hoặc send link
+                shareUrl = `fb-messenger://share/?link=${encodeURIComponent(currentUrl)}`;
+                // Nếu trên web, dùng link chuyển hướng
+                if (!/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                    shareUrl = `https://www.facebook.com/dialog/send?link=${encodeURIComponent(currentUrl)}&app_id=YOUR_FB_APP_ID&redirect_uri=${encodeURIComponent(currentUrl)}`;
+                }
+                break;
+            case "zalo":
+                shareUrl = `https://sp.zalo.me/share_inline?url=${encodeURIComponent(currentUrl)}`;
+                break;
+            case "copy":
+                navigator.clipboard.writeText(currentUrl);
+                ShowToast("Đã sao chép liên kết tuyển dụng!", ToastType.success);
+                return;
+            default:
+                return;
+        }
+
+        if (shareUrl) {
+            window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
+        }
+    };
+
+
     return (
         <div className={styles.container}>
+
+            <Helmet>
+                <title>Tuyển Cộng Tác Viên Kinh Doanh | Z Mobile</title>
+                <meta name="description" content="Kinh doanh không vốn cùng Z Mobile. Hoa hồng cao, nguồn hàng ổn định, hỗ trợ cập nhật hàng ngày." />
+
+                {/* Facebook & Zalo (Open Graph) */}
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="TUYỂN CỘNG TÁC VIÊN KINH DOANH - Z MOBILE" />
+                <meta property="og:description" content="Cơ hội thu nhập hấp dẫn, không cần vốn, không ôm hàng. Đăng ký ngay!" />
+                {/* Thay link ảnh dưới đây bằng ảnh banner tuyển dụng của bạn */}
+                <meta property="og:image" content="https://yourdomain.com/path-to-your-recruitment-banner.jpg" />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+
+                {/* Zalo Specific */}
+                <meta property="zalo:title" content="TUYỂN CỘNG TÁC VIÊN KINH DOANH - Z MOBILE" />
+                <meta property="zalo:description" content="Kinh doanh 0đ vốn, thu nhập bền vững cùng Z Mobile." />
+            </Helmet>
+
+
             <header className={styles.header}>
-                <div className={styles.topBadge}>Join Our Team</div>
+                <div onClick={() => shareProduct('facebook')} className={styles.topBadge}>Chia sẻ công việc</div>
                 <h1 className={styles.mainTitle}>TUYỂN CỘNG TÁC VIÊN</h1>
                 <p className={styles.subTitle}>
-                    Kinh doanh không vốn cùng <strong>Z Mobile</strong> — Lợi nhuận bền vững.
+                    Kinh doanh không vốn cùng <strong>Z Mobile</strong>
+                    <p> Lợi nhuận bền vững.</p>
                 </p>
             </header>
 
@@ -84,14 +144,17 @@ export default function RecruitmentComponent() {
                                     <IoCheckmarkCircleOutline className={styles.checkIcon} />
                                     <div><strong>Tự do tài chính:</strong> Thu nhập theo năng lực, không áp KPI doanh số.</div>
                                 </li>
+
                                 <li>
                                     <IoCheckmarkCircleOutline className={styles.checkIcon} />
                                     <div><strong>Linh hoạt:</strong> Tự chủ thời gian, làm việc mọi lúc mọi nơi.</div>
                                 </li>
+
                                 <li>
                                     <IoCheckmarkCircleOutline className={styles.checkIcon} />
                                     <div><strong>Hỗ trợ:</strong> Hệ thống cập nhật hàng hóa và hoa hồng tự động hàng ngày.</div>
                                 </li>
+
                                 <li>
                                     <IoCheckmarkCircleOutline className={styles.checkIcon} />
                                     <div><strong>0đ Vốn:</strong> Không rủi ro, không ôm hàng, không phí nhập kho.</div>
@@ -144,6 +207,7 @@ export default function RecruitmentComponent() {
                                         <option value="Nữ">Nữ</option>
                                     </select>
                                 </div>
+
                                 <div className={styles.inputGroup}>
                                     <label>Tuổi</label>
                                     <input type="number" name="age" value={formData.age} onChange={handleChange} placeholder="18" min="14" required />

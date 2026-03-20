@@ -213,6 +213,22 @@
     color: #ee4d2d;
 }
 
+.share img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {

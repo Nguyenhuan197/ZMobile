@@ -14,10 +14,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </HelmetProvider>
     </LocalStorageUserContext>
   </BrowserRouter>
-
-
-
-
 );
 
 

@@ -8,6 +8,8 @@ import { ThemeContext } from "../../../context/useThemeContext";
 import { ShowToast, ToastType } from "../../../utils/toast";
 import { Helmet } from "react-helmet-async";
 const fetcher = (url) => fetch(url).then((res) => res.json());
+import iconShare from "../../../assets/s1.png";
+import iconFB from "../../../assets/FBS.webp";
 
 
 
@@ -34,7 +36,6 @@ export default function ProductDetail() {
 
     const shareProduct = (platform) => {
         const productUrl = window.location.href;
-        // Lấy tiêu đề từ tên sản phẩm, nếu chưa có thì dùng mặc định
         const title = encodeURIComponent(product?.name || "Sản phẩm cực hot tại Z Mobile!");
         const description = encodeURIComponent(product?.describe?.substring(0, 100) || "");
 
@@ -50,6 +51,8 @@ export default function ProductDetail() {
 
         window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
     };
+
+
 
     if (isLoading) return <UiLoadingComponent />;
     if (error) return <div>Có lỗi xảy ra...</div>;
@@ -77,6 +80,11 @@ export default function ProductDetail() {
         handlePay(name, price, quantity, activeImg, id);
     };
 
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Đã sao chép liên kết sản phẩm!");
+    }
 
 
     return (
@@ -114,6 +122,7 @@ export default function ProductDetail() {
 
 
 
+
             <div className={styles.wrapper}>
                 {/* LEFT */}
 
@@ -138,10 +147,28 @@ export default function ProductDetail() {
                             />
                         ))}
                     </div>
+
+                    <div
+                        style={{
+                            width: 'auto', display: 'flex', alignItems: 'center', gap: '5px',
+                            marginTop: '12px'
+                        }}>
+                        <p style={{ margin: 0, fontSize: '18px' }}>Chia sẻ với </p>
+
+                        <div onClick={() => shareProduct('facebook')} className={styles.share}>
+                            <img src={iconFB} alt="" />
+                        </div>
+
+                        <div onClick={() => copyToClipboard()} className={styles.share}>
+                            <img src={iconShare} alt="" />
+                        </div>
+                    </div>
                 </div>
 
                 {/* RIGHT */}
                 <div className={styles.right}>
+
+
                     <p className={styles.brandName}>
                         Thương hiệu {product.id_Trademark?.name}
                     </p>
@@ -157,7 +184,11 @@ export default function ProductDetail() {
                     <p className={styles.stock}>
                         Đã bán : <strong>{product.remainingQuantity}</strong>
                     </p>
-                    <button onClick={() => shareProduct('facebook')}>Chia sẻ Facebook</button>
+
+
+
+
+
 
                     <div className={styles.quantityBox}>
                         <span>Số lượng:</span>

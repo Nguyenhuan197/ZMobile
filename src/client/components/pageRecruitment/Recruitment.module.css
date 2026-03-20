@@ -20,6 +20,17 @@
     text-transform: uppercase;
     margin-bottom: 20px;
     border: 1px solid rgba(238, 77, 45, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.topBadge:hover {
+    background-color: #ee4d2d;
+    color: white;
+    border-color: #ee4d2d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(238, 77, 45, 0.2);
 }
 
 .mainTitle {
@@ -209,18 +220,43 @@
 }
 
 .inputGroup input,
+
 .inputGroup select {
     height: 58px;
-    /* To và rõ ràng */
-    padding: 0 20px;
+    width: 100%;
+    padding: 0 45px 0 20px;
+    /* Tăng padding-right lên 45px để tránh chữ đè lên mũi tên */
     border: 2px solid #edf2f7;
     border-radius: 16px;
     background: #f8fafc;
     font-size: 1.1rem;
-    /* Chữ to */
     color: #2d3748;
     transition: all 0.2s ease;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    outline: none;
+
+    /* 1. Xóa mũi tên mặc định của hệ thống */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* 2. Thêm mũi tên mới bằng SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234a5568' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+
+    /* 3. Căn chỉnh vị trí: cách lề phải 18px và nằm chính giữa dọc (center) */
+    background-position: calc(100% - 18px) center;
+    background-size: 14px;
+    /* Kích thước mũi tên */
 }
+
+/* Hiệu ứng khi focus để trông chuyên nghiệp hơn */
+.inputGroup select:focus {
+    border-color: #ee4d2d;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.1);
+}
+
 
 /* Fix lỗi zoom trên iPhone */
 @media screen and (max-width: 768px) {
@@ -238,6 +274,8 @@
     outline: none;
     box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.15);
 }
+
+
 
 .row {
     display: grid;
