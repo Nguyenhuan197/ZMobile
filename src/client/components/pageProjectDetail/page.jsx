@@ -100,6 +100,16 @@ export default function ProductDetail() {
                 <meta property="zalo:title" content={product.name} />
                 <meta property="zalo:description" content={product.describe?.substring(0, 150)} />
                 <meta property="zalo:image" content={product.img?.secure_url} />
+
+                {/* Script báo hiệu cho Prerender.io - Đã sửa lỗi cú pháp */}
+                <script type="text/javascript">
+                    {`
+            window.prerenderReady = false;
+            if (${!!product}) {
+                window.prerenderReady = true;
+            }
+        `}
+                </script>
             </Helmet>
 
 
