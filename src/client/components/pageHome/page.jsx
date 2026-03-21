@@ -11,7 +11,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 export default function ProjectHome() {
-    const HTTP = import.meta.env.VITE_API_URL;
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const { USER } = useContext(ThemeContext);
     const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
@@ -28,9 +27,10 @@ export default function ProjectHome() {
     return (
         <>
             <Banner data={dataAdvertisement} />
-            <FlashSaleProduct dataProducts={dataSale} />
+
 
             <div className={styles.container}>
+                <FlashSaleProduct dataProducts={dataSale} />
 
                 {
                     dataProducts.data.length > 0 &&

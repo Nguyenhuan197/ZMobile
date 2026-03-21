@@ -19,7 +19,6 @@ export default function ListRecruitmentAdminComponent() {
     const [searchTerm, setSearchTerm] = useState("");
 
 
-
     const loaddingData = async () => {
         if (!USER?._id) return;
         setIsLoading(true);
@@ -125,6 +124,7 @@ export default function ListRecruitmentAdminComponent() {
                                             <th>Tuổi</th>
                                             <th>Số điện thoại</th>
                                             <th>Thành phố</th>
+                                            <th>Thời gian ứng tuyển</th>
                                             <th>Trạng thái</th>
                                             <th style={{ textAlign: 'center', width: '300px' }}>Thao tác</th>
                                         </tr>
@@ -151,6 +151,13 @@ export default function ListRecruitmentAdminComponent() {
                                                             {item.city}
                                                         </div>
                                                     </td>
+
+                                                    <td>
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                                            {new Date(item.date).toLocaleString('vi-VN')}
+                                                        </div>
+                                                    </td>
+
                                                     <td>
                                                         <span className={item.status ? styles.statusActive : styles.statusInactive}>
                                                             {item.status ? "Đã duyệt" : "Mới đăng ký"}

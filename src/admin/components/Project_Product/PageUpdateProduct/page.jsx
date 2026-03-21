@@ -8,15 +8,10 @@ import { ShowToast, ToastType } from "../../../../utils/toast";
 import UiLoadingComponent from "../../../../components/loadingComponent";
 import { UpdateSevicesYES__JSON__ADMIN } from "../../../../services/updateApi";
 import { GetAPI_Authorization } from "../../../../services/getTockenAdmin";
+import { formatPrice } from "../../../../utils/formatPrice.JS";
 
-// Hàm format tiền tệ VNĐ
-const formatPrice = (price) => {
-    if (!price || isNaN(price)) return "0 ₫";
-    return new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    }).format(price);
-};
+
+
 
 export default function UpdateProductAdminComponent() {
     const { id } = useParams();
@@ -24,14 +19,8 @@ export default function UpdateProductAdminComponent() {
     const navigate = useNavigate();
     const USER = JSON.parse(localStorage.getItem('USER_INFO'));
     const [loading, setIsLoading] = useState(false);
-    const [productData, setProductData] = useState({
-        name: "",
-        price: "",
-        priceSale: 0,
-        describe: "",
-        remainingQuantity: "",
-        present: ""
-    });
+    const [productData, setProductData] = useState({ name: "", price: "", priceSale: 0, describe: "", remainingQuantity: "", present: "" });
+
 
     useEffect(() => {
         const fetchDetail = async () => {
@@ -65,7 +54,6 @@ export default function UpdateProductAdminComponent() {
     };
 
     const handleUpdate = async () => {
-        // Validate đơn giản trước khi gửi
         if (Number(productData.priceSale) >= Number(productData.price)) {
             return ShowToast("Số tiền giảm không thể lớn hơn giá gốc!", ToastType.error);
         }

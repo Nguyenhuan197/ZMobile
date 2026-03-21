@@ -103,9 +103,6 @@ export default function AddNewProductAdminComponent() {
 
 
 
-
-
-
     const removeImage = (index) => {
         const newImages = [...images];
         URL.revokeObjectURL(newImages[index].preview);
