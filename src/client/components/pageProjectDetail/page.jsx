@@ -33,9 +33,6 @@ export default function ProductDetail() {
     }, [product]);
 
 
-    // save 
-
-
     const shareProduct = (platform) => {
         const productUrl = window.location.href;
         const title = encodeURIComponent(product?.name || "Sản phẩm cực hot tại Z Mobile!");
@@ -67,6 +64,7 @@ export default function ProductDetail() {
             ShowToast('Đăng nhập để tiếp tục mua hàng', ToastType.info);
             return navigate('/login');
         }
+
         handleAddToCart(name, price, quantity, activeImg, id);
     };
 
