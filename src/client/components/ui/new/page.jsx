@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./newsSection.module.css";
 
 export default function NewsSection({ data }) {
-
     // Nếu chưa có data thì không render
     if (!data || !data.data || data.data.length === 0) return null;
 

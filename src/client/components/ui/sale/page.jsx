@@ -4,8 +4,11 @@ import styles from "./flashSaleProduct.module.css";
 import fireIcon from "../../../../assets/lửa.gif";
 import { formatPrice } from '../../../../utils/formatPrice.JS';
 
+
+
 export default function FlashSaleProduct({ dataProducts }) {
-    const [timeLeft, setTimeLeft] = useState(58.1 * 60); // 70 phút tính bằng giây
+    const [timeLeft, setTimeLeft] = useState(98.1 * 60); // 70 phút tính bằng giây
+
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -13,6 +16,7 @@ export default function FlashSaleProduct({ dataProducts }) {
         }, 1000);
         return () => clearInterval(timer);
     }, []);
+
 
     const formatTime = (seconds) => {
         const h = Math.floor(seconds / 3600);
@@ -48,6 +52,7 @@ export default function FlashSaleProduct({ dataProducts }) {
                         <span className={styles.timeBox}>{time.s}</span>
                     </div>
                 </div>
+
                 {/* <Link to="#" className={styles.viewAll}>Xem tất cả {'>'}</Link> */}
             </div>
 
@@ -96,6 +101,8 @@ export default function FlashSaleProduct({ dataProducts }) {
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </Link>
                     );

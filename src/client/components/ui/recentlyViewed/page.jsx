@@ -1,5 +1,3 @@
-
-
 import styles from "./recentlyViewed.module.css";
 
 const products = [

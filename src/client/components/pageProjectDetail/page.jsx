@@ -33,6 +33,8 @@ export default function ProductDetail() {
     }, [product]);
 
 
+    // save 
+
 
     const shareProduct = (platform) => {
         const productUrl = window.location.href;
@@ -42,10 +44,8 @@ export default function ProductDetail() {
         let shareUrl = "";
 
         if (platform === "facebook") {
-            // Facebook chủ yếu dựa vào link, thẻ meta sẽ quyết định ảnh
             shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`;
         } else if (platform === "zalo") {
-            // Zalo hỗ trợ truyền thêm tiêu đề và mô tả trong một số trường hợp
             shareUrl = `https://sp.zalo.me/share_inline?url=${encodeURIComponent(productUrl)}&title=${title}&description=${description}`;
         }
 
@@ -67,7 +67,6 @@ export default function ProductDetail() {
             ShowToast('Đăng nhập để tiếp tục mua hàng', ToastType.info);
             return navigate('/login');
         }
-
         handleAddToCart(name, price, quantity, activeImg, id);
     };
 

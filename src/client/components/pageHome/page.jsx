@@ -7,27 +7,26 @@ import useSWR from "swr";
 import Banner from "../ui/banner/page";
 import FlashSaleProduct from "../ui/sale/page";
 import { formatPrice } from "../../../utils/formatPrice.JS";
+import NewsSection from "../ui/new/page";
+import RecentlyViewed from "../ui/recentlyViewed/page";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
 export default function ProjectHome() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
-    const { USER } = useContext(ThemeContext);
     const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
     const { data: dataAccessory, isLoadingAccessory } = useSWR(`${apiUrl}/api/product/view-product-accessory?status=true`, fetcher);
     const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
     const { data: dataNews, isLoadingNews } = useSWR(`${apiUrl}/api/news/view`, fetcher);
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
-
-
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
+
 
 
     return (
         <>
             <Banner data={dataAdvertisement} />
-
 
             <div className={styles.container}>
                 <FlashSaleProduct dataProducts={dataSale} />
@@ -113,11 +112,9 @@ export default function ProjectHome() {
                 </section>
 
 
-
                 {/* <NewsSection data={dataNews} /> */}
 
                 {/* <RecentlyViewed /> */}
-
 
             </div>
         </>
