@@ -37,7 +37,6 @@ export default function ProductDetail() {
         const productUrl = window.location.href;
         const title = encodeURIComponent(product?.name || "Sản phẩm cực hot tại Z Mobile!");
         const description = encodeURIComponent(product?.describe?.substring(0, 100) || "");
-
         let shareUrl = "";
 
         if (platform === "facebook") {

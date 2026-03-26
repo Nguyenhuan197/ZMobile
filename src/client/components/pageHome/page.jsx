@@ -1,14 +1,10 @@
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import UiLoadingComponent from '../../../components/loadingComponent';
-import { ThemeContext } from "../../../context/useThemeContext";
 import useSWR from "swr";
 import Banner from "../ui/banner/page";
 import FlashSaleProduct from "../ui/sale/page";
 import { formatPrice } from "../../../utils/formatPrice.JS";
-import NewsSection from "../ui/new/page";
-import RecentlyViewed from "../ui/recentlyViewed/page";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 
@@ -21,7 +17,6 @@ export default function ProjectHome() {
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
-
 
 
     return (
