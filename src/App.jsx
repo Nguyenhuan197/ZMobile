@@ -34,6 +34,7 @@ import Maintenance from "./client/components/ui/sytems_Stop/page";
 import Recruitment_waitingListAdmin from "./admin/page/Recruitment_waitingList";
 import Recruitment_EmployeeListAdmin from "./admin/page/Recruitment_employeeList";
 import ListOrderAdmin from "./admin/page/OrdersAll";
+import UpdateCategoryAdmin from "./admin/page/UpdateCategory";
 
 
 
@@ -105,6 +106,7 @@ function App() {
 
           {/* Category */}
           <Route path="/admin-zmobile-2026/category/list" element={<CategoryAdmin />} />
+          <Route path="/admin-zmobile-2026/category/update/:id" element={<UpdateCategoryAdmin />} />
           <Route path="/admin-zmobile-2026/category/add" element={<AddNewCategoryAdmin />} />
 
           {/* users */}

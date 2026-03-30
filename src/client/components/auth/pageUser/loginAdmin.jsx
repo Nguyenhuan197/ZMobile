@@ -47,6 +47,7 @@ export default function AdminLoginComponent() {
 
         } else {
             ShowToast(result.message_vn, ToastType.info);
+            setLoading(false);
         }
     };
 
