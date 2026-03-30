@@ -146,7 +146,7 @@ export default function AdminMenu() {
                             {openMenu === "users" && (
                                 <ul className={styles.submenu}>
                                     <li><NavLink to="/admin-zmobile-2026/users/list">Danh sách người dùng</NavLink></li>
-
+                                    <li><NavLink to="/admin-zmobile-2026/users/contact-support">Hỗ trợ liên hệ</NavLink></li>
                                 </ul>
                             )}
                         </li>

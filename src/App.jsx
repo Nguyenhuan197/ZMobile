@@ -35,6 +35,7 @@ import Recruitment_waitingListAdmin from "./admin/page/Recruitment_waitingList";
 import Recruitment_EmployeeListAdmin from "./admin/page/Recruitment_employeeList";
 import ListOrderAdmin from "./admin/page/OrdersAll";
 import UpdateCategoryAdmin from "./admin/page/UpdateCategory";
+import ContactSupport from "./admin/page/ContactSupport";
 
 
 
@@ -111,6 +112,8 @@ function App() {
 
           {/* users */}
           <Route path="/admin-zmobile-2026/users/list" element={<ListUserAdmin />} />
+          <Route path="/admin-zmobile-2026/users/contact-support" element={<ContactSupport />} />
+
 
           {/* Hệ thống */}
           <Route path="/admin-zmobile-2026/system/settings" element={<SettingAdmin />} />
