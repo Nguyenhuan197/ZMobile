@@ -7,6 +7,7 @@ import { ThemeContext } from '../../../../context/useThemeContext';
 import { Eye, EyeOff } from "lucide-react";
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 
+
 function LoginForm() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const KEY_NAME_USER = import.meta.env.VITE_KEY_NAME_USER;
@@ -16,7 +17,7 @@ function LoginForm() {
     const navigate = useNavigate();
     const { reloading } = useContext(ThemeContext);
 
-    // Xử lý đăng nhập thông thường (Email & Password)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
