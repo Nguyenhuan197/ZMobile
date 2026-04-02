@@ -96,6 +96,8 @@
     transform: translate(-50%, -50%);
     width: 80%;
     object-fit: contain;
+    margin-top: 20px;
+    border-radius: 4px;
 }
 
 .categoryBadge {
@@ -196,4 +198,61 @@
     padding: 50px;
     color: #999;
     font-style: italic;
+}
+
+
+/* phân trang */
+
+/* Container chính */
+.paginationContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 30px 0;
+}
+
+/* Style chung cho tất cả nút */
+.pageButton,
+.navButton {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    color: #333;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+/* Hiệu ứng khi di chuột qua */
+.pageButton:hover,
+.navButton:hover {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: #f0f7ff;
+}
+
+/* Trạng thái trang đang được chọn (Active) */
+.active {
+    background-color: tomato !important;
+    color: #ffffff !important;
+}
+
+/* Style cho các con số nằm giữa */
+.pageNumbers {
+    display: flex;
+    gap: 8px;
+}
+
+/* Nút điều hướng (<< >>) có thể cho font size to hơn chút */
+.navButton {
+    font-size: 1.2rem;
+    background-color: #f8f9fa;
 }

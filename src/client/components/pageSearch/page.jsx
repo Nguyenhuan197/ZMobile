@@ -9,26 +9,28 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ProductSearchComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
-    const [allProducts, setAllProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const { data: dataProducts, isLoading, error, mutate } = useSWR(
+    const [pageProduct, setPageProduct] = useState(1);
+    const limit = 5;
+
+
+    const { data: dataProducts, isLoading, error } = useSWR(
         searchTerm.trim() === ''
-            ? `${apiUrl}/api/product/view-all`
+            ? `${apiUrl}/api/product/view-all?limit=${limit}&page=${pageProduct}`
             : `${apiUrl}/api/product/search-Product?keySearch=${searchTerm}`
         , fetcher
     );
 
-    useEffect(() => {
-        const loading = () => {
-            mutate();
-            if (dataProducts?.data) {
-                setAllProducts(dataProducts?.data);
-            }
-        }
+    const products = dataProducts?.data || [];
+    const totalPages = dataProducts?.pagination?.totalPages || 1;
 
-        loading();
+    const handleNext = () => {
+        if (pageProduct < totalPages) setPageProduct(prev => prev + 1);
+    };
 
-    }, [searchTerm, dataProducts]);
+    const handlePrev = () => {
+        if (pageProduct > 1) setPageProduct(prev => prev - 1);
+    };
 
 
     if (error) return <div>Có lỗi xảy ra...</div>;
@@ -49,16 +51,19 @@ export default function ProductSearchComponent() {
                     />
                 </div>
 
-                <p className={styles.resultCount}>
-                    Tìm thấy <strong>{allProducts.length}</strong> sản phẩm
-                </p>
+                {
+                    searchTerm.trim() !== "" &&
+                    <p className={styles.resultCount}>
+                        Tìm thấy <strong>{products.length}</strong> sản phẩm
+                    </p>
+                }
             </div>
 
 
             {
                 isLoading ? <UiLoadingComponent /> :
                     <div className={styles.productGrid}>
-                        {allProducts.map(product => (
+                        {products.map(product => (
                             <Link to={`/product/${product._id}`}
                                 key={product._id}
                                 className={styles.productCard}
@@ -69,9 +74,6 @@ export default function ProductSearchComponent() {
                                         alt={product.name}
                                         className={styles.productImage}
                                     />
-                                    <span className={styles.categoryBadge}>
-                                        Điện thoại
-                                    </span>
                                 </div>
 
                                 <div className={styles.productInfo}>
@@ -81,9 +83,6 @@ export default function ProductSearchComponent() {
                                     <p className={styles.productPrice}>
                                         {product.price?.toLocaleString()}đ
                                     </p>
-                                    <button className={styles.detailBtn}>
-                                        Xem chi tiết
-                                    </button>
                                 </div>
                             </Link>
                         ))}
@@ -92,12 +91,54 @@ export default function ProductSearchComponent() {
 
 
             {
-                allProducts.length === 0 && (
+                products.length === 0 && searchTerm.trim() !== "" && (
                     <div className={styles.noResult}>
                         <p>Không tìm thấy sản phẩm phù hợp với từ khóa của bạn.</p>
                     </div>
                 )
             }
+
+
+            <div className={styles.paginationContainer}>
+                <button
+                    className={styles.navButton}
+                    onClick={handlePrev}
+                    disabled={pageProduct <= 1}
+                >
+                    &laquo;
+                </button>
+
+                <div className={styles.pageNumbers}>
+                    {pageProduct > 1 && (
+                        <button onClick={handlePrev} className={styles.pageButton}>
+                            {pageProduct - 1}
+                        </button>
+                    )}
+
+                    <button className={`${styles.pageButton} ${styles.active}`}>
+                        {pageProduct}
+                    </button>
+
+                    {pageProduct < totalPages && (
+                        <button onClick={handleNext} className={styles.pageButton}>
+                            {pageProduct + 1}
+                        </button>
+                    )}
+                </div>
+
+                <button
+                    className={styles.navButton}
+                    onClick={handleNext}
+                    disabled={pageProduct >= totalPages}
+                >
+                    &raquo;
+                </button>
+            </div>
+
+
         </div >
+
+
+
     );
 }
