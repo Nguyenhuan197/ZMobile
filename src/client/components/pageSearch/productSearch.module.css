@@ -127,9 +127,13 @@
     font-weight: 600;
     color: #2d3436;
     margin-bottom: 10px;
-    height: 40px;
-    /* Giới hạn 2 dòng tiêu đề */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    max-height: 2.8em;
 }
 
 .productPrice {
