@@ -69,9 +69,6 @@ export default function FlashSaleProduct({ dataProducts }) {
 
                     return (
                         <Link to={`/product/${item._id}`} key={item._id} className={styles.card}>
-                            {/* {percent > 0 && <div className={styles.discountBadge}>-{percent}%</div>} */}
-
-
                             <div className={styles.imageBox}>
                                 <img src={item.img?.secure_url} alt={item.name} loading="lazy" />
                             </div>
