@@ -150,10 +150,14 @@ export default function UserComponent() {
                                             <div className={styles.productContent}>
                                                 <h4>{item.id_product.name}</h4>
                                                 <p className={styles.variant}>
-                                                    Phân loại: {item.variant || "Mặc định"}
+                                                    {item.statusOrder === 'Awaiting confirmation' && 'Đăng chờ xác nhận'}
+                                                    {item.statusOrder === 'Processing' && 'Đăng xử lý đơn hàng'}
+                                                    {item.statusOrder === 'Shipping' && 'Đăng vận chuyển'}
+                                                    {item.statusOrder === 'Delivered' && 'Đã giao hàng'}
+                                                    {item.statusOrder === 'Cancelled' && 'Đã huỷ đơn hàng'}
                                                 </p>
                                                 <div className={styles.qtyPrice}>
-                                                    <span>x{item.quantity}</span>
+                                                    <span>Số lượng x{item.quantity}</span>
                                                     <span className={styles.price}>
                                                         {item.priceAtPurchase.toLocaleString()}₫
                                                     </span>
@@ -203,10 +207,6 @@ export default function UserComponent() {
                                                 <div className={styles.orderCode}>
                                                     Mã đơn: {order._id}
                                                 </div>
-
-                                                <div className={styles.statusBadge}>
-                                                    {order.statusOrder}
-                                                </div>
                                             </div>
 
                                             <div className={styles.orderMiddle}>
@@ -222,7 +222,6 @@ export default function UserComponent() {
                                                     {order.totalPrice.toLocaleString()}₫
                                                 </div>
                                             </div>
-
                                         </div>
 
                                     ))}
