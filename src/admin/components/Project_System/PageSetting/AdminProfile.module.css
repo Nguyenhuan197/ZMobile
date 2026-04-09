@@ -24,7 +24,6 @@
 .profileCard {
     background: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     border: 1px solid #e2e8f0;
 }
@@ -79,12 +78,6 @@
     border-radius: 12px;
     border: 1px solid #edf2f7;
     transition: all 0.3s ease;
-}
-
-.infoBox:hover {
-    background: #fff;
-    border-color: #3b82f6;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
 }
 
 .infoBox label {
@@ -182,11 +175,6 @@ input:checked+.slider:before {
     transition: 0.3s;
     font-size: 18px;
     text-decoration: none;
-}
-
-.btnEdit:hover {
-    background: #f8fafc;
-    transform: translateY(-2px);
 }
 
 @media (max-width: 1024px) {

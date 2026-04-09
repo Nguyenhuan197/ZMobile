@@ -18,6 +18,14 @@ export default function ProjectHome() {
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
+    const dataOurSolution = [
+        { name: 'Viettel Post', img: 'src/assets/unnamed.png' },
+        { name: 'J&T', img: 'src/assets/fff869acb13c6d17372da8ba1d7800c2_icon.png' },
+        { name: 'GHN', img: 'src/assets/qz94eJDcTCdGJkQVsmdFBqCSpyvOZpLW_1720079830____eca1434e640fb3ad8ba86524bbe03c2c.jpg' },
+        { name: 'MB Bank', img: 'src/assets/mbbank-logo-5.png' },
+        { name: 'GHTK', img: 'src/assets/Om87xjP3QBHy94raCDKG8cIY3RRkrJZL_1749021703____7c0e1052051a711a12f9b1ffbb96a878.webp' },
+    ];
+
 
     return (
         <>
@@ -48,7 +56,7 @@ export default function ProjectHome() {
                                         </p>
 
                                         <p className={styles.sold}>
-                                            Đã bán {item.remainingQuantity}
+                                            Đã bán {item.sold}
                                         </p>
                                     </div>
                                 </Link>
@@ -82,7 +90,7 @@ export default function ProjectHome() {
                                         </p>
 
                                         <p className={styles.sold}>
-                                            Đã bán {item.remainingQuantity}
+                                            Đã bán {item.sold}
                                         </p>
                                     </div>
                                 </Link>
@@ -101,6 +109,20 @@ export default function ProjectHome() {
                                     <img src={item.img.secure_url} alt={item.name} />
                                     <span>{item.name}</span>
                                 </Link>
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <section style={{ marginTop: 40 }}>
+                    <h2 className={styles.sectionTitle}>Đối tác của chúng tôi</h2>
+                    <div className={styles.gridBranch}>
+                        {
+                            dataOurSolution.map((item, key) => (
+                                <div key={key} className={styles.logoOurSolution}>
+                                    <img src={item.img} alt={item.name} />
+                                    <span>{item.name}</span>
+                                </div>
                             ))
                         }
                     </div>

@@ -64,7 +64,7 @@ export default function FlashSaleProduct({ dataProducts }) {
                     const percent = hasSale ? Math.round((discount / item.price) * 100) : 0;
 
                     // Tính % dựa trên mốc 100 đơn hàng
-                    const soldCount = item.remainingQuantity || 0;
+                    const soldCount = item.sold || 0;
                     const soldPercentage = Math.min((soldCount / 100) * 100, 100);
 
                     return (

@@ -14,7 +14,6 @@ export default function Home() {
             <ProjectHome />
             <Footer />
             <ContactQuickly />
-
         </div>
     )
 

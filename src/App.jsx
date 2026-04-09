@@ -36,6 +36,7 @@ import Recruitment_EmployeeListAdmin from "./admin/page/Recruitment_employeeList
 import ListOrderAdmin from "./admin/page/OrdersAll";
 import UpdateCategoryAdmin from "./admin/page/UpdateCategory";
 import ContactSupport from "./admin/page/ContactSupport";
+import SearchOrderAdmin from "./admin/page/SearchOrder";
 
 
 
@@ -125,6 +126,8 @@ function App() {
 
           {/* Danh sách đơn hàng  */}
           <Route path="/admin-zmobile-2026/orders/all" element={<ListOrderAdmin />} />
+          <Route path="/admin-zmobile-2026/orders/search-order" element={<SearchOrderAdmin />} />
+
 
 
         </Route>

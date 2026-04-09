@@ -67,7 +67,7 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.contactItem}>
-                        <FaPhoneAlt /> <span>Hotline: {DataAdmin?.data[0].phone}</span>
+                        <FaPhoneAlt /> <span>{DataAdmin?.data[0].phone}</span>
                     </div>
 
                     <div className={styles.contactItem}>

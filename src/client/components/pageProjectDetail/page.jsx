@@ -163,8 +163,6 @@ export default function ProductDetail() {
 
                 {/* RIGHT */}
                 <div className={styles.right}>
-
-
                     <p className={styles.brandName}>
                         Thương hiệu {product.id_Trademark?.name}
                     </p>
@@ -177,14 +175,7 @@ export default function ProductDetail() {
                         </span>
                     </div>
 
-                    <p className={styles.stock}>
-                        Đã bán : <strong>{product.remainingQuantity}</strong>
-                    </p>
-
-
-
-
-
+                    <p className={styles.stock}>Đã bán : <strong>{product.sold}</strong></p>
 
                     <div className={styles.quantityBox}>
                         <span>Số lượng:</span>
@@ -208,6 +199,7 @@ export default function ProductDetail() {
                         >
                             🛒 Thêm vào giỏ hàng
                         </button>
+
                         <button
                             className={styles.buyNow}
                             onClick={() => handleBuyNow(
@@ -223,6 +215,10 @@ export default function ProductDetail() {
                     </div>
 
                     <div className={styles.descBox}>
+                        <span style={{ fontSize: '17px', marginBottom: '30px' }}>
+                            Tồn kho <strong>{product.remainingQuantity || 'Đăng cập nhật'} </strong><br />
+                            Phụ kiện đi kèm <strong> {product.present || 'Đăng cập nhật'}</strong>
+                        </span>
                         <h3>Mô tả sản phẩm</h3>
                         <p>{product.describe}</p>
                     </div>

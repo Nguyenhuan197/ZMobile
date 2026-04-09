@@ -1,10 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./userComponent.module.css";
-import {
-    FaUserCircle, FaClipboardList, FaSearchLocation,
-    FaUserEdit, FaLock, FaSignOutAlt, FaShoppingBag,
-    FaCheckCircle, FaTimesCircle, FaChevronLeft, FaTruck
-} from "react-icons/fa";
+import { FaUserCircle, FaClipboardList, FaSearchLocation, FaUserEdit, FaLock, FaSignOutAlt, FaShoppingBag, FaCheckCircle, FaTimesCircle, FaChevronLeft, FaTruck } from "react-icons/fa";
 import { ThemeContext } from "../../../context/useThemeContext";
 import UiLoadingComponent from "../../../components/loadingComponent";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,13 +21,13 @@ export default function UserComponent() {
 
     // API 1: Lấy danh sách đơn hàng
     const { data: dataListOrder, isLoading: isLoadingList } = useSWR(
-        USER ? `${apiUrl}/api/order/Admin_viewDetail/${DataUser?.data?._id}` : null,
+        USER ? `${apiUrl}/api/order/listOrder-UserOne/${DataUser?.data?._id}` : null,
         fetcher
     );
 
     // API 2: Lấy chi tiết các sản phẩm trong đơn hàng (Dữ liệu bạn vừa gửi)
     const { data: dataListOrderItem, isLoading: isLoadingDetail } = useSWR(
-        id_Item === '#' ? null : `${apiUrl}/api/order/Admin_viewDetail_itemOrder/${id_Item}`,
+        id_Item === '#' ? null : `${apiUrl}/api/order/viewDetail_itemOrder/${id_Item}`,
         fetcher
     );
 
@@ -63,6 +59,8 @@ export default function UserComponent() {
 
     if (!USER) return navigate('/login');
     if (loading) return <UiLoadingComponent />;
+
+
 
     const renderMainContent = () => {
         switch (activeTab) {

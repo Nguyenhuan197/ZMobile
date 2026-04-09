@@ -103,12 +103,10 @@ export default function AdminMenu() {
                             </div>
                             {openMenu === "orders" && (
                                 <ul className={styles.submenu}>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/all">Tất cả đơn hàng</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/pending">Đơn chờ xác nhận</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/shipping">Đơn đang vận chuyển</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/success">Đơn giao thành công</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/stats-day">Thống kê theo ngày</NavLink></li>
-                                    <li><NavLink to="/admin-zmobile-2026/orders/stats-month">Thống kê theo tháng</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/orders/all">Quản lý đơn hàng</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/orders/search-order">Tìm kiếm đơn hàng</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/orders/stats-day">Thống kê đơn theo ngày</NavLink></li>
+                                    <li><NavLink to="/admin-zmobile-2026/orders/stats-month">Thống kê đơn theo tháng</NavLink></li>
                                 </ul>
                             )}
                         </li>

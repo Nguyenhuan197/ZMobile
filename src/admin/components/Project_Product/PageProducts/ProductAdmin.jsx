@@ -97,8 +97,6 @@ export default function ProductAdminComponent() {
     };
 
 
-
-
     return (
         <>
             <AdminHeader />
