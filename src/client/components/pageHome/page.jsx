@@ -19,8 +19,8 @@ export default function ProjectHome() {
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
     const dataOurSolution = [
-        { name: 'Viettel Post', img: 'src/assets/unnamed.png' },
-        { name: 'J&T', img: 'src/assets/fff869acb13c6d17372da8ba1d7800c2_icon.png' },
+        { name: 'Viettel Post', img: 'https://z-mobile-virid.vercel.app/assets/unnamed.png' },
+        { name: 'J&T', img: 'https://z-mobile-virid.vercel.app/fff869acb13c6d17372da8ba1d7800c2_icon.png' },
         { name: 'GHN', img: 'src/assets/qz94eJDcTCdGJkQVsmdFBqCSpyvOZpLW_1720079830____eca1434e640fb3ad8ba86524bbe03c2c.jpg' },
         { name: 'MB Bank', img: 'src/assets/mbbank-logo-5.png' },
         { name: 'GHTK', img: 'src/assets/Om87xjP3QBHy94raCDKG8cIY3RRkrJZL_1749021703____7c0e1052051a711a12f9b1ffbb96a878.webp' },
