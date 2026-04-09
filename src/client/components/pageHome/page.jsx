@@ -7,6 +7,12 @@ import FlashSaleProduct from "../ui/sale/page";
 import { formatPrice } from "../../../utils/formatPrice.JS";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
+import ViettelPost from "../../../assets/unnamed.png";
+import JVT from "../../../assets/fff869acb13c6d17372da8ba1d7800c2_icon.png";
+import GHN from "../../../assets/qz94eJDcTCdGJkQVsmdFBqCSpyvOZpLW_1720079830____eca1434e640fb3ad8ba86524bbe03c2c.jpg";
+import MB from "../../../assets/mbbank-logo-5.png";
+import GHTK from "../../../assets/Om87xjP3QBHy94raCDKG8cIY3RRkrJZL_1749021703____7c0e1052051a711a12f9b1ffbb96a878.webp";
+
 
 export default function ProjectHome() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
@@ -18,14 +24,14 @@ export default function ProjectHome() {
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
-    const dataOurSolution = [
-        { name: 'Viettel Post', img: 'https://z-mobile-virid.vercel.app/assets/unnamed.png' },
-        { name: 'J&T', img: 'https://z-mobile-virid.vercel.app/fff869acb13c6d17372da8ba1d7800c2_icon.png' },
-        { name: 'GHN', img: 'src/assets/qz94eJDcTCdGJkQVsmdFBqCSpyvOZpLW_1720079830____eca1434e640fb3ad8ba86524bbe03c2c.jpg' },
-        { name: 'MB Bank', img: 'src/assets/mbbank-logo-5.png' },
-        { name: 'GHTK', img: 'src/assets/Om87xjP3QBHy94raCDKG8cIY3RRkrJZL_1749021703____7c0e1052051a711a12f9b1ffbb96a878.webp' },
-    ];
 
+    const dataOurSolution = [
+        { name: 'Viettel Post', img: ViettelPost },
+        { name: 'J&T', img: JVT },
+        { name: 'GHN', img: GHN },
+        { name: 'MB Bank', img: MB },
+        { name: 'GHTK', img: GHTK },
+    ];
 
     return (
         <>
