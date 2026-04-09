@@ -9,4 +9,4 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ======
 # ZMobile
 Project Z Mobile - React Native
-Update V2 26.04.04.01.06
+Update V2 26.04.09.22.08
