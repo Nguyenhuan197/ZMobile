@@ -19,10 +19,10 @@ export default function ProjectHome() {
     const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
     const { data: dataAccessory, isLoadingAccessory } = useSWR(`${apiUrl}/api/product/view-product-accessory?status=true`, fetcher);
     const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
-    const { data: dataNews, isLoadingNews } = useSWR(`${apiUrl}/api/news/view`, fetcher);
+    // const { data: dataNews, isLoadingNews } = useSWR(`${apiUrl}/api/news/view`, fetcher);
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
-    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingNews || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
+    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
 
     const dataOurSolution = [
