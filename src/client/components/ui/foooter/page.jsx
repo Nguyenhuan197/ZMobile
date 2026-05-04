@@ -4,10 +4,11 @@ import { FaFacebookF, FaTiktok, FaYoutube, FaPhoneAlt, FaRegComments, FaGlobe, F
 import { ThemeContext } from "../../../../context/useThemeContext";
 import { useContext } from "react";
 import { IoArrowForwardOutline } from "react-icons/io5";
+import logoBocongthuong from "../../../../assets/bo-cong-thuong.png";
+
 
 export default function Footer() {
     const { DataAdmin, isLoading_Admin } = useContext(ThemeContext);
-    const logoBocongthuong = 'src/assets/bo-cong-thuong.png';
     if (isLoading_Admin) return null;
     const admin = DataAdmin?.data[0];
 
