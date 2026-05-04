@@ -89,9 +89,8 @@ export default function Footer() {
 
                     <div className={styles.bottom}>
                         <p>Bản quyền © {DataAdmin?.data[0].nameLogo} -  2024 - {new Date().getFullYear()}   </p>
-                        <p>Chịu trách nghiệm - {admin?.nameAdmin} </p>
-                        <p style={{ fontSize: 13 }}>Version 26.05.04 - Developer Huan IT</p>
-
+                        <p>{admin?.nameAdmin} </p>
+                        <p style={{ fontSize: 13 }}>Version 26.05.04</p>
                     </div>
                 </div>
             </div>
