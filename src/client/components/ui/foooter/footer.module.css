@@ -2,7 +2,6 @@
     background: #111111;
     /* color: #888; */
     color: #b6b4b4;
-
     padding: 40px 20px;
 }
 
@@ -138,8 +137,6 @@
 .bctBadge img {
     height: 170px;
     margin-top: 0px;
-    /* filter: grayscale(1); */
-    /* Làm logo trắng đen cho hợp tone */
     opacity: 0.7;
 }
 
@@ -154,7 +151,37 @@
 
 /* Responsive */
 @media (max-width: 600px) {
+    .utilityLinks p {
+        font-size: 16px
+    }
+
+    .rowLinks span {
+        font-size: 16px;
+    }
+
+    .language {
+        font-size: 16px;
+    }
+
+    /*  */
     .serviceButtons {
         flex-direction: column;
     }
+
+    .legalDetails p {
+        margin-bottom: 0px;
+        font-size: 16px;
+    }
+
+    .bottom p {
+        font-size: 16px;
+    }
+
+    .bctBadge img {
+        height: 170px;
+        margin-top: -20px;
+        opacity: 0.7;
+    }
+
+
 }

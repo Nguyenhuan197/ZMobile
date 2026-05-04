@@ -72,7 +72,6 @@ export default function Footer() {
                         <p>Email: {admin?.email}</p>
                         <p>Người đại diện: {admin?.nameAdmin}</p>
                         <p>Đối tác giao hàng: {admin?.partnerDelivery}</p>
-                        <p>Ngân hàng: MB Bank - NGUYEN DINH HUAN</p>
                         <p>Thời gian làm việc: {admin?.workingHours}</p>
                     </div>
 
@@ -89,8 +88,9 @@ export default function Footer() {
 
                     <div className={styles.bottom}>
                         <p>© {DataAdmin?.data[0].nameLogo}  2024 - {new Date().getFullYear()}  </p>
+                        <p>Version 26.05.04 - Developer Huan IT</p>
+
                     </div>
-                    <p>Version 26.05.04 - Developer Huan IT</p>
                 </div>
             </div>
         </footer>
