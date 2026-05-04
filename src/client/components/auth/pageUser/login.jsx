@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from "./user.module.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { ShowToast, ToastType } from '../../../../utils/toast';
@@ -16,6 +16,11 @@ function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { reloading } = useContext(ThemeContext);
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
 
     const handleSubmit = async (e) => {
@@ -77,6 +82,7 @@ function LoginForm() {
                     <div className={styles.inputGroup}>
                         <label className={styles.label}>Email</label>
                         <input
+                            ref={inputRef}
                             type="email"
                             placeholder="example@gmail.com"
                             value={formData.email}

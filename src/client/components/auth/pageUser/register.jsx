@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from "./user.module.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { ShowToast, ToastType } from '../../../../utils/toast';
@@ -16,6 +16,11 @@ function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { reloading } = useContext(ThemeContext);
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,6 +92,7 @@ function RegisterForm() {
                     <div className={styles.inputGroup}>
                         <label className={styles.label}>Họ và tên</label>
                         <input
+                            ref={inputRef}
                             type="text"
                             name="name"
                             placeholder="Nhập họ và tên..."

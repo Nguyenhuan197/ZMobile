@@ -1,13 +1,11 @@
 
-
+"use client"
 import styles from "./about.module.css";
 
 export default function ProjectAbout() {
     return (
         <div className={styles.aboutPage}>
             <div className={styles.container}>
-
-                {/* Banner */}
                 <div className={styles.banner}>
                     <h1>Về Z Mobile</h1>
                     <p>Đối tác công nghệ đáng tin cậy của bạn</p>

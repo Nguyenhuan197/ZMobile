@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./flashSaleProduct.module.css";
 import fireIcon from "../../../../assets/lửa.gif";
@@ -6,7 +6,10 @@ import { formatPrice } from '../../../../utils/formatPrice.JS';
 
 
 
-export default function FlashSaleProduct({ dataProducts }) {
+
+
+const FlashSaleProduct = React.memo(({ dataProducts }) => {
+    const products = useMemo(() => dataProducts?.data || [], [dataProducts]);
     const [timeLeft, setTimeLeft] = useState(98.1 * 60); // 70 phút tính bằng giây
 
 
@@ -33,7 +36,6 @@ export default function FlashSaleProduct({ dataProducts }) {
 
 
 
-    const products = dataProducts?.data || [];
     if (products.length === 0) return null;
 
     return (
@@ -107,4 +109,7 @@ export default function FlashSaleProduct({ dataProducts }) {
             </div>
         </section>
     );
-}
+});
+
+
+export default FlashSaleProduct;

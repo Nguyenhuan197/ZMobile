@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styles from "./banner.module.css";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../../utils/formatPrice.JS";
 
-export default function Banner({ data }) {
-    const [current, setCurrent] = useState(0);
-    if (!data || !data.data || data.data.length === 0) return null;
 
-    const slides = data.data;
+
+const Banner = React.memo(({ data }) => {
+    const slides = useMemo(() => data?.data || [], [data]);
+    const [current, setCurrent] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -27,8 +27,7 @@ export default function Banner({ data }) {
         );
     };
 
-
-
+    if (slides.length === 0) return null;
     const currentItem = slides[current];
     const newPrice = currentItem.price - (currentItem.priceSale || 0);
 
@@ -78,4 +77,6 @@ export default function Banner({ data }) {
             </div>
         </div>
     );
-}
+});
+
+export default Banner;

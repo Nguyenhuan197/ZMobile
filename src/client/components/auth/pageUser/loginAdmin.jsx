@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from "./admin.module.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { UpdateSevices } from '../../../../services/updateApi';
@@ -14,7 +14,12 @@ export default function AdminLoginComponent() {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-    const { reloading } = useContext(ThemeContext)
+    const { reloading } = useContext(ThemeContext);
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({
@@ -72,6 +77,7 @@ export default function AdminLoginComponent() {
                     <div className={styles.inputGroup}>
                         <label className={styles.label}>Tài khoản quản trị</label>
                         <input
+                            ref={inputRef}
                             type="email"
                             name="email"
                             placeholder="admin@system.com"
