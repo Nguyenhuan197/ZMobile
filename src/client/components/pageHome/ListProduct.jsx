@@ -22,15 +22,12 @@ const ListProduct = React.memo(({ data, dataCategory }) => {
                                 key={item._id}
                                 className={styles.card}
                             >
-                                <div className={styles.imageBox}>
-                                    <img src={`${item.img.secure_url}`} alt={item.img.secure_url} />
+                                <img src={`${item.img.secure_url}`} alt={item.name} />
+                                <div className={styles.blockName}>
+                                    <span>{item.name}</span>
                                 </div>
-
-                                <div className={styles.info}>
-                                    <p className={styles.name}>{item.name}</p>
-                                    <p className={styles.price}> {formatPrice(item.price)}</p>
-                                    <p className={styles.sold}> Đã bán {item.sold} </p>
-                                </div>
+                                <p>{formatPrice(item.price)}</p>
+                                <span className={styles.Sold}>Đã bán {item.sold}</span>
                             </Link>
                         ))}
                     </div>
@@ -41,5 +38,6 @@ const ListProduct = React.memo(({ data, dataCategory }) => {
 
     )
 });
+
 
 export default ListProduct;

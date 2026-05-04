@@ -5,12 +5,8 @@ import useSWR from "swr";
 import Banner from "../ui/banner/page";
 import FlashSaleProduct from "../ui/sale/page";
 const fetcher = (url) => fetch(url).then((res) => res.json());
-import ViettelPost from "../../../assets/unnamed.png";
-import JVT from "../../../assets/fff869acb13c6d17372da8ba1d7800c2_icon.png";
-import GHN from "../../../assets/qz94eJDcTCdGJkQVsmdFBqCSpyvOZpLW_1720079830____eca1434e640fb3ad8ba86524bbe03c2c.jpg";
-import GHTK from "../../../assets/Om87xjP3QBHy94raCDKG8cIY3RRkrJZL_1749021703____7c0e1052051a711a12f9b1ffbb96a878.webp";
-import MB from "../../../assets/mbbank-logo-5.png";
 import ListProduct from "./ListProduct";
+import OurPartnersComponent from "./OurPartners";
 
 
 export default function ProjectHome() {
@@ -22,13 +18,6 @@ export default function ProjectHome() {
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
     if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
-    const dataOurSolution = [
-        { name: 'Viettel Post', img: ViettelPost },
-        { name: 'J&T', img: JVT },
-        { name: 'GHN', img: GHN },
-        { name: 'MB Bank', img: MB },
-        { name: 'GHTK', img: GHTK },
-    ];
 
     return (
         <>
@@ -52,19 +41,9 @@ export default function ProjectHome() {
                     </div>
                 </section>
 
-                <section style={{ marginTop: 40 }}>
-                    <h2 className={styles.sectionTitle}>Đối tác của chúng tôi</h2>
-                    <div className={styles.gridBranch}>
-                        {
-                            dataOurSolution.map((item, key) => (
-                                <div key={key} className={styles.logoOurSolution}>
-                                    <img src={item.img} alt={item.name} />
-                                    <span>{item.name}</span>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </section>
+
+
+                {/* <OurPartnersComponent /> */}
 
 
                 {/* <NewsSection data={dataNews} /> */}

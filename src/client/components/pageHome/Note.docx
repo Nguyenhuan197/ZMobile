@@ -1,0 +1,88 @@
+
+
+// phần này nhé !
+.logoOurSolution {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logoOurSolution img {
+    width: 110px;
+    height: 90px;
+    border-radius: 20px;
+}
+
+.logoOurSolution span {
+    color: black;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+/* =================== RESPONSIVE =================== */
+
+/* Laptop nhỏ */
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Tablet ngang */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Tablet dọc */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .imageBox {
+        height: 180px;
+    }
+
+    .logoBranch img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    .logoBranch span {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .logoOurSolution {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .logoOurSolution img {
+        width: 80px;
+        height: 70px;
+        border-radius: 4px;
+    }
+
+}

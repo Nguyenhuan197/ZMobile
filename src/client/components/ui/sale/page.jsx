@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from "./flashSaleProduct.module.css";
 import fireIcon from "../../../../assets/lửa.gif";
 import { formatPrice } from '../../../../utils/formatPrice.JS';
-
+import stylesHome from "../../pageHome/home.module.css";
 
 
 
@@ -59,7 +59,7 @@ const FlashSaleProduct = React.memo(({ dataProducts }) => {
             </div>
 
 
-            <div className={styles.grid}>
+            <div className={stylesHome.grid}>
                 {products.map((item) => {
                     const hasSale = item.priceSale > 0;
                     const discount = item.price - item.priceSale;
@@ -70,39 +70,18 @@ const FlashSaleProduct = React.memo(({ dataProducts }) => {
                     const soldPercentage = Math.min((soldCount / 100) * 100, 100);
 
                     return (
-                        <Link to={`/product/${item._id}`} key={item._id} className={styles.card}>
-                            <div className={styles.imageBox}>
-                                <img src={item.img?.secure_url} alt={item.name} loading="lazy" />
+                        <Link to={`/product/${item._id}`} key={item._id} className={stylesHome.card}>
+
+                            <img src={`${item.img.secure_url}`} alt={item.name} />
+                            <div className={stylesHome.blockName}>
+                                <span>{item.name}</span>
                             </div>
-
-                            <div className={styles.info}>
-                                <h3 className={styles.name}>{item.name}</h3>
-
-                                <div className={styles.priceGroup}>
-                                    <span className={styles.currentPrice}>
-                                        {formatPrice(hasSale ? item.price - item.priceSale : item.price)}
-                                    </span>
-
-                                    {hasSale && (
-                                        <span className={styles.oldPrice}>{formatPrice(item.price)}</span>
-                                    )}
-                                </div>
-
-                                <div className={styles.soldStatus}>
-                                    <div className={styles.progressBar}>
-                                        <div
-                                            className={styles.progressFill}
-                                            style={{ width: `${soldPercentage}%` }}
-                                        ></div>
-                                        <div className={styles.soldText}>
-                                            <img src={fireIcon} alt="hot" className={styles.miniFire} />
-                                            Đã Bán {soldCount}
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                            <p>Sale còn:  {formatPrice(item.price)}</p>
+                            <div className={stylesHome.priceSale}>
+                                <span>{formatPrice(item.price + item.priceSale)}</span> <br />
+                                {/* Tiết kiệm {formatPrice(item.priceSale)} */}
                             </div>
+                            <span className={stylesHome.Sold}>Đã bán {item.sold}</span>
                         </Link>
                     );
                 })}

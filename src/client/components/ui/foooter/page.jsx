@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
-import { FaFacebookF, FaTiktok, FaYoutube, FaPhoneAlt, FaRegComments, FaGlobe, FaStore, FaHandshake } from "react-icons/fa";
+import { FaFacebookF, FaTiktok, FaYoutube, FaPhoneAlt, FaRegComments, FaGlobe, FaStore, FaHandshake, FaExclamationTriangle } from "react-icons/fa";
 import { ThemeContext } from "../../../../context/useThemeContext";
 import { useContext } from "react";
 import { IoArrowForwardOutline } from "react-icons/io5";
@@ -35,8 +35,9 @@ export default function Footer() {
                         <div className={styles.btnService}>
                             <FaRegComments /> <span>Trò chuyện trực tiếp</span>
                         </div>
+
                         <div className={styles.btnService}>
-                            <FaPhoneAlt /> <span>{admin?.phone}</span>
+                            <FaExclamationTriangle /> <span>Khiếu nại</span>
                         </div>
                     </div>
                 </div>
@@ -67,12 +68,12 @@ export default function Footer() {
                 <div className={styles.companyInfo}>
                     <div className={styles.legalDetails}>
                         <p className={styles.companyName}>{admin?.nameLogo.toUpperCase()} VIỆT NAM</p>
-                        <p>CS1 - Miền Bắc: {admin?.address}</p>
-                        <p>CS2 - Miền Nam: 200 Trần Thị Hè, Hiệp Thành, Q12, HCM</p>
-                        <p>Email: {admin?.email}</p>
-                        <p>Người đại diện: {admin?.nameAdmin}</p>
-                        <p>Đối tác giao hàng: {admin?.partnerDelivery}</p>
-                        <p>Thời gian làm việc: {admin?.workingHours}</p>
+                        <p>CS1 - {admin?.address}</p>
+                        <p>CS2 -  202 Trần Thị Hè Hiệp Thành Q12 HCM</p>
+                        <p>Email - {admin?.email}</p>
+                        <p>Liên hệ  - {admin?.phone}</p>
+                        <p>Đối tác giao hàng - {admin?.partnerDelivery}</p>
+                        <p>Thời gian làm việc - {admin?.workingHours}</p>
                     </div>
 
                     <div className={styles.bctBadge}>
@@ -87,8 +88,9 @@ export default function Footer() {
                     </Link>
 
                     <div className={styles.bottom}>
-                        <p>© {DataAdmin?.data[0].nameLogo}  2024 - {new Date().getFullYear()}  </p>
-                        <p>Version 26.05.04 - Developer Huan IT</p>
+                        <p>Bản quyền © {DataAdmin?.data[0].nameLogo} -  2024 - {new Date().getFullYear()}   </p>
+                        <p>Chịu trách nghiệm - {admin?.nameAdmin} </p>
+                        <p style={{ fontSize: 13 }}>Version 26.05.04 - Developer Huan IT</p>
 
                     </div>
                 </div>
