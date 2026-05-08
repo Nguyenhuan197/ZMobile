@@ -40,8 +40,8 @@
 }
 
 .blockName {
-    margin-left: 1%;
-    width: 98%;
+    margin-left: 4%;
+    width: 92%;
     height: 40px;
     margin-top: 5px;
 }
@@ -59,16 +59,16 @@
 }
 
 .card p {
-    width: 96%;
+    width: 92%;
     font-size: 15px;
     font-weight: bold;
     color: red;
-    margin-left: 3%;
+    margin-left: 4%;
 }
 
 .priceSale {
-    width: 96%;
-    margin-left: 3%;
+    width: 92%;
+    margin-left: 4%;
     font-size: 14px;
     color: #888;
     margin-bottom: 10px;
