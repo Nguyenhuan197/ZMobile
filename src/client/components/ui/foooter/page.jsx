@@ -68,12 +68,12 @@ export default function Footer() {
                 <div className={styles.companyInfo}>
                     <div className={styles.legalDetails}>
                         <p className={styles.companyName}>{admin?.nameLogo.toUpperCase()} VIỆT NAM</p>
-                        <p>CS1 - {admin?.address}</p>
-                        <p>CS2 -  202 Trần Thị Hè Hiệp Thành Q12 HCM</p>
-                        <p>Email - {admin?.email}</p>
-                        <p>Liên hệ  - {admin?.phone}</p>
-                        <p>Đối tác giao hàng - {admin?.partnerDelivery}</p>
-                        <p>Thời gian làm việc - {admin?.workingHours}</p>
+                        <p>CS1 : {admin?.address}</p>
+                        <p>CS2 : 202 Trần Thị Hè Hiệp Thành Q12 HCM</p>
+                        <p>Email : {admin?.email}</p>
+                        <p>Liên hệ : {admin?.phone}</p>
+                        <p>Đối tác giao hàng : {admin?.partnerDelivery}</p>
+                        <p>Thời gian làm việc : {admin?.workingHours}</p>
                     </div>
 
                     <div className={styles.bctBadge}>
@@ -89,8 +89,17 @@ export default function Footer() {
 
                     <div className={styles.bottom}>
                         <p>Bản quyền © {DataAdmin?.data[0].nameLogo} 2024 - {new Date().getFullYear()}   </p>
-                        <p>{admin?.nameAdmin} </p>
-                        <p style={{ fontSize: 13 }}>Version 26.05.04</p>
+                        <p >
+                            Thiết kế Website bởi {' ❤️ '}
+                            <Link style={{
+                                color: '#b6b4b4',
+                                textDecoration: 'none'
+                            }} to={'https://www.facebook.com/huan28042005/'}>
+                                {admin?.nameAdmin}
+                            </Link>
+                        </p>
+
+                        <p style={{ fontSize: 13 }}>Version 26.05.09</p>
                     </div>
                 </div>
             </div>
