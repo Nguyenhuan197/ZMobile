@@ -197,15 +197,25 @@
 
 .relatedImg {
     width: 100%;
-    height: 180px;
+    height: 280px;
     object-fit: contain;
     margin-bottom: 10px;
 }
 
+
 .relatedName {
     font-size: 15px;
-    margin-bottom: 8px;
-    min-height: 40px;
+    line-height: 1.4;
+    /* Thiết lập line-height rõ ràng */
+    max-height: 2.8em;
+    /* 1.4 x 2 dòng = 2.8em */
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .relatedPrice {
@@ -289,7 +299,10 @@
     }
 
     .relatedImg {
-        height: 120px;
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        margin-bottom: 10px;
     }
 
     .relatedName {

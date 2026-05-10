@@ -26,6 +26,7 @@ export default function ProductDetail() {
     const product = response?.data;
     const similarProducts = response?.similarProducts || [];
 
+
     useEffect(() => {
         if (product?.img?.secure_url) {
             setActiveImg(product.img.secure_url);
@@ -230,9 +231,7 @@ export default function ProductDetail() {
 
             {similarProducts.length > 0 && (
                 <div className={styles.relatedSection}>
-                    <h2 className={styles.relatedTitle}>
-                        Sản phẩm liên quan
-                    </h2>
+                    <h2 className={styles.relatedTitle}>Sản phẩm liên quan</h2>
 
                     <div className={styles.relatedGrid}>
                         {similarProducts.map((item) => (
@@ -246,14 +245,14 @@ export default function ProductDetail() {
                                     alt={item.name}
                                     className={styles.relatedImg}
                                 />
-                                <p className={styles.relatedName}>
-                                    {item.name}
-                                </p>
+                                <p className={styles.relatedName}>{item.name}</p>
                                 <span className={styles.relatedPrice}>
                                     {formatPrice(item.price)}
                                 </span>
+                                <p>Đã bán {item.sold}</p>
                             </div>
                         ))}
+
                     </div>
                 </div>
             )}
