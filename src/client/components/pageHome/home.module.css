@@ -36,8 +36,15 @@
 
 .card img {
     width: 100%;
-    height: 260px;
+    height: 280px;
+    object-fit: cover;
+    /* Giữ tỉ lệ ảnh, cắt bớt phần thừa */
+    object-position: center;
+    /* Tập trung vào chính giữa bức ảnh */
+    display: block;
+    /* Loại bỏ khoảng trống thừa phía dưới ảnh */
 }
+
 
 .blockName {
     margin-left: 3%;
@@ -180,6 +187,13 @@
     .card img {
         width: 100%;
         height: 210px;
+
+        object-fit: cover;
+        /* Giữ tỉ lệ ảnh, cắt bớt phần thừa */
+        object-position: center;
+        /* Tập trung vào chính giữa bức ảnh */
+        display: block;
+        /* Loại bỏ khoảng trống thừa phía dưới ảnh */
     }
 
 
