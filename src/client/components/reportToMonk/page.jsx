@@ -40,6 +40,7 @@ export default function WholesaleAdmin() {
                 {/* Top Header: Thông tin shop */}
                 <header className={styles.topHeader}>
                     <div className={styles.shopBrand}>
+                        <h2 className={styles.logoText}>Báo giá sĩ</h2>
                         <h1 className={styles.logoText}>ZALO 0369 594 026</h1>
                     </div>
                     <div className={styles.liveStatus}>
@@ -74,7 +75,7 @@ export default function WholesaleAdmin() {
                         <div className={styles.lockNotice}>
                             <div className={styles.lockIconBox}>🔒</div>
                             <h2>Bảng giá đang khóa</h2>
-                            <p>Vui Lòng Liên hệ ZALO Để Cung Cấp MK</p>
+                            <p>Liên hệ Zalo Để Cung Cấp MK</p>
                         </div>
                     ) : (
                         <div className={styles.responsiveTable}>

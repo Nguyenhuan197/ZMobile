@@ -61,7 +61,7 @@ export default function ProjectContacts() {
             <div className={styles.header}>
                 <h1 className={styles.mainTitle}>Kết Nối</h1>
                 <p className={styles.subTitle}>
-                    Đội ngũ <strong>{admin?.nameLogo || "Z Mobile"}</strong> luôn sẵn sàng hỗ trợ bạn 24/7
+                    Đội ngũ <strong>{admin?.nameLogo || "Z Mobile"}</strong>Hỗ trợ bạn 24/7
                 </p>
             </div>
 
