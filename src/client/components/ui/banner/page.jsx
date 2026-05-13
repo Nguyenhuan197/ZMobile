@@ -39,12 +39,8 @@ const Banner = React.memo(({ data }) => {
             <Link to={`/product/${currentItem._id}`} className={styles.content}>
                 <div className={styles.left}>
                     <h2>{currentItem.name}</h2>
-                    <p className={styles.subtitle}>
-                        Giảm ngay {formatPrice(currentItem.priceSale || 0)}
-                    </p>
-                    <p className={styles.desc}>
-                        Sản phẩm chính hãng - Bảo hành 6 tháng
-                    </p>
+                    <p className={styles.subtitle}>Giảm ngay {formatPrice(currentItem.priceSale || 0)}</p>
+                    <p className={styles.desc}>Sản phẩm chính hãng - Bảo hành 6 tháng</p>
 
                     <div className={styles.priceRow}>
                         <span className={styles.oldPrice}>
@@ -64,6 +60,7 @@ const Banner = React.memo(({ data }) => {
                     />
                 </div>
             </Link>
+
 
             <div className={styles.pagination}>
                 {slides.map((_, index) => (

@@ -37,6 +37,7 @@ import ListOrderAdmin from "./admin/page/OrdersAll";
 import UpdateCategoryAdmin from "./admin/page/UpdateCategory";
 import ContactSupport from "./admin/page/ContactSupport";
 import SearchOrderAdmin from "./admin/page/SearchOrder";
+import ReportToMonk from "./client/page/reportToMonk";
 
 
 
@@ -93,6 +94,10 @@ function App() {
         <Route path="/trademark-product/:id" element={<Trademark />} />
         <Route path="/trademark-product" element={<Trademark />} />
         <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/report-to-monk-z-mobile-2026" element={<ReportToMonk />} />
+
+
+
 
 
 

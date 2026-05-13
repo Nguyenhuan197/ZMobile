@@ -14,7 +14,7 @@ import {
 import { UpdateSevices } from '../../../services/updateApi';
 import { ShowToast, ToastType } from '../../../utils/toast';
 import { Helmet } from 'react-helmet-async';
-
+import styles_Hieuung from "../../../App.module.css";
 
 
 export default function RecruitmentComponent() {
@@ -97,6 +97,9 @@ export default function RecruitmentComponent() {
 
     return (
         <div className={styles.container}>
+
+            <div className={styles_Hieuung.blob}></div>
+            <div className={styles_Hieuung.blob2}></div>
 
             <Helmet>
                 <title>Tuyển Cộng Tác Viên Kinh Doanh | Z Mobile</title>

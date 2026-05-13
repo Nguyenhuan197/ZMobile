@@ -104,6 +104,17 @@ export default function Header() {
                             Tuyển dụng
                         </NavLink>
 
+                        <NavLink
+                            to="/report-to-monk-z-mobile-2026"
+                            className={({ isActive }) =>
+                                isActive ? styles.active : ""
+                            }
+                        >
+                            Báo giá sĩ
+                        </NavLink>
+
+
+
                     </nav>
 
                     {

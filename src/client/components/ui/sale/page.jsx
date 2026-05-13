@@ -71,7 +71,6 @@ const FlashSaleProduct = React.memo(({ dataProducts }) => {
 
                     return (
                         <Link to={`/product/${item._id}`} key={item._id} className={stylesHome.card}>
-
                             <img src={`${item.img.secure_url}`} alt={item.name} />
                             <div className={stylesHome.blockName}>
                                 <span>{item.name}</span>

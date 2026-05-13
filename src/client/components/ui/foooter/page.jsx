@@ -4,7 +4,7 @@ import { FaFacebookF, FaTiktok, FaYoutube, FaPhoneAlt, FaRegComments, FaGlobe, F
 import { ThemeContext } from "../../../../context/useThemeContext";
 import { useContext } from "react";
 import { IoArrowForwardOutline } from "react-icons/io5";
-import logoBocongthuong from "../../../../assets/bo-cong-thuong.png";
+// import logoBocongthuong from "../../../../assets/bo-cong-thuong.png";
 
 
 export default function Footer() {
@@ -44,7 +44,7 @@ export default function Footer() {
 
                 {/* Phần 3: Đăng ký nhận tin */}
                 <div className={styles.newsletterSection}>
-                    <p>Nhập địa chỉ email của bạn để đăng ký nhận thông tin</p>
+                    <p>Đăng ký nhận thông tin</p>
                     <div className={styles.inputGroup}>
                         <input type="email" placeholder="Nhập địa chỉ Email" />
                         <button><IoArrowForwardOutline /></button>
@@ -67,39 +67,40 @@ export default function Footer() {
                 {/* Phần 5: Thông tin công ty & Pháp lý */}
                 <div className={styles.companyInfo}>
                     <div className={styles.legalDetails}>
-                        <p className={styles.companyName}>{admin?.nameLogo.toUpperCase()} VIỆT NAM</p>
+                        <p className={styles.companyName}>LIÊN HỆ {admin?.nameLogo.toUpperCase()}</p>
                         <p>CS1 : {admin?.address}</p>
                         <p>CS2 : 202 Trần Thị Hè Hiệp Thành Q12 HCM</p>
                         <p>Email : {admin?.email}</p>
                         <p>Liên hệ : {admin?.phone}</p>
                         <p>Đối tác giao hàng : {admin?.partnerDelivery}</p>
                         <p>Thời gian làm việc : {admin?.workingHours}</p>
+                        <p>MB Bank : 199928042005 - NGUYEN DINH HUAN</p>
+
                     </div>
 
-                    <div className={styles.bctBadge}>
+                    {/* <div className={styles.bctBadge}>
                         <img
                             src={logoBocongthuong}
                             alt="Đã thông báo Bộ Công Thương"
                         />
-                    </div>
+                    </div> */}
 
                     <Link to="/admin-zmobile-2026/product/list" className={styles.adminAccess}>
                         Đăng nhập Admin
                     </Link>
 
                     <div className={styles.bottom}>
-                        <p>Bản quyền © {DataAdmin?.data[0].nameLogo} 2024 - {new Date().getFullYear()}   </p>
+                        <p>Bản quyền © {DataAdmin?.data[0].nameLogo} 2024 - {new Date().getFullYear()}.</p>
                         <p >
-                            Thiết kế Website bởi {' ❤️ '}
+                            Thiết kế Website bởi {' '}
                             <Link style={{
                                 color: '#b6b4b4',
                                 textDecoration: 'none'
                             }} to={'https://www.facebook.com/huan28042005/'}>
-                                {admin?.nameAdmin}
+                                Huan IT
                             </Link>
                         </p>
-
-                        <p style={{ fontSize: 13 }}>Version 26.05.09</p>
+                        <p style={{ fontSize: 13 }}>Version V26.05.14.02</p>
                     </div>
                 </div>
             </div>

@@ -10,12 +10,12 @@ import OurPartnersComponent from "./OurPartners";
 import TestimonialSection from "./CustomerReviews";
 
 
+
 export default function ProjectHome() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
     const { data: dataAccessory, isLoadingAccessory } = useSWR(`${apiUrl}/api/product/view-product-accessory?status=true`, fetcher);
     const { data: dataLoudspeaker, isLoadingLoudspeaker } = useSWR(`${apiUrl}/api/product/view-product-loudspeaker?status=true`, fetcher);
-
 
     const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
@@ -28,6 +28,8 @@ export default function ProjectHome() {
         <>
             <Banner data={dataAdvertisement} />
             <div className={styles.container}>
+
+
                 <FlashSaleProduct dataProducts={dataSale} />
                 <ListProduct data={dataProducts} dataCategory={"Điện thoại"} />
                 <ListProduct data={dataAccessory} dataCategory={"Phụ kiện"} />
@@ -56,7 +58,7 @@ export default function ProjectHome() {
 
                 {/* <RecentlyViewed /> */}
 
-                <TestimonialSection></TestimonialSection>
+                <TestimonialSection />
 
 
 
