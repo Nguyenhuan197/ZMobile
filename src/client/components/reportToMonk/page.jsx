@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Lock, Smartphone, Search, MapPin, Phone, CheckCircle2, RefreshCw } from "lucide-react";
 import styles from "./wholesaleAdmin.module.css";
+import { formatPrice } from "../../../utils/formatPrice.JS";
 
 const MOCK_DATA = [
-    { id: 1, name: "OPPO K10S", ram: "8/128GB", retail: "3.500", sl3: "3.200", sl5: "3.100", sl10: "3.000", sl20: "2.900" },
-    { id: 2, name: "Realme V20", ram: "4/128GB", retail: "2.200", sl3: "1.950", sl5: "1.900", sl10: "1.850", sl20: "1.800" },
-    { id: 3, name: "iPhone 11 Pro", ram: "64GB", retail: "6.500", sl3: "6.100", sl5: "6.000", sl10: "5.900", sl20: "5.800" },
-    { id: 4, name: "Redmi Note 12", ram: "6/128GB", retail: "3.800", sl3: "3.500", sl5: "3.400", sl10: "3.350", sl20: "3.300" },
-    { id: 5, name: "Samsung A54", ram: "8/256GB", retail: "7.200", sl3: "6.800", sl5: "6.700", sl10: "6.600", sl20: "6.500" },
-    { id: 6, name: "Vivo Y35", ram: "8/128GB", retail: "4.100", sl3: "3.800", sl5: "3.750", sl10: "3.700", sl20: "3.650" },
+    { id: 1, name: "OPPO A56 5G", ram: "8/256GB", retail: "1950000", sl3: "1900000", sl5: "1850000", sl10: "1800000", sl20: "nav" },
+    { id: 2, name: "OPPO Reno 4Z 5G", ram: "12/256GB", retail: "2150000", sl3: "2100000", sl5: "2100000", sl10: "2000000", sl20: "nav" },
+    { id: 3, name: "OPPO Reno 6 5G", ram: "12/256GB", retail: "3500000", sl3: "3400000", sl5: "3300000", sl10: "3200000", sl20: "nav" },
+    { id: 4, name: "OPPO A9 2020", ram: "8/256GB", retail: "1600000", sl3: "1550000", sl5: "1400000", sl10: "1370000", sl20: "nav" },
 ];
 
 export default function WholesaleAdmin() {
@@ -97,11 +96,11 @@ export default function WholesaleAdmin() {
                                                 <Smartphone size={16} /> {item.name}
                                             </td>
                                             <td><span className={styles.badgeRam}>{item.ram}</span></td>
-                                            <td className={styles.retailText}>{item.retail}</td>
-                                            <td className={styles.priceNum}>{item.sl3}</td>
-                                            <td className={styles.priceNum}>{item.sl5}</td>
-                                            <td className={styles.priceNum}>{item.sl10}</td>
-                                            <td className={styles.wholesaleText}>{item.sl20}</td>
+                                            <td className={styles.retailText}>{formatPrice(item.retail)}  </td>
+                                            <td className={styles.priceNum}>{formatPrice(item.sl3)}</td>
+                                            <td className={styles.priceNum}>{formatPrice(item.sl5)}</td>
+                                            <td className={styles.priceNum}>{formatPrice(item.sl10)}</td>
+                                            <td className={styles.wholesaleText}>{formatPrice(item.sl20)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
