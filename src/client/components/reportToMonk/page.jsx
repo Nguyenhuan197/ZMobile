@@ -40,7 +40,7 @@ export default function WholesaleAdmin() {
                 {/* Top Header: Thông tin shop */}
                 <header className={styles.topHeader}>
                     <div className={styles.shopBrand}>
-                        <h1 className={styles.logoText}>ZALO 0369 594 026</h1>
+                        <h1 className={styles.logoText}>Zalo 0369 594 026</h1>
                     </div>
                     <div className={styles.liveStatus}>
                         <RefreshCw size={14} className={styles.spinIcon} />
