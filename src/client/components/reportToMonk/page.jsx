@@ -40,7 +40,6 @@ export default function WholesaleAdmin() {
                 {/* Top Header: Thông tin shop */}
                 <header className={styles.topHeader}>
                     <div className={styles.shopBrand}>
-                        <h2 className={styles.logoText}>Báo giá sĩ</h2>
                         <h1 className={styles.logoText}>ZALO 0369 594 026</h1>
                     </div>
                     <div className={styles.liveStatus}>
@@ -63,7 +62,7 @@ export default function WholesaleAdmin() {
                             />
                         </div>
                         <button onClick={handleCheck} className={styles.btnCheck}>
-                            Tra cứu
+                            Tra cứu giá sĩ
                         </button>
                     </div>
 
