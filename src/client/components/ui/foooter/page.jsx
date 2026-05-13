@@ -74,7 +74,7 @@ export default function Footer() {
                         <p>Liên hệ : {admin?.phone}</p>
                         <p>Đối tác giao hàng : {admin?.partnerDelivery}</p>
                         <p>Thời gian làm việc : {admin?.workingHours}</p>
-                        <p>MB Bank : 199928042005 - NGUYEN DINH HUAN</p>
+                        <p>MB : 199928042005 - NGUYEN DINH HUAN</p>
 
                     </div>
 
