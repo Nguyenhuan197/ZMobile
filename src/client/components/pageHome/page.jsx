@@ -7,17 +7,22 @@ import FlashSaleProduct from "../ui/sale/page";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 import ListProduct from "./ListProduct";
 import OurPartnersComponent from "./OurPartners";
+import TestimonialSection from "./CustomerReviews";
 
 
 export default function ProjectHome() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const { data: dataProducts, isLoading } = useSWR(`${apiUrl}/api/product/view-product-phone?status=true`, fetcher);
     const { data: dataAccessory, isLoadingAccessory } = useSWR(`${apiUrl}/api/product/view-product-accessory?status=true`, fetcher);
+    const { data: dataLoudspeaker, isLoadingLoudspeaker } = useSWR(`${apiUrl}/api/product/view-product-loudspeaker?status=true`, fetcher);
+
+
     const { data: dataAdvertisement, isLoading: isLoadingNew } = useSWR(`${apiUrl}/api/product/view-advertisement`, fetcher);
     const { data: dataBranch, isLoadingBranch } = useSWR(`${apiUrl}/api/trademark/view?status=true`, fetcher);
     const { data: dataSale, isLoadingSale } = useSWR(`${apiUrl}/api/product/view-sale`, fetcher);
-    if (isLoading || isLoadingAccessory || isLoadingNew || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
+    if (isLoading || isLoadingAccessory || isLoadingLoudspeaker || isLoadingNew || isLoadingBranch || isLoadingSale) return <UiLoadingComponent />
 
+    // 
 
     return (
         <>
@@ -26,6 +31,7 @@ export default function ProjectHome() {
                 <FlashSaleProduct dataProducts={dataSale} />
                 <ListProduct data={dataProducts} dataCategory={"Điện thoại"} />
                 <ListProduct data={dataAccessory} dataCategory={"Phụ kiện"} />
+                {/* <ListProduct data={dataLoudspeaker} dataCategory={"Loa"} /> */}
 
                 <section style={{ marginTop: 40 }}>
                     <h2 className={styles.sectionTitle}>Các thương hiệu </h2>
@@ -49,6 +55,10 @@ export default function ProjectHome() {
                 {/* <NewsSection data={dataNews} /> */}
 
                 {/* <RecentlyViewed /> */}
+
+                <TestimonialSection></TestimonialSection>
+
+
 
             </div>
         </>
