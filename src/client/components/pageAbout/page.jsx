@@ -1,6 +1,7 @@
 "use client"
 import styles from "./about.module.css";
 import styles_Hieuung from "../../../App.module.css";
+import { FaStar } from "react-icons/fa";
 
 
 export default function ProjectAbout() {
@@ -33,7 +34,7 @@ export default function ProjectAbout() {
                         {[
                             { title: "Uy tín", desc: "Nền tảng của mọi giao dịch.", icon: "💎" },
                             { title: "Tận tâm", desc: "Hỗ trợ khách hàng như người thân.", icon: "🤝" },
-                            { title: "Đổi mới", desc: "Luôn cập nhật xu hướng mới nhất.", icon: "🚀" }
+                            { title: "Đổi mới", desc: "Luôn cập nhật xu hướng mới nhất.", icon: "🚀" },
                         ].map((item, index) => (
                             <div key={index} className={styles.glassCard}>
                                 <div className={styles.glassIcon}>{item.icon}</div>
@@ -52,17 +53,22 @@ export default function ProjectAbout() {
                     </div>
                     <div className={styles.divider}></div>
                     <div className={styles.statBox}>
-                        <span className={styles.number}>98%</span>
-                        <span className={styles.label}>Độ hài lòng</span>
+                        <span className={styles.number}>99.2%</span>
+                        <span className={styles.label}>Độ hài lòng khách hàng</span>
                     </div>
                     <div className={styles.divider}></div>
                     <div className={styles.statBox}>
                         <span className={styles.number}>24/7</span>
-                        <span className={styles.label}>Hỗ trợ</span>
+                        <span className={styles.label}>Dịch vụ hỗ trợ</span>
                     </div>
                     <div className={styles.statBox}>
-                        <span className={styles.number}>4.9/5.0</span>
-                        <span className={styles.label}>Lượt đánh giá từ khách hàng </span>
+                        <span className={styles.number}>4.9
+                            <FaStar style={{
+                                fontSize: 20,
+                                marginLeft: 10
+                            }} />
+                        </span>
+                        <span className={styles.label}>TB Lượt đánh giá</span>
                     </div>
                 </section>
             </main>

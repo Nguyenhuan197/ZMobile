@@ -133,16 +133,9 @@
 
 /* Stats Banner - Tối ưu cho Mobile Touch */
 .statsBanner {
-    background: linear-gradient(135deg,
-            var(--c1) 0%,
-            var(--c2) 25%,
-            var(--c4) 50%,
-            var(--c5) 75%,
-            var(--c1) 100%);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ffbe0b);
     background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-
-
+    animation: gradientAnimation 15s ease infinite;
 
     border-radius: 40px;
     padding: 40px;
@@ -150,8 +143,23 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 100px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
 }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 
 .statBox .number {
     display: block;

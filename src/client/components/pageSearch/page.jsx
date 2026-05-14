@@ -11,7 +11,7 @@ export default function ProductSearchComponent() {
     const apiUrl = import.meta.env.VITE_API_URL_BACKEND;
     const [searchTerm, setSearchTerm] = useState('');
     const [pageProduct, setPageProduct] = useState(1);
-    const limit = 5;
+    const limit = 12;
 
 
     const { data: dataProducts, isLoading, error } = useSWR(
@@ -40,7 +40,6 @@ export default function ProductSearchComponent() {
         <div className={styles.container}>
             <div className={styles.searchHeader}>
                 <h2 className={styles.title}>{searchTerm.trim() === '' ? 'Tìm kiếm sản phẩm' : 'Đăng tìm kiếm sản phẩm'}</h2>
-
                 <div className={styles.searchBox}>
                     <input
                         type="text"
